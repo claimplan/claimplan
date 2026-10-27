@@ -40,12 +40,12 @@ try {
   for (let boundary = 0; boundary < 3; boundary++) {
     const closeTime = creation + [59, 60, 61][boundary];
     const batch = probes.map((probe, operation) => ({ ...probe, operation })).filter(probe => probe.boundary === boundary);
-    for (const probe of batch) {
+    await Promise.all(batch.map(async probe => {
       const signer = probe.fixture.claimant === 1 ? probe.recovery : probe.beneficiary;
       probe.balanceId = create.getClaimableBalanceId(probe.operation);
       const claim = await buildTransaction(client, signer, [Operation.claimClaimableBalance({ balanceId: probe.balanceId })]);
       probe.hash = await queueTransaction(network, client, claim, signer);
-    }
+    }));
     await closeAt(network, closeTime);
     completed.push({ batch, closeTime, boundary });
     time = closeTime;
