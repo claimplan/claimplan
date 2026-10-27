@@ -1,6 +1,6 @@
 # ClaimPlan progress tracker
 
-Current stage: **working offline MVP → protocol verification**.
+Current stage: **Stellar Core verification in progress**.
 
 The initial implementation is complete. It is not yet a validated v0.1 release or a Drips-approved project. This tracker distinguishes implementation, independent evidence, release preparation and external approval. No percentage is assigned because the remaining work is not equal in size.
 
@@ -20,7 +20,7 @@ The initial implementation is complete. It is not yet a validated v0.1 release o
 
 Evidence: [latest verified documentation-head CI](https://github.com/claimplan/claimplan/actions/runs/40516015206), [implementation CI](https://github.com/claimplan/claimplan/actions/runs/40515788768). These are model/SDK/CLI tests, not execution against Stellar Core.
 
-## 2. Verify against Stellar Core — NEXT
+## 2. Verify against Stellar Core — IN PROGRESS
 
 - [ ] Inspect local Docker/Core availability and select a verified compatible local network version.
 - [ ] Create a reproducible local-only test harness with synthetic accounts and assets.
@@ -84,7 +84,7 @@ Include this compact tracker in progress updates and handoffs:
 | Stage | State |
 | --- | --- |
 | Offline MVP | Complete |
-| Stellar Core verification | Next |
+| Stellar Core verification | In progress |
 | Developer validation | Pending |
 | Release preparation | Pending |
 | Release/distribution | Pending authorization |

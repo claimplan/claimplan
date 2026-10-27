@@ -1,6 +1,14 @@
 # Implementation plan
 
-For the remaining project milestones and user-facing status, use [the progress tracker](TODO.md). The implementation slices below are complete; protocol verification is next.
+For the remaining project milestones and user-facing status, use [the progress tracker](TODO.md). The initial implementation slices below are complete; local protocol verification is now active.
+
+## Active stage: local Stellar Core verification
+
+- Docker daemon and Stellar CLI are available. Existing unrelated containers must remain untouched.
+- Use an isolated ephemeral Quickstart network bound only to loopback. Pin the tested image by digest and close ledgers manually to test exact time boundaries.
+- Keep signing/submission in a separate explicitly invoked development harness, never in the product/library.
+- Ordered units: environment manifest/launcher; local RPC/manual-close helper; boundary fixtures; actual claim-outcome comparisons; regression fixes if any; recorded evidence and documentation. Commit/push each logical unit immediately and wait for completion.
+- Actual Core version, image digest and test outcomes remain unverified until the container runs.
 
 ## Scope and decisions
 
