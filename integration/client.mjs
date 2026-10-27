@@ -19,7 +19,12 @@ export async function connectLocal(network) {
       if (ledger.sequence < info.info.ledger.num) throw new Error('RPC catching up');
       // Derive only the well-known standalone genesis key, after identity checks.
       return { server, root: Keypair.master(config.networkPassphrase), identity, info };
-    } catch (error) { lastError = error; }
+    } catch (error) {
+      lastError = error;
+      if (error.message.includes('DB is empty') || error.message.includes('latest ledger sequence')) {
+        await coreRequest(network.core, 'manualclose');
+      }
+    }
     await pause(500);
   }
   throw new Error(`Local RPC startup timed out: ${lastError?.message}`);
@@ -43,7 +48,7 @@ export function operationResults(result) {
   }) };
 }
 
-export async function submitAt(network, client, transaction, signer, closeTime) {
+export async function queueTransaction(network, client, transaction, signer) {
   // Recheck both identities immediately before signing every synthetic transaction.
   assertStandalone(await coreRequest(network.core, 'info'), await client.server.getNetwork(), config);
   transaction.sign(signer);
@@ -51,11 +56,30 @@ export async function submitAt(network, client, transaction, signer, closeTime) 
   if (sent.status !== 'PENDING') {
     throw new Error(`Core admission failed: ${sent.status} ${sent.errorResult?.result?.type ?? ''}`);
   }
-  const closed = await coreRequest(network.core, `manualclose?closeTime=${closeTime}`);
-  if (typeof closed !== 'string' || !closed.includes('Manually closed')) {
+  return Buffer.from(transaction.hash()).toString('hex');
+}
+
+export async function closeAt(network, closeTime) {
+  while (Date.now() < closeTime * 1000 + 30) {
+    await pause(Math.min(100, closeTime * 1000 + 30 - Date.now()));
+  }
+  const closed = await coreRequest(network.core, 'manualclose');
+  if (typeof closed !== 'string' || !closed.includes('Manually triggered')) {
     throw new Error(`Unexpected manual-close result: ${JSON.stringify(closed)}`);
   }
-  const hash = Buffer.from(transaction.hash()).toString('hex');
+  const deadline = Date.now() + 10000;
+  while (Date.now() < deadline) {
+    const info = await coreRequest(network.core, 'info');
+    if (info.info.ledger.closeTime >= closeTime) {
+      if (info.info.ledger.closeTime !== closeTime) throw new Error('Missed requested real-time ledger boundary');
+      return;
+    }
+    await pause(20);
+  }
+  throw new Error('Manual ledger close did not complete');
+}
+
+export async function transactionResult(client, hash, closeTime) {
   const deadline = Date.now() + 30000;
   while (Date.now() < deadline) {
     const result = await client.server.getTransaction(hash);
@@ -67,4 +91,10 @@ export async function submitAt(network, client, transaction, signer, closeTime) 
     await pause(200);
   }
   throw new Error(`RPC did not ingest synthetic transaction ${hash}`);
+}
+
+export async function submitAt(network, client, transaction, signer, closeTime) {
+  const hash = await queueTransaction(network, client, transaction, signer);
+  await closeAt(network, closeTime);
+  return transactionResult(client, hash, closeTime);
 }
