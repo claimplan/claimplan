@@ -1,4 +1,4 @@
-import { Keypair, TransactionBuilder, rpc } from '@stellar/stellar-sdk';
+import { Keypair, TransactionBuilder, rpc, xdr } from '@stellar/stellar-sdk';
 import { config, coreRequest, pause } from './network.mjs';
 import { assertStandalone, localEndpoint } from './safety.mjs';
 
@@ -87,7 +87,17 @@ export async function closeAt(network, closeTime) {
 export async function transactionResult(client, hash, closeTime) {
   const deadline = Date.now() + 120000;
   while (Date.now() < deadline) {
-    const result = await client.server.getTransaction(hash);
+    // RPC v30 returns ledgerCloseTime; SDK 17's parser only preserves createdAt.
+    // Read the public wire response rather than guessing a missing timestamp.
+    const response = await fetch(localEndpoint(client.server.serverURL.href), {
+      method: 'POST', redirect: 'error', signal: AbortSignal.timeout(config.requestTimeoutMs),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'getTransaction', params: { hash } }),
+    });
+    if (!response.ok) throw new Error(`Local RPC returned HTTP ${response.status}`);
+    const body = await response.json();
+    if (body.error) throw new Error(`Local RPC transaction lookup failed: ${body.error.message}`);
+    const result = decodeTransactionResult(body.result);
     if (result.status !== 'NOT_FOUND') {
       if (result.createdAt !== closeTime) throw new Error('Actual ledger time differs from requested boundary');
       return { hash, ledger: result.ledger, closeTime: result.createdAt, status: result.status,
@@ -97,6 +107,17 @@ export async function transactionResult(client, hash, closeTime) {
   }
   const latest = await client.server.getLatestLedger();
   throw new Error(`RPC did not ingest synthetic transaction ${hash}; latest ledger ${latest.sequence}, close time ${latest.closeTime}`);
+}
+
+export function decodeTransactionResult(raw) {
+  if (raw?.status === 'NOT_FOUND') return raw;
+  if (!['SUCCESS', 'FAILED'].includes(raw?.status)) throw new Error('Unexpected RPC transaction status');
+  const timestamp = raw.createdAt ?? raw.ledgerCloseTime;
+  if (!/^[0-9]+$/.test(String(timestamp)) || !Number.isSafeInteger(Number(timestamp))) {
+    throw new Error('RPC transaction has no exact supported ledger timestamp');
+  }
+  return { status: raw.status, ledger: raw.ledger, createdAt: Number(timestamp),
+    resultXdr: xdr.TransactionResult.fromXdr(raw.resultXdr, 'base64') };
 }
 
 export async function submitAt(network, client, transaction, signer, closeTime) {

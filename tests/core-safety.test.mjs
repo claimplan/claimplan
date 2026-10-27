@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { localEndpoint, assertStandalone } from '../integration/safety.mjs';
-import { operationResults } from '../integration/client.mjs';
+import { operationResults, decodeTransactionResult } from '../integration/client.mjs';
 import { xdr } from '@stellar/stellar-sdk';
 
 test('Core harness accepts only explicit loopback HTTP ports', () => {
@@ -33,4 +33,14 @@ test('Core outcome decoding preserves predicate and transfer failures distinctly
     assert.deepEqual(operationResults(result), { transaction: outcome, operations: [code] });
   }
   assert.throws(() => operationResults({}), /no transaction-result XDR/);
+});
+
+test('Core harness requires exact timestamps across old and new RPC wire formats', () => {
+  const resultXdr = new xdr.TransactionResult({ feeCharged: 100n,
+    result: xdr.TransactionResultResult.txSuccess([]), ext: xdr.TransactionResultExt.v0() }).toXdr('base64');
+  const raw = { status: 'SUCCESS', ledger: 65, resultXdr };
+  assert.equal(decodeTransactionResult({ ...raw, createdAt: 1800000000 }).createdAt, 1800000000);
+  assert.equal(decodeTransactionResult({ ...raw, ledgerCloseTime: '1800000000' }).createdAt, 1800000000);
+  assert.throws(() => decodeTransactionResult(raw), /timestamp/);
+  assert.throws(() => decodeTransactionResult({ ...raw, ledgerCloseTime: '1.5' }), /timestamp/);
 });
