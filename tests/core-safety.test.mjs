@@ -1,6 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { localEndpoint, assertStandalone } from '../integration/safety.mjs';
+import { operationResults } from '../integration/client.mjs';
+import { xdr } from '@stellar/stellar-sdk';
 
 test('Core harness accepts only explicit loopback HTTP ports', () => {
   assert.equal(localEndpoint('http://127.0.0.1:18000/rpc').pathname, '/rpc');
@@ -20,4 +22,15 @@ test('Core harness checks both network identities and protocol before signing', 
   assert.throws(() => assertStandalone({ info: { ...core.info, network: 'public' } }, rpc, config));
   assert.throws(() => assertStandalone(core, { ...rpc, protocolVersion: '27' }, config));
   assert.throws(() => assertStandalone({ info: { ...core.info, ledger: { version: 27 } } }, rpc, config));
+});
+
+test('Core outcome decoding preserves predicate and transfer failures distinctly', () => {
+  for (const code of ['claimClaimableBalanceSuccess', 'claimClaimableBalanceCannotClaim',
+    'claimClaimableBalanceNoTrust', 'claimClaimableBalanceLineFull', 'claimClaimableBalanceNotAuthorized']) {
+    const inner = xdr.OperationResultTr.claimClaimableBalance(xdr.ClaimClaimableBalanceResult[code]());
+    const outcome = code.endsWith('Success') ? 'txSuccess' : 'txFailed';
+    const result = { resultXdr: { result: xdr.TransactionResultResult[outcome]([xdr.OperationResult.opInner(inner)]) } };
+    assert.deepEqual(operationResults(result), { transaction: outcome, operations: [code] });
+  }
+  assert.throws(() => operationResults({}), /no transaction-result XDR/);
 });
