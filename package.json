@@ -1,0 +1,21 @@
+{
+  "name": "@claimplan/cli",
+  "version": "0.1.0",
+  "description": "Offline policy checks for Stellar claimable-balance payout plans",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22.12.0" },
+  "bin": { "claimplan": "dist/cli.js" },
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "files": ["dist", "docs/SPEC.md", "examples", "README.md", "LICENSE"],
+  "repository": { "type": "git", "url": "git+https://github.com/claimplan/claimplan.git" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "check": "npm run typecheck && npm test",
+    "prepack": "npm run build"
+  },
+  "dependencies": { "@stellar/stellar-sdk": "17.4.0" },
+  "devDependencies": { "@types/node": "22.20.5", "typescript": "7.0.2" }
+}
