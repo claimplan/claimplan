@@ -8,6 +8,8 @@ ClaimPlan is a command-line tool and TypeScript library that checks whether a pa
 
 Early implementation, not audited. Source installation and offline examples work; no npm package has been published. Customer validation and Stellar Core integration testing remain pending.
 
+Follow the [progress tracker and finish checklist](docs/TODO.md) for completed work, current stage and next steps.
+
 ## Run locally
 
 Requires Node.js **22.12.0 or newer** and npm.

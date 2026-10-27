@@ -1,5 +1,7 @@
 # Implementation plan
 
+For the remaining project milestones and user-facing status, use [the progress tracker](TODO.md). The implementation slices below are complete; protocol verification is next.
+
 ## Scope and decisions
 
 First offline CLI/library version, under `docs/SPEC.md`. Single package; separate parsing, interval analysis, policy validation, analysis and CLI modules. Exact bigint arithmetic. Official SDK 17.4.0 verified against npm and GitHub release 2026-10-27; requires Node >=22.12.0. No custom XDR codec.

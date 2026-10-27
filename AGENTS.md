@@ -9,3 +9,4 @@
 - Run `npm run check`, appropriate CLI/package checks, and `git diff --check`. Report actual outcomes and remaining verification gaps.
 - Stage specific files and use logical conventional commits. Push only within the user's authorized workflow. Do not publish packages, submit to funding programs, or deploy without authorization.
 - Update the plan and documentation with implementation changes. Do not claim an audit, Stellar Core execution, adoption or program acceptance without evidence.
+- Maintain `docs/TODO.md` as the finish checklist. Always include a concise completed/current/next progress tracker in user-facing progress updates and handoffs, with actual evidence and blockers. Do not invent percentage completion.
