@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "operations": [
+    {
+      "operation": 0,
+      "beneficiary": "GAAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQDZ7H",
+      "recovery": "GABAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEJXA",
+      "handoverAfter": "60",
+      "exclusive": true,
+      "continuousCoverage": true
+    }
+  ]
+}

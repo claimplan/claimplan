@@ -51,7 +51,7 @@ Without recovery, the beneficiary must be predicate-eligible throughout the anal
 
 ## Report
 
-Versioned JSON includes `rulesVersion`, `status` (`pass`, `fail`, `inconclusive`), `scope`, `creationTime`, checked operation summaries, findings, ignored operation indices, and stated limitations. Findings contain code, severity, operation index, implicated claimant indices and exact intervals where applicable. Stable ordering and no wall-clock timestamps make repeated reports identical. No `safe` or `verified-payment` claim.
+Versioned JSON includes `rulesVersion`, `status` (`pass`, `fail`, `inconclusive`), `scope`, `creationTime`, checked operation summaries, findings, ignored operation indices, and stated limitations. Amounts use `amountStroops`, an exact decimal string of classic asset base units. Findings contain code, severity, operation index, implicated claimant indices and exact intervals where applicable. Stable ordering and no wall-clock timestamps make repeated reports identical. No `safe` or `verified-payment` claim. File/argument/structural errors return exit 2 and a JSON `error` object instead of a completed analysis report. Assumed creation must fit any transaction time bounds, whose maximum is inclusive (zero means unbounded).
 
 ## Acceptance and verification
 
