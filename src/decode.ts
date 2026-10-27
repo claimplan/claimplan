@@ -85,6 +85,16 @@ export function decodeEnvelope(input: string): DecodedPlan {
           throw error;
         }
       });
+      // The SDK preserves raw asset arms, including short codes in a 12-byte arm.
+      // Core requires 1–4 alphanumerics in the 4-byte arm and 5–12 in the 12-byte arm.
+      if (create.asset.type !== 'assetTypeNative') {
+        const small = create.asset.type === 'assetTypeCreditAlphanum4';
+        const codeBytes = small ? create.asset.alphaNum4.assetCode.toBytes() : create.asset.alphaNum12.assetCode.toBytes();
+        const code = Buffer.from(codeBytes).toString('latin1');
+        if (!(small ? /^[A-Za-z0-9]{1,4}\0*$/ : /^[A-Za-z0-9]{5,12}\0*$/).test(code)) {
+          throw new InputError(`operation ${index}: invalid asset code for XDR asset arm`);
+        }
+      }
       const parsedAsset = Asset.fromOperation(create.asset);
       if (!Buffer.from(parsedAsset.toXdrObject().toXdr()).equals(Buffer.from(create.asset.toXdr()))) {
         throw new InputError(`operation ${index}: noncanonical asset representation`);

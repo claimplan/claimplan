@@ -102,6 +102,22 @@ test('assumed creation time must fit transaction time bounds, including max boun
   assert.equal(analyzeEnvelope(encoded, p).status, 'inconclusive');
 });
 
+test('v2 precondition time bounds are read without assuming other preconditions pass', () => {
+  const wire = xdr.TransactionEnvelope.fromXdr(envelope(), 'base64').toXdrObject();
+  wire.v1.tx.cond = { type: 2, v2: { timeBounds: { minTime: CREATED, maxTime: CREATED + 100n }, ledgerBounds: null, minSeqNum: null, minSeqAge: 0n, minSeqLedgerGap: 0, extraSigners: [] } };
+  const tx = encode(xdr.TransactionEnvelope.fromXdrObject(wire));
+  assert.equal(analyzeEnvelope(tx, policy()).status, 'pass');
+  const p = policy(); p.creationTime = String(CREATED - 1n);
+  assert.equal(analyzeEnvelope(tx, p).status, 'inconclusive');
+});
+
+test('noncanonical credit-asset arm cannot be normalized into an apparent pass', () => {
+  const asset = xdr.Asset.assetTypeCreditAlphanum12(new xdr.AlphaNum12({
+    assetCode: 'USD', issuer: xdr.PublicKey.publicKeyTypeEd25519(Buffer.alloc(32, 3)),
+  }));
+  assert.throws(() => analyzeEnvelope(encode(legacyEnvelope([rawCreate({ asset })])), giftPolicy()), InputError);
+});
+
 test('huge exact timestamps and relative saturation are represented without rounding', () => {
   const p = policy(); p.creationTime = String(INT64_MAX - 30n); p.operations[0].handoverAfter = '30';
   const r = run([claim(A, relative(60)), claim(B, not(relative(60)))], p);
