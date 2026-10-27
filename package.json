@@ -14,6 +14,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "npm run build && node --test tests/*.test.mjs",
     "check": "npm run typecheck && npm test",
+    "test:core": "npm run build && node integration/run.mjs",
     "prepack": "npm run build"
   },
   "dependencies": { "@stellar/stellar-sdk": "17.4.0" },

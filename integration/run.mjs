@@ -5,6 +5,7 @@ import { analyzeEnvelope } from '../dist/index.js';
 import { startNetwork, config } from './network.mjs';
 import { connectLocal, buildTransaction, submitAt } from './client.mjs';
 import { boundaryCases } from './cases.mjs';
+import { executionControls } from './controls.mjs';
 
 const network = await startNetwork();
 try {
@@ -49,6 +50,8 @@ try {
       time = closeTime;
     }
   }
+  const controls = await executionControls(network, client, time, beneficiary);
+  evidence.controls = controls.rows;
   await writeFile(new URL('./core-results.json', import.meta.url), `${JSON.stringify(evidence, null, 2)}\n`);
   console.log(`PASS: ${evidence.cases.length} local Core boundary comparisons; evidence integration/core-results.json`);
 } finally {
