@@ -22,13 +22,15 @@ Evidence: [latest verified documentation-head CI](https://github.com/claimplan/c
 
 ## 2. Verify against Stellar Core — IN PROGRESS
 
-- [ ] Inspect local Docker/Core availability and select a verified compatible local network version.
-- [ ] Create a reproducible local-only test harness with synthetic accounts and assets.
-- [ ] Compare predicted eligibility with actual claim outcomes immediately before, at and after deadlines.
-- [ ] Cover absolute and relative predicates, AND/OR/NOT, contradictions and multi-claimant handovers.
+- [x] Inspect local Docker/Core availability and select a verified compatible local network version (Quickstart image digest pinned; Core/RPC v30.0.0, ledger protocol 28).
+- [x] Create a local-only test harness with synthetic accounts and assets (`npm run test:core`); full-run controls remain under verification.
+- [x] Compare predicted eligibility with actual claim outcomes immediately before, at and after deadlines: 30 actual Core comparisons passed.
+- [x] Cover absolute and relative predicates, AND/OR/NOT, contradictions and multi-claimant handovers.
 - [ ] Separate intentional claim failure from trustline, funding, reserve and authorization failures.
 - [ ] Record Core version, fixtures, commands, expected outcomes and actual outcomes.
 - [ ] Fix any discrepancy and keep a regression fixture for each discovered defect.
+
+Current evidence: one live run passed all 30 boundary comparisons, then failed in control scheduling after RPC lag. The harness scheduling and RPC timestamp compatibility fixes are committed with regression coverage; a complete run including controls is in progress. Latest offline suite: 35 tests passed; [Node 22/24 CI](https://github.com/claimplan/claimplan/actions/runs/40523032332) passed for the RPC compatibility change. No product predicate discrepancy observed.
 
 Done when: a documented, repeatable local Core run agrees with the supported semantic cases. Keep the offline suite for extreme integer cases that cannot be practically scheduled on a local ledger. Do not represent one finite test set as proof of all protocol behavior. No mainnet deployment or funds needed.
 

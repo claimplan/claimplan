@@ -5,10 +5,12 @@ For the remaining project milestones and user-facing status, use [the progress t
 ## Active stage: local Stellar Core verification
 
 - Docker daemon and Stellar CLI are available. Existing unrelated containers must remain untouched.
-- Use an isolated ephemeral Quickstart network bound only to loopback. Pin the tested image by digest and close ledgers manually to test exact time boundaries.
+- Use an isolated ephemeral Quickstart network bound only to loopback. Pin the tested image by digest and close real-time ledgers manually to test exact time boundaries.
 - Keep signing/submission in a separate explicitly invoked development harness, never in the product/library.
 - Ordered units: environment manifest/launcher; local RPC/manual-close helper; boundary fixtures; actual claim-outcome comparisons; regression fixes if any; recorded evidence and documentation. Commit/push each logical unit immediately and wait for completion.
-- Actual Core version, image digest and test outcomes remain unverified until the container runs.
+- Observed Core/RPC v30.0.0, selected ledger protocol 28, pinned image digest in `integration/network.json`. Thirty real boundary comparisons passed. Execution controls and a complete evidence-producing run remain in progress.
+- RPC v30 uses `ledgerCloseTime`, which SDK 17 does not preserve in its transaction parser. The harness reads the public wire response with strict timestamp validation; regression tests cover both response formats.
+- Keep deadline ledgers separate from RPC ingestion waits. Control scheduling must start from the current time after ingestion, not a stale previous-ledger deadline.
 
 ## Scope and decisions
 
