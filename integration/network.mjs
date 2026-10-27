@@ -32,7 +32,9 @@ export async function startNetwork() {
     await exec('docker', ['run', '--detach', '--name', name,
       '--label', 'org.claimplan.integration=true', '--memory', config.memoryLimit,
       '--cpus', '2', '--publish', '127.0.0.1::8000', '--publish', '127.0.0.1::11626',
-      config.image, '--local', '--enable', config.services, '--limits', 'default',
+      '--entrypoint', '/bin/sh', config.image, '-c',
+      'sed -i \'1iRUN_STANDALONE=true\' /opt/stellar-default/local/core/etc/stellar-core.cfg; exec /start "$@"',
+      'claimplan-network', '--local', '--enable', config.services, '--limits', 'default',
       '--protocol-version', String(config.protocolVersion), '--enable-core-manual-close',
       '--core-log-level', 'ERROR'], { timeout: config.startupTimeoutMs });
     started = true;
@@ -53,7 +55,7 @@ export async function startNetwork() {
       try {
         const status = await coreRequest(core, 'info');
         if (status.info?.network !== config.networkPassphrase) throw new Error('Unexpected Core network');
-        if (status.info?.ledger?.version === config.protocolVersion) {
+        if (status.info?.ledger?.version === config.protocolVersion && status.info.ledger.num >= 64) {
           return { core, rpc, stop, container: name, imageId: info.Image, info: status };
         }
         await coreRequest(core, 'manualclose');
