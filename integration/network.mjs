@@ -54,6 +54,9 @@ export async function startNetwork() {
         const status = await coreRequest(core, 'info');
         if (status.info?.network !== config.networkPassphrase) throw new Error('Unexpected Core network');
         if (status.info?.ledger?.version === config.protocolVersion && status.info.ledger.num >= 64) {
+          // Quickstart starts friendbot automatically. It shares the genesis source
+          // and may queue setup transactions once RPC catches up; tests own funding.
+          await exec('docker', ['exec', name, 'supervisorctl', 'stop', 'friendbot']);
           return { core, rpc, stop, container: name, imageId: info.Image, info: status };
         }
         await coreRequest(core, 'manualclose');
