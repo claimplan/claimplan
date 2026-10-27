@@ -20,6 +20,7 @@ try {
       destination: key.publicKey(), startingBalance: '1000',
     }))));
   assert.equal((await submitAt(network, client, fund, client.root, time)).status, 'SUCCESS');
+  console.log('Synthetic probe accounts funded on local Core');
   const creation = Math.max(time + 10, Math.ceil(Date.now() / 1000) + 10);
   for (const probe of probes) probe.fixture = boundaryCases(creation,
     probe.beneficiary.publicKey(), probe.recovery.publicKey())[probe.index];
@@ -31,6 +32,7 @@ try {
   const creationEnvelope = create.toXdr();
   const report = analyzeEnvelope(creationEnvelope, policy);
   assert.equal((await submitAt(network, client, create, client.root, creation)).status, 'SUCCESS');
+  console.log(`Thirty balances created at ${creation}; waiting for deadline ledgers`);
   const evidence = { image: config.image, imageId: network.imageId,
     coreBuild: client.info.info.build, protocol: config.protocolVersion,
     network: config.networkPassphrase, sdk: '17.4.0', creationEnvelope, policy, cases: [] };
@@ -64,6 +66,7 @@ try {
   }
   const controls = await executionControls(network, client, time, probes[0].beneficiary);
   evidence.controls = controls.rows;
+  for (const control of controls.rows) console.log(`${control.name}: ${control.actual.operations[0]}`);
   await writeFile(new URL('./core-results.json', import.meta.url), `${JSON.stringify(evidence, null, 2)}\n`);
   console.log(`PASS: ${evidence.cases.length} local Core boundary comparisons; evidence integration/core-results.json`);
 } finally {
