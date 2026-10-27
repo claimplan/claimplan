@@ -1,0 +1,12 @@
+{
+  "image": "stellar/quickstart@sha256:7711899e9942c60316ebacf8ab901be15bed7a5a31705d847b55375ff3bc8356",
+  "resolvedFrom": "stellar/quickstart:latest",
+  "resolvedOn": "2026-10-27",
+  "quickstartSource": "8d5252be8fe5155223d2cb2e08ff8f4da9288e24",
+  "networkPassphrase": "Standalone Network ; February 2017",
+  "protocolVersion": 28,
+  "services": "core,rpc",
+  "memoryLimit": "1536m",
+  "startupTimeoutMs": 180000,
+  "requestTimeoutMs": 10000
+}
