@@ -85,7 +85,7 @@ export async function closeAt(network, closeTime) {
 }
 
 export async function transactionResult(client, hash, closeTime) {
-  const deadline = Date.now() + 30000;
+  const deadline = Date.now() + 120000;
   while (Date.now() < deadline) {
     const result = await client.server.getTransaction(hash);
     if (result.status !== 'NOT_FOUND') {
@@ -95,7 +95,8 @@ export async function transactionResult(client, hash, closeTime) {
     }
     await pause(200);
   }
-  throw new Error(`RPC did not ingest synthetic transaction ${hash}`);
+  const latest = await client.server.getLatestLedger();
+  throw new Error(`RPC did not ingest synthetic transaction ${hash}; latest ledger ${latest.sequence}, close time ${latest.closeTime}`);
 }
 
 export async function submitAt(network, client, transaction, signer, closeTime) {
