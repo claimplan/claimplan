@@ -1,0 +1,1019 @@
+{
+  "image": "stellar/quickstart@sha256:7711899e9942c60316ebacf8ab901be15bed7a5a31705d847b55375ff3bc8356",
+  "imageId": "sha256:7711899e9942c60316ebacf8ab901be15bed7a5a31705d847b55375ff3bc8356",
+  "coreBuild": "v30.0.0",
+  "protocol": 28,
+  "network": "Standalone Network ; February 2017",
+  "sdk": "17.4.0",
+  "creationEnvelope": "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",
+  "policy": {
+    "version": 1,
+    "creationTime": "1793112363",
+    "operations": [
+      {
+        "operation": 0,
+        "beneficiary": "GAPIEEMZBBW37TJTAQ2HZ6D3TWB72JU4HBZXRRQF7QRHNZQLHFM22IML",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 1,
+        "beneficiary": "GB3Y4E37F73DP45KPKGPS6JJV2676EM7P6MG5B32WINGCC2WUSFZDU6C",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 2,
+        "beneficiary": "GAQANFNLB3RBHMDZOZA6GOG7HSJRTJ2FXABFF2F4XAHT6VXOTJUUV5FJ",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 3,
+        "beneficiary": "GCVW7WY2VPK5SS4ULES2TW7JDTC6KSSHBTRO4PEQJJWAWSS4J2SL7TYF",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 4,
+        "beneficiary": "GCYQ2WEZTA6H6GHZFSEKAHBPLYGZ6QZAWMCNYXDCRQ2L7L7GYZVIH73P",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 5,
+        "beneficiary": "GD33NPC6PJ2H7F46YC4RKJRNWBJ2W6F4MJP3UC7YTMDSZCQJ5KKDOEHV",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 6,
+        "beneficiary": "GCAS6JRFJFY2LOYHPMSSD7SMZF62WS2LU4VGMLUFS7DI6JOWKQW5ADSA",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 7,
+        "beneficiary": "GBVCJ5FD4MQQBHFGP4WT2KUTKQL4ZS2JZ7YVN2SOVVHN5ITS7OSYNSL5",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 8,
+        "beneficiary": "GB3MYWHS6NUDFQG6YBG2FRO7DIFLKMVBS4LQLOHQA6R5JPBPXLDJBYDW",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 9,
+        "beneficiary": "GAD23VVMZ4LI3ZXNVCHJT64WNDEVUEPOI54DUS335KVM7ALMT62MGMXW",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 10,
+        "beneficiary": "GDVYW4NEAPPBCHBELWCZARJL6K6MY4B62UVV3EKZYOTUGCWYGOFPY6F2",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 11,
+        "beneficiary": "GD6TUIWQISLJXREQARLWCQN5AVYQVVNBNYOAKFCYEGOX5GSUABHKXAE4",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 12,
+        "beneficiary": "GBMDTLL7UVO2BTQPIRLH5ZABXB4Y4J6TFID3CVFELN6YCYWQLRXOYVRY",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 13,
+        "beneficiary": "GB44ASVOTW7JHOMQP4LCNFBMNYGEMG633T32CHDIMYLT37C5S43TXGOX",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 14,
+        "beneficiary": "GDVVPHFN2KBPDSLQ5XTVHL2PKMAGUJCIA6KGQFAABSGX63WEGFXPJZIT",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 15,
+        "beneficiary": "GDGVT3ZW2QQJBO3LWJUQUY66ZH7IUNJNQ4VTGGCLBWGLCFZNCN2ZYE3N",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 16,
+        "beneficiary": "GBXUIYNIQCMKBF6MXZVCJ5LBFTWTC2WZYCG6GPO3SA6ABWOZOQ7TXIFU",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 17,
+        "beneficiary": "GAWNHELHQFMODPM6IKCXUE2EBMW3SLQMYFTQBURBEXICBANUGSD4MYLG",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 18,
+        "beneficiary": "GD56BCQKPDJ7OPSRF6NTISENBXOJNLNPPNSOO3GQGXS4J2XM53YH7RXQ",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 19,
+        "beneficiary": "GBGUCKZQ5F7KI4KOOELSV5MDVNYW4WSJATQ4YB6BELZGYMNBUDEUQDKV",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 20,
+        "beneficiary": "GCYHBBTEXII4F4P6374TB3CYBFF2TJ3RKFOWEFP4BINHJUQF3JJKM3VF",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 21,
+        "beneficiary": "GDNK2FQULKDC5K6EF7EVJVOFKJKITHSPPXQ3QA2YOKDBBTUWUY5XOUA4",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 22,
+        "beneficiary": "GCUZXSQUJYMDSJUKOJK2QSZ6N2MF3MGNCC5RGNMDRSGIC2QZMHGFRH4I",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 23,
+        "beneficiary": "GD7ZFQTPNKXDZDPNIZ25WPZIABNBC6AE6P536TTXU72F3KXXBTN2XPAX",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 24,
+        "beneficiary": "GDBKF75CGG6YXMP76PK3MUCL7YZRSVDUCQVM7BK5GLKH7DLBQOAL6IMC",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 25,
+        "beneficiary": "GBVYGI35ZABGMR5Y7KUYDQXG4TXRSSW6NKOD5NXTQS75EZ32OHZEEH7F",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 26,
+        "beneficiary": "GDZKF5JKYJ6DUONEWRA3VA3TGHBH7ORHNWAZFBZZV44UYRN5EFRI6NB4",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 27,
+        "beneficiary": "GBFTFEZC6DXBIW6AN5376JUQBYTWSOEPBWXXX22QF3QDFZBAXGZQG6OE",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 28,
+        "beneficiary": "GBNIB2J2ZQ2N55NEXS4QVT6LV7QVJHZJNSZYXVLT7IU3QBP4XNY2EOFV",
+        "exclusive": false,
+        "continuousCoverage": false
+      },
+      {
+        "operation": 29,
+        "beneficiary": "GD42BLUMCNIRFVYF742ARVZUPUHNX3XFBKEPHCM35RWN65GKO6WH54TR",
+        "exclusive": false,
+        "continuousCoverage": false
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "unconditional",
+      "operation": 0,
+      "offset": 59,
+      "creation": 1793112363,
+      "balanceId": "0000000013423be6d3a00768aa3066a1d1fe632d9bcb779c7654512d6844cafa4024ce1b",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "b4c2557a043b17bd54cf8893883e2750da4b753873b286f3e45f0f549e982d6f",
+        "ledger": 69,
+        "closeTime": 1793112422,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "absolute-before",
+      "operation": 3,
+      "offset": 59,
+      "creation": 1793112363,
+      "balanceId": "0000000080443dbbe356f953908cf7b1f25d6b74d94456849c7b73e831ff83eed364f3a4",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "e761b1b5d450b4aec195b9bad09ca15ae515f7672e96cfcb67ffa891f08f872b",
+        "ledger": 69,
+        "closeTime": 1793112422,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "relative-before",
+      "operation": 6,
+      "offset": 59,
+      "creation": 1793112363,
+      "balanceId": "00000000e14a0e9e7504e6878381179b089c9dc8741c9f42de16140ea230111280c1756b",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "c744cd8d52950722411dc9ee8c3ff2965c8f733bfce76c5dbfed7572fcf0c390",
+        "ledger": 69,
+        "closeTime": 1793112422,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "not-relative",
+      "operation": 9,
+      "offset": 59,
+      "creation": 1793112363,
+      "balanceId": "000000005852e7b3de5b50c82cefb11b5f2e4bff849b8f2a420211c099dfaad8cf1e2267",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112423",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "5b2d3dedd9183a202949ce1ff040c124caa4ba612584bfeba3238d11be777fa0",
+        "ledger": 69,
+        "closeTime": 1793112422,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "and-window",
+      "operation": 12,
+      "offset": 59,
+      "creation": 1793112363,
+      "balanceId": "00000000e7c2caa541c91df7343ccc0896e3302908d7d7f842f439243b8cb1cbb3e932ed",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112393",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "8209ceaf3ced3a0d9e3c20148a84bc95415ed61396786dd6bd555e2308766fa2",
+        "ledger": 69,
+        "closeTime": 1793112422,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "or-gap",
+      "operation": 15,
+      "offset": 59,
+      "creation": 1793112363,
+      "balanceId": "00000000c3f6bd6b7e5f0468649534beb08786a68eb733d5b8d61b9d358236eb4e28861f",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        },
+        {
+          "start": "1793112453",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "d5a2a73caa6bb1386c6723201b8924a8dc54447097cc5c3b1de4b73705685424",
+        "ledger": 69,
+        "closeTime": 1793112422,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "or-complement",
+      "operation": 18,
+      "offset": 59,
+      "creation": 1793112363,
+      "balanceId": "00000000a1770a658e2328be5c7f8f6e6f63958210e4abe2601a9149218327a948dd56dd",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "cc275e6270908a7119674fce8065ddca51dc635abdab6cb8c7d2e1f2de483284",
+        "ledger": 69,
+        "closeTime": 1793112422,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "contradiction",
+      "operation": 21,
+      "offset": 59,
+      "creation": 1793112363,
+      "balanceId": "000000005ea0f13fedb880c477bc68b0b34363e76ea22975abc53a73d8404c5b316ecf0e",
+      "predicted": false,
+      "intervals": [],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "c98ad067040d0df1bc16554b7a18a27926a3e757e77ecbcbc60763ca23a6c597",
+        "ledger": 69,
+        "closeTime": 1793112422,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "handover-beneficiary",
+      "operation": 24,
+      "offset": 59,
+      "creation": 1793112363,
+      "balanceId": "000000006877f3ed7226ad12922f4dcb7a757e465d8eb8a6e8e066b30d59067f5b1c5fe4",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "0d5661428836f9e3908cf23544ce5772b754a20507c6ec7407a7a0d12f138c79",
+        "ledger": 69,
+        "closeTime": 1793112422,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "handover-recovery",
+      "operation": 27,
+      "offset": 59,
+      "creation": 1793112363,
+      "balanceId": "00000000b753a252e973c4b14905d1c8a75a1bba9e3490b8829b8aa00300a74392049443",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112423",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "b642072900f8b4245745929a54efcb2f8882322e96ff4bfec6d8808ee7545cea",
+        "ledger": 69,
+        "closeTime": 1793112422,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "unconditional",
+      "operation": 1,
+      "offset": 60,
+      "creation": 1793112363,
+      "balanceId": "00000000b1dc5f43c36bd51e7d20338ad0babd0394afcd36a611fc385d9a84bce0ea3d43",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "b865e87a0228e20803e9683f7876348ed0261299688807c9df8f1953fb0d8da7",
+        "ledger": 70,
+        "closeTime": 1793112423,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "absolute-before",
+      "operation": 4,
+      "offset": 60,
+      "creation": 1793112363,
+      "balanceId": "0000000007499c57e9f0fd283c6ee939a749c5c6e07d3dcfce8d0aebb52daab78154bb8c",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "3450072f8a8dcac4f3aea21163039e595c01c710e379da8a68d848432a12cda3",
+        "ledger": 70,
+        "closeTime": 1793112423,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "relative-before",
+      "operation": 7,
+      "offset": 60,
+      "creation": 1793112363,
+      "balanceId": "00000000cddb4cad7867eafacf8a4fae0e699018d92a45dbb6feadf76785a2b17373c130",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "ae692bc4b68a7ae27d3f054a371ebb33692239542eb3c829bcb335dd1e169423",
+        "ledger": 70,
+        "closeTime": 1793112423,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "not-relative",
+      "operation": 10,
+      "offset": 60,
+      "creation": 1793112363,
+      "balanceId": "000000002cf51a555d5ccedfe3df5670b522ea5cec0a815ba1a8b62f05d86f3af14c0e25",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112423",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "2cd0b5a8976f56c80b673a3d5ca074ef46dbf31fff82dd92f71cce22a3940815",
+        "ledger": 70,
+        "closeTime": 1793112423,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "and-window",
+      "operation": 13,
+      "offset": 60,
+      "creation": 1793112363,
+      "balanceId": "00000000fedb6f2a0c9384318dfa84ab646cb706373409209050910cd659a201f8807b41",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112393",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "77bbd8051fa7ed42337302d826dfed8352a876d6060ce384a5c1eccfd5a7ba93",
+        "ledger": 70,
+        "closeTime": 1793112423,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "or-gap",
+      "operation": 16,
+      "offset": 60,
+      "creation": 1793112363,
+      "balanceId": "0000000007c6fd5aafb42965af3b640707b610cce2a5fbe611a5ab63f44cb347dd04395c",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        },
+        {
+          "start": "1793112453",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "9bae1d7fdd0b624ba5e07ab853c642f5c723388e0575fed349e06026d3ccaa00",
+        "ledger": 70,
+        "closeTime": 1793112423,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "or-complement",
+      "operation": 19,
+      "offset": 60,
+      "creation": 1793112363,
+      "balanceId": "00000000932adae991b2c1a6cfda559dafbf50c63d893bfc92b8b26cfc68a3371aea5865",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "042531f84534423379dc56ae9adbb7a65a5401037fd13135de8cec26e1bc99ec",
+        "ledger": 70,
+        "closeTime": 1793112423,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "contradiction",
+      "operation": 22,
+      "offset": 60,
+      "creation": 1793112363,
+      "balanceId": "0000000090d220d15a9c5c74aec3fa2f42831c720ec98dda16a7e0ca173ca04c0a7e0bda",
+      "predicted": false,
+      "intervals": [],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "38b1a78793835efac8d7a113d54649fab7786cb931ccddd0433d8702e0a8680c",
+        "ledger": 70,
+        "closeTime": 1793112423,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "handover-beneficiary",
+      "operation": 25,
+      "offset": 60,
+      "creation": 1793112363,
+      "balanceId": "000000003dbf0e6c9daa8bc13d4a3466f96d6f8cde6a957865a2a0a2ffe24cf7360f73e9",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "59c6ab8fbda81c8d2d860a2c65e7b0d1691adc9ee5ad1e6766995c797b3ac3a4",
+        "ledger": 70,
+        "closeTime": 1793112423,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "handover-recovery",
+      "operation": 28,
+      "offset": 60,
+      "creation": 1793112363,
+      "balanceId": "00000000045a24fe1695ece19679016fcd0d44b20e8a0ae4cdcefa25e651b1a6a6842397",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112423",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "507ae028503775986193b4314a180aec9a3ea13941957500c46ce332fb06bb41",
+        "ledger": 70,
+        "closeTime": 1793112423,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "unconditional",
+      "operation": 2,
+      "offset": 61,
+      "creation": 1793112363,
+      "balanceId": "000000008aec2923d29dbe5bc8020d3e099575a787594cf056ec1dd88053648fab1d7c0e",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "5c85189a39df1d22e8942909ced0654b1de6a775f2461bdc35cc5fa05e94b799",
+        "ledger": 71,
+        "closeTime": 1793112424,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "absolute-before",
+      "operation": 5,
+      "offset": 61,
+      "creation": 1793112363,
+      "balanceId": "0000000006ebadfa2a276098d0158c35e08769b9e810798dc1ec588aefe35ee58186f924",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "9e9fdfdb5940db7f157458bde1739c0f3ebf693b9e4e68141fb1c6a5e89b213a",
+        "ledger": 71,
+        "closeTime": 1793112424,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "relative-before",
+      "operation": 8,
+      "offset": 61,
+      "creation": 1793112363,
+      "balanceId": "00000000c2b19c26b6b30baa8115f7290e5b04829eba9f8403084d24c2ca16ca4a400ba2",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "f5feda47017e16aa5545f85bc6e9593f4eb3e38df48dc4c5180a63ea834a8bc9",
+        "ledger": 71,
+        "closeTime": 1793112424,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "not-relative",
+      "operation": 11,
+      "offset": 61,
+      "creation": 1793112363,
+      "balanceId": "00000000c7125f8410ae514d01bda544c1bb0fb0fcaacf0a0426b56c4758850db691268c",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112423",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "822e2c1af2dcedccc7de14c5dde911d85ab8cb999fd0d5c676a1a01ee019e5fd",
+        "ledger": 71,
+        "closeTime": 1793112424,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "and-window",
+      "operation": 14,
+      "offset": 61,
+      "creation": 1793112363,
+      "balanceId": "000000005a08b7ab43c06f623bdc53a8733384a9f5e59b8251b683c349455ab50d64940b",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112393",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "32c815e07be38b4dca96a8f4a4bc57764eab9496d45c0fdf98d594670a6a0e2d",
+        "ledger": 71,
+        "closeTime": 1793112424,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "or-gap",
+      "operation": 17,
+      "offset": 61,
+      "creation": 1793112363,
+      "balanceId": "000000005d1511566615492462836d6cb793b8f1f34160aae0990392ed72bcdd7cb5f600",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        },
+        {
+          "start": "1793112453",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "d3da9d46f4050eeccc8b11f6a2c656755dc2e8bfd2e2fc0a97978f59a4d6207f",
+        "ledger": 71,
+        "closeTime": 1793112424,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "or-complement",
+      "operation": 20,
+      "offset": 61,
+      "creation": 1793112363,
+      "balanceId": "00000000c712caac5883129c534dfdd2921ff2b7142d765735ef557111d45e5ed50195cb",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "2bdb9e57cd950a9459de03415a425fd45037b5c5d304f934b40cc0d40f91f42e",
+        "ledger": 71,
+        "closeTime": 1793112424,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    },
+    {
+      "name": "contradiction",
+      "operation": 23,
+      "offset": 61,
+      "creation": 1793112363,
+      "balanceId": "000000004645a5d4bedb0ff2144d09357ebd0cce3ce1dcee9db9f130e5128b671269b70b",
+      "predicted": false,
+      "intervals": [],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "cd3c3d1a26cfc0a86ccaa9b07bc330f5708cbc3d08431a94b7a13170cd1e20ca",
+        "ledger": 71,
+        "closeTime": 1793112424,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "handover-beneficiary",
+      "operation": 26,
+      "offset": 61,
+      "creation": 1793112363,
+      "balanceId": "0000000080d04d8c589c0ef7637fa23303b80a38d8d80175c2bf196285564036b9f60000",
+      "predicted": false,
+      "intervals": [
+        {
+          "start": "1793112363",
+          "end": "1793112423"
+        }
+      ],
+      "expected": "claimClaimableBalanceCannotClaim",
+      "actual": {
+        "hash": "9ed5d045293d79270f3ab67428fb06bdfd2a86180eeeb26499f30cd0199c1ef9",
+        "ledger": 71,
+        "closeTime": 1793112424,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceCannotClaim"
+        ]
+      }
+    },
+    {
+      "name": "handover-recovery",
+      "operation": 29,
+      "offset": 61,
+      "creation": 1793112363,
+      "balanceId": "00000000de7d84e429d726be7c51e69fb26cbbd7a83b194b632e32699b978925c7eddc71",
+      "predicted": true,
+      "intervals": [
+        {
+          "start": "1793112423",
+          "end": "18446744073709551616"
+        }
+      ],
+      "expected": "claimClaimableBalanceSuccess",
+      "actual": {
+        "hash": "de9de2a7037e7c66f330876b99f5df1f69281e69349b57bf020850c84fbee769",
+        "ledger": 71,
+        "closeTime": 1793112424,
+        "status": "SUCCESS",
+        "transaction": "txSuccess",
+        "operations": [
+          "claimClaimableBalanceSuccess"
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "missing-trustline",
+      "predictedPredicateEligible": true,
+      "expected": "claimClaimableBalanceNoTrust",
+      "actual": {
+        "hash": "8e17a67697e2738ef00dd519f9ce89b12e3a0fa18ce2a7605fb4b6527f13c26b",
+        "ledger": 76,
+        "closeTime": 1793112536,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceNoTrust"
+        ]
+      }
+    },
+    {
+      "name": "trustline-capacity",
+      "predictedPredicateEligible": true,
+      "expected": "claimClaimableBalanceLineFull",
+      "actual": {
+        "hash": "940dd0a1b4873e880df5d11358e0354b7c7801c3db4a3e67057912a466277041",
+        "ledger": 82,
+        "closeTime": 1793112671,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceLineFull"
+        ]
+      }
+    },
+    {
+      "name": "issuer-authorization",
+      "predictedPredicateEligible": true,
+      "expected": "claimClaimableBalanceNotAuthorized",
+      "actual": {
+        "hash": "7ff9fa6970feea5d2a248fdc1f4dbccfa0dadcdb6674208fda279a220d21b642",
+        "ledger": 90,
+        "closeTime": 1793112851,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "claimClaimableBalanceNotAuthorized"
+        ]
+      }
+    },
+    {
+      "name": "source-underfunded",
+      "expected": "createClaimableBalanceUnderfunded",
+      "actual": {
+        "hash": "fd4ffdacc8dbcd4ef8f4852f2897ea22f82efcc823a73c81ea034c056b8fe2a3",
+        "ledger": 92,
+        "closeTime": 1793112897,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "createClaimableBalanceUnderfunded"
+        ]
+      }
+    },
+    {
+      "name": "source-low-reserve",
+      "expected": "createClaimableBalanceLowReserve",
+      "actual": {
+        "hash": "e0853ffe05190aea5878eff602a911a634d07d6716dc20a6c0c906278b7242fb",
+        "ledger": 94,
+        "closeTime": 1793112941,
+        "status": "FAILED",
+        "transaction": "txFailed",
+        "operations": [
+          "createClaimableBalanceLowReserve"
+        ]
+      }
+    }
+  ]
+}
