@@ -1,6 +1,6 @@
 # ClaimPlan progress tracker
 
-Current stage: **Stellar Core verification in progress**.
+Current stage: **Developer validation — next; local Stellar Core verification complete**.
 
 The initial implementation is complete. It is not yet a validated v0.1 release or a Drips-approved project. This tracker distinguishes implementation, independent evidence, release preparation and external approval. No percentage is assigned because the remaining work is not equal in size.
 
@@ -20,17 +20,17 @@ The initial implementation is complete. It is not yet a validated v0.1 release o
 
 Evidence: [latest verified documentation-head CI](https://github.com/claimplan/claimplan/actions/runs/40516015206), [implementation CI](https://github.com/claimplan/claimplan/actions/runs/40515788768). These are model/SDK/CLI tests, not execution against Stellar Core.
 
-## 2. Verify against Stellar Core — IN PROGRESS
+## 2. Verify against Stellar Core — complete
 
 - [x] Inspect local Docker/Core availability and select a verified compatible local network version (Quickstart image digest pinned; Core/RPC v30.0.0, ledger protocol 28).
-- [x] Create a local-only test harness with synthetic accounts and assets (`npm run test:core`); full-run controls remain under verification.
+- [x] Create a local-only test harness with synthetic accounts and assets (`npm run test:core`); a full run including controls passed.
 - [x] Compare predicted eligibility with actual claim outcomes immediately before, at and after deadlines: 30 actual Core comparisons passed.
 - [x] Cover absolute and relative predicates, AND/OR/NOT, contradictions and multi-claimant handovers.
-- [ ] Separate intentional claim failure from trustline, funding, reserve and authorization failures.
-- [ ] Record Core version, fixtures, commands, expected outcomes and actual outcomes.
-- [ ] Fix any discrepancy and keep a regression fixture for each discovered defect.
+- [x] Separate intentional claim failure from trustline, funding, reserve and authorization failures: all five controls passed.
+- [x] Record Core version, fixtures, commands, expected outcomes and actual outcomes in `integration/core-results.json` and `docs/CORE-VERIFICATION.md`.
+- [x] Review discrepancies: no product predicate mismatch observed; harness RPC timestamp compatibility has regression coverage.
 
-Current evidence: one live run passed all 30 boundary comparisons, then failed in control scheduling after RPC lag. The harness scheduling and RPC timestamp compatibility fixes are committed with regression coverage; a complete run including controls is in progress. Latest offline suite: 35 tests passed; [Node 22/24 CI](https://github.com/claimplan/claimplan/actions/runs/40523032332) passed for the RPC compatibility change. No product predicate discrepancy observed.
+Evidence: `npm run test:core` completed successfully with 30 boundary comparisons and five execution controls on Core/RPC v30.0.0, ledger protocol 28. The [saved evidence](../integration/core-results.json) replays through the public analyzer; the creation fixture is unsigned. The owned container was removed. Offline typecheck/35 tests and package exclusion of the integration harness passed. [Node 22/24 CI](https://github.com/claimplan/claimplan/actions/runs/40523032332) passed for the RPC compatibility change. See [reproduction and limits](CORE-VERIFICATION.md).
 
 Done when: a documented, repeatable local Core run agrees with the supported semantic cases. Keep the offline suite for extreme integer cases that cannot be practically scheduled on a local ledger. Do not represent one finite test set as proof of all protocol behavior. No mainnet deployment or funds needed.
 
@@ -86,8 +86,8 @@ Include this compact tracker in progress updates and handoffs:
 | Stage | State |
 | --- | --- |
 | Offline MVP | Complete |
-| Stellar Core verification | In progress |
-| Developer validation | Pending |
+| Stellar Core verification | Complete |
+| Developer validation | Next |
 | Release preparation | Pending |
 | Release/distribution | Pending authorization |
 | Drips submission | Pending readiness and authorization |

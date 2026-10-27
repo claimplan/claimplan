@@ -6,7 +6,7 @@ ClaimPlan is a command-line tool and TypeScript library that checks whether a pa
 
 ## Status
 
-Early implementation, not audited. Source installation and offline examples work; no npm package has been published. Customer validation and Stellar Core integration testing remain pending.
+Early implementation, not audited. Source installation and offline examples work; no npm package has been published. Local Stellar Core checks passed 30 predicate-boundary cases and five execution controls on Core/RPC v30.0.0, ledger protocol 28. Customer validation remains pending.
 
 Follow the [progress tracker and finish checklist](docs/TODO.md) for completed work, current stage and next steps.
 
@@ -87,7 +87,7 @@ npm run check
 npm pack --dry-run
 ```
 
-Tests include an independent Boolean evaluator, 1,000 seeded predicate trees, boundary and malformed-input cases, real SDK envelope decoding, and CLI subprocess tests. They do not execute Stellar Core or prove production correctness. CI checks Node 22 and 24. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Tests include an independent Boolean evaluator, 1,000 seeded predicate trees, boundary and malformed-input cases, real SDK envelope decoding, and CLI subprocess tests. The default suite does not execute Stellar Core. The separate `npm run test:core` command requires Docker and runs the local-only harness described in [Core verification](docs/CORE-VERIFICATION.md), with [saved results](integration/core-results.json). These finite checks do not prove production correctness. CI checks Node 22 and 24. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Prior art
 
@@ -97,7 +97,7 @@ Protocol behavior is grounded in [Stellar's claimable-balance guide](https://dev
 
 ## Next validation
 
-Cross-check fixtures on a local Stellar Core network, review semantics independently and validate the workflow with developers who create claimable balances. The tool has not been submitted to Drips Wave or awarded funding.
+Validate the workflow with developers who create claimable balances, review semantics independently and prepare the contributor/release material. Local Core boundary and execution controls have passed; developer usefulness has not been established. The tool has not been submitted to Drips Wave or awarded funding.
 
 ## License
 

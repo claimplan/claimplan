@@ -2,6 +2,10 @@
 
 This development harness creates an ephemeral synthetic network. The shipped CLI and library remain offline and never sign or submit transactions.
 
+## Recorded result
+
+On 2026-10-27, `npm run test:core` passed all 30 boundary comparisons and five execution controls on Core/RPC **v30.0.0**, ledger protocol **28**, SDK **17.4.0**. [Saved results](../integration/core-results.json) include the unsigned fixture and actual ledger outcomes. Replaying the fixture through the public analyzer reproduced every saved interval; the owned container was removed. The offline suite passed 35 tests and strict typecheck. These results cover the listed cases and version only.
+
 ## Reproduce
 
 Requires the documented Node runtime, npm, a running Docker daemon, and enough capacity for a container capped at 1,536 MiB. The first image download can take several minutes.
@@ -26,7 +30,9 @@ The test writes `integration/core-results.json` only after every comparison and 
 
 ## Environment decisions
 
-Quickstart's `--local` uses the standalone network passphrase but does not set Core's `RUN_STANDALONE=true`. Core v30's virtual-clock mode advanced while external RPC was waiting and produced clock assertions during the first experiment. The harness uses the default real-time clock and parameterless manual closes instead. It does not modify Core binaries or protocol predicate behavior. A first history checkpoint is needed before the RPC database becomes usable.
+Quickstart's `--local` uses the standalone network passphrase but does not set Core's `RUN_STANDALONE=true`. Core v30's virtual-clock mode advanced while external RPC was waiting and produced clock assertions during the first experiment. The harness uses the default real-time clock and parameterless manual closes instead. It does not modify Core binaries or protocol predicate behavior. A first history checkpoint is needed before the RPC database becomes usable. RPC ingestion can lag while its captive Core receives consensus state; the harness allows a bounded two-minute result wait per transaction and schedules control ledgers after that wait. A full run can take several minutes.
+
+RPC v30 returns `ledgerCloseTime`, while SDK 17's transaction parser only preserves `createdAt`. The harness reads the public `getTransaction` wire response with strict timestamp validation, then decodes result XDR using the SDK. Offline regression tests cover both timestamp field formats. Single-transaction controls also close an empty successor ledger; results must still identify the tested transaction's own close time, never the latest ledger time.
 
 ## Limits
 

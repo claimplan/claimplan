@@ -123,8 +123,8 @@ export function decodeTransactionResult(raw) {
 export async function submitAt(network, client, transaction, signer, closeTime) {
   const hash = await queueTransaction(network, client, transaction, signer);
   await closeAt(network, closeTime);
-  // An empty successor ledger makes the local validator advertise its previous
-  // consensus state promptly to RPC's captive Core. It is not a tested claim.
+  // Close an empty successor ledger independently of the tested transaction.
+  // Result timestamps must refer to that transaction, not the latest ledger.
   await closeAt(network, Math.max(closeTime + 1, Math.ceil(Date.now() / 1000) + 1));
   return transactionResult(client, hash, closeTime);
 }
