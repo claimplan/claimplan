@@ -52,11 +52,16 @@ export async function queueTransaction(network, client, transaction, signer) {
   // Recheck both identities immediately before signing every synthetic transaction.
   assertStandalone(await coreRequest(network.core, 'info'), await client.server.getNetwork(), config);
   transaction.sign(signer);
-  const sent = await client.server.sendTransaction(transaction);
-  if (sent.status !== 'PENDING') {
-    throw new Error(`Core admission failed: ${sent.status} ${sent.errorResult?.result?.type ?? ''}`);
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const sent = await client.server.sendTransaction(transaction);
+    if (sent.status === 'PENDING' || sent.status === 'DUPLICATE') {
+      return Buffer.from(transaction.hash()).toString('hex');
+    }
+    if (sent.status !== 'TRY_AGAIN_LATER' || attempt === 5) {
+      throw new Error(`Core admission failed: ${sent.status} ${sent.errorResult?.result?.type ?? ''}`);
+    }
+    await pause(200);
   }
-  return Buffer.from(transaction.hash()).toString('hex');
 }
 
 export async function closeAt(network, closeTime) {

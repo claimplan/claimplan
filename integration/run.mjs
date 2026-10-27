@@ -14,13 +14,13 @@ try {
   const probes = Array.from({ length: 30 }, (_, i) => ({
     index: Math.floor(i / 3), boundary: i % 3, beneficiary: Keypair.random(), recovery: Keypair.random(),
   }));
-  let time = Math.max(Number((await client.server.getLatestLedger()).closeTime) + 3, Math.ceil(Date.now() / 1000) + 3);
+  let time = Math.max(Number((await client.server.getLatestLedger()).closeTime) + 10, Math.ceil(Date.now() / 1000) + 10);
   const fund = await buildTransaction(client, client.root, probes.flatMap(probe =>
     [probe.beneficiary, probe.recovery].map(key => Operation.createAccount({
       destination: key.publicKey(), startingBalance: '1000',
     }))));
   assert.equal((await submitAt(network, client, fund, client.root, time)).status, 'SUCCESS');
-  const creation = Math.max(time + 4, Math.ceil(Date.now() / 1000) + 4);
+  const creation = Math.max(time + 10, Math.ceil(Date.now() / 1000) + 10);
   for (const probe of probes) probe.fixture = boundaryCases(creation,
     probe.beneficiary.publicKey(), probe.recovery.publicKey())[probe.index];
   const create = await buildTransaction(client, client.root, probes.map(probe =>
