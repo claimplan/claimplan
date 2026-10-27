@@ -6,8 +6,11 @@ import { buildTransaction, submitAt } from './client.mjs';
 export async function executionControls(network, client, initialTime, recipient) {
   let time = initialTime;
   const rows = [];
-  const send = async (signer, operations) => submitAt(network, client,
-    await buildTransaction(client, signer, operations), signer, time += 10);
+  const nextTime = () => Math.max(time + 3, Math.ceil(Date.now() / 1000) + 3);
+  const send = async (signer, operations) => {
+    time = nextTime();
+    return submitAt(network, client, await buildTransaction(client, signer, operations), signer, time);
+  };
   const setup = async (signer, operations) => {
     const result = await send(signer, operations);
     assert.equal(result.status, 'SUCCESS', `Control setup failed: ${JSON.stringify(result)}`);
@@ -22,11 +25,12 @@ export async function executionControls(network, client, initialTime, recipient)
   const create = (asset, amount) => Operation.createClaimableBalance({ asset, amount,
     claimants: [new Claimant(recipient.publicKey(), Claimant.predicateUnconditional())] });
   const claimControl = async (name, asset, expected) => {
+    time = nextTime();
     const transaction = await buildTransaction(client, issuer, [create(asset, '2')]);
-    const report = analyzeEnvelope(transaction.toXdr(), { version: 1, creationTime: String(time + 10),
+    const report = analyzeEnvelope(transaction.toXdr(), { version: 1, creationTime: String(time),
       operations: [{ operation: 0, beneficiary: recipient.publicKey(), exclusive: true, continuousCoverage: true }] });
     assert.equal(report.status, 'pass');
-    const creation = await submitAt(network, client, transaction, issuer, time += 10);
+    const creation = await submitAt(network, client, transaction, issuer, time);
     assert.equal(creation.status, 'SUCCESS');
     const actual = await send(recipient, [Operation.claimClaimableBalance({ balanceId: transaction.getClaimableBalanceId(0) })]);
     assert.deepEqual(actual.operations, [expected]);
