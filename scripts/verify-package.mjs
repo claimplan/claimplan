@@ -23,7 +23,7 @@ try {
   assert.ok(files.includes('dist/index.js'));
   assert.ok(files.includes('docs/COMPATIBILITY.md'));
   assert.ok(files.includes('SECURITY.md'));
-  assert.ok(!files.some(path => path.startsWith('integration/') || /(^|\/)\.env($|\.)/.test(path)));
+  assert.ok(!files.some(path => path.startsWith('integration/') || path.startsWith('checks/') || /(^|\/)\.env($|\.)/.test(path)));
   const consumer = join(temporary, 'consumer');
   mkdirSync(consumer);
   run(npm, ['install', '--prefix', consumer, ...(offline ? ['--offline'] : []), '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', join(temporary, packed.filename)], consumer);
@@ -59,7 +59,7 @@ try {
   const report = api.analyzeEnvelope(readFileSync(join(installed, 'examples', 'payout.xdr'), 'utf8'), JSON.parse(readFileSync(join(installed, 'examples', 'payout-policy.json'), 'utf8')));
   assert.equal(report.status, 'pass');
   assert.deepEqual(report.operations.map(op => op.amountStroops), ['1250000000', '805000000']);
-  console.log('Package verified: isolated install, installed CLI exits 0/1/2, ESM exports, payout amounts, and integration exclusion.');
+  console.log('Package verified: isolated install, installed CLI exits 0/1/2, ESM exports, payout amounts, and development-harness exclusion.');
 } finally {
   rmSync(temporary, { recursive: true, force: true });
 }
