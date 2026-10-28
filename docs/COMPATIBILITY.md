@@ -27,7 +27,7 @@ SDK 17.4.0 is pinned. Local integration evidence covers Core/RPC v30.0.0, protoc
 
 The CLI accepts regular UTF-8 files of at most 1 MiB each and rejects FIFOs/directories. The envelope decoder also caps its input at 1 MiB. It requires canonical base64/XDR, 1–100 operations, 1–10 unique claimants per create operation and predicate depth at most four. Every create operation needs exactly one matching policy; unsupported/malformed evidence cannot pass.
 
-The library's policy input is an already-parsed object, so it has no file-byte limit. The supported data boundary is ordinary JSON data; callers must bound serialized requests before parsing and isolate hostile application code/proxies. Policy operations are limited to 100. Exact integer strings are limited in length and range. No throughput or memory-service-level guarantee has been measured. The tool is a local analyzer, not a hardened multi-tenant service.
+The library's policy input is an already-parsed object, so it has no file-byte limit. The supported data boundary is ordinary JSON data; callers must bound serialized requests before parsing and isolate hostile application code/proxies. Policy operations are limited to 100. Exact integer strings are limited in length and range. A [finite Linux resource corpus](RESOURCE-VERIFICATION.md) passed 55 fixtures/123 bounded API/CLI checks, including 100-operation/1,000-claimant plans and deep malformed input. Those observations are not throughput or memory service-level guarantees, and the harness limits do not apply automatically to the installed CLI. The tool is a local analyzer, not a hardened multi-tenant service.
 
 ## Distribution
 

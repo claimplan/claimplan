@@ -45,3 +45,9 @@ The public program page lists Wave 10 among past Waves and no active/upcoming Wa
 - Maintain the offline/read-only boundary, exact arithmetic, synthetic fixtures and honest evidence limits.
 - The maintainer has granted standing project authorization in the local workspace instructions. Do not repeatedly ask for it; user-only authentication/attestations still require their participation.
 - Keep commits focused and push them in batches, following the latest user preference. Keep local conversation history outside the public repository.
+
+## Maximum-plan/malformed-input verification — 2026-10-28
+
+Added a deterministic 55-fixture corpus, bounded API/CLI runner and saved per-run observations with source/input/report hashes. All 123 checks passed locally, including 100 operations/1,000 claimants, fully branching depth-four predicates, 4,500/4,700-finding reports including three-window intersections, exact 1 MiB boundaries, excessive vector lengths, 90,000-level encoded NOT nesting, deep JSON and seeded invalid unions. Kernel address-space/data/CPU limits, V8 heap caps, process-group wall/output guards and post-exit peak-RSS assertions bound the test processes. A one-GiB virtual-space setup failed a tiny async-file baseline; calibrating separate two-GiB address-space/512-MiB data budgets resolved that harness setup issue. No analyzer defect was observed, and product source remains identical to v0.1.0.
+
+`npm run check` passed strict typecheck/35 tests. `npm run test:resources` now builds/runs the corpus, and CI is configured to execute it on Ubuntu/Node 22 and 24. See RESOURCE-VERIFICATION.md and checks/resources/results.json for exact local observations and limits. Review invitations remain on hold per the user's priority; native-platform and independent/usefulness reviews remain separate open tasks. No repeat Core run or release/tag mutation is needed for this development-only coverage.

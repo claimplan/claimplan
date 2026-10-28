@@ -11,3 +11,5 @@ Use one focused change per pull request, with tests and documentation. Check `gi
 Regenerate synthetic examples with `node scripts/generate-examples.mjs` and `node scripts/generate-payout.mjs`. Run `npm run demo` and `npm run verify:package` to check the walkthrough and installed artifact. They should remain byte-identical unless their input rules change. Existing predicate utilities are prior art: explain reuse or differences without claiming their functionality is novel.
 
 Report private security details through [GitHub private vulnerability reporting](https://github.com/claimplan/claimplan/security/advisories/new), following [SECURITY.md](SECURITY.md). Public issues should not contain credentials, sensitive transactions or exploit details requiring private disclosure. No independent security audit has been performed.
+
+On Linux with GNU time and util-linux `prlimit`, run `npm run test:resources` for the bounded maximum-plan/malformed-input corpus. See [resource verification](docs/RESOURCE-VERIFICATION.md) for test budgets, saved observations and unsupported environments. This development harness is excluded from the package.

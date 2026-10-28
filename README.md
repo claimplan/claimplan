@@ -91,7 +91,7 @@ npm run verify:package
 npm pack --dry-run
 ```
 
-Tests include an independent Boolean evaluator, 1,000 seeded predicate trees, boundary and malformed-input cases, real SDK envelope decoding, and CLI subprocess tests. The default suite does not execute Stellar Core. The separate `npm run test:core` command requires Docker and runs the local-only harness described in [Core verification](docs/CORE-VERIFICATION.md), with [saved results](integration/core-results.json). These finite checks do not prove production correctness. CI checks Node 22 and 24. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Tests include an independent Boolean evaluator, 1,000 seeded predicate trees, boundary and malformed-input cases, real SDK envelope decoding, and CLI subprocess tests. The default suite does not execute Stellar Core. On Linux, `npm run test:resources` adds maximum-plan and malformed-input checks in bounded subprocesses; see [resource verification and measured limits](docs/RESOURCE-VERIFICATION.md). The separate `npm run test:core` command requires Docker and runs the local-only harness described in [Core verification](docs/CORE-VERIFICATION.md), with [saved results](integration/core-results.json). These finite checks do not prove production correctness. CI checks Node 22 and 24. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Prior art
 

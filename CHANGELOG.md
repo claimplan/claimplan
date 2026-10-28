@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added a development-only Linux resource corpus: 55 deterministic fixtures and 123 bounded CLI/library checks, covering maximum supported plan structures, fragmented windows, malformed XDR/JSON and exact file-size limits. CI runs it on Node 22/24; recorded measurements and limits are in `docs/RESOURCE-VERIFICATION.md`. The published v0.1.0 analyzer source is unchanged.
+
 ## 0.1.0 — 2026-10-28 (experimental prerelease)
 
 Published as a [source-only GitHub prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) at commit `76423af`. Public tag installation, strict typecheck/35 tests, demo and installed CLI/library checks passed. No npm package is published.
