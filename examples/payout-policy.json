@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "creationTime": "1800000000",
+  "operations": [
+    {
+      "operation": 0,
+      "beneficiary": "GAAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQDZ7H",
+      "recovery": "GABAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEJXA",
+      "handoverAfter": "604800",
+      "exclusive": true,
+      "continuousCoverage": true
+    },
+    {
+      "operation": 1,
+      "beneficiary": "GACAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAJJHP",
+      "recovery": "GABAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEJXA",
+      "handoverAfter": "1209600",
+      "exclusive": true,
+      "continuousCoverage": true
+    }
+  ]
+}

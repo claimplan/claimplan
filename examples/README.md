@@ -16,3 +16,9 @@ node dist/cli.js check examples/handover.xdr --policy examples/missing-time.json
 ```
 
 The supplied creation time is an explicit assumption, not the current time. Regenerate fixtures with `node scripts/generate-examples.mjs`. Generation uses no secret keys and makes no network requests.
+
+## Two-recipient payout review
+
+`payout.xdr` and `payout-policy.json` model 125 XLM with seven-day recovery and 80.5 XLM with fourteen-day recovery in one transaction. `payout-overlap.xdr` intentionally leaves the second beneficiary eligible after recovery begins. Regenerate these with `node scripts/generate-payout.mjs`.
+
+Run `node scripts/demo.mjs` after building for a terminal walkthrough that checks all three exit codes. See [developer validation](../docs/DEVELOPER-VALIDATION.md) for expected intervals, JSON commands and a feedback-session checklist.
