@@ -1,0 +1,16 @@
+# Changelog
+
+## 0.1.0 candidate — unreleased
+
+Initial experimental offline CLI and ESM library for whole-plan Stellar claimable-balance policy checks.
+
+- Decode legacy v0, v1 and fee-bump envelopes through the pinned official SDK.
+- Check beneficiary/recovery handovers, overlap, gaps and unreachable claimants using exact bigint intervals.
+- Require explicit creation-time assumptions and exact policy coverage of create operations.
+- Return deterministic JSON and CLI exits 0/1/2 for pass, fail and inconclusive/invalid input.
+- Include unsigned single- and multi-recipient examples, a terminal demo and developer review guide.
+- Keep signing and submission out of the product; the separately invoked local Core harness is excluded from the package.
+
+Evidence: 35 offline tests, including 1,000 seeded predicate trees, and recorded local Core checks covering 30 boundary comparisons and five execution controls on Core/RPC v30.0.0, protocol 28. These are finite self-verification results, not an independent audit.
+
+Known limits: no validation of signatures, real account state, trustlines, funding, actual creation times or claim execution. Two-developer usefulness validation remains pending. No npm publication, program acceptance or adoption is claimed. See `docs/COMPATIBILITY.md`, `docs/CORE-VERIFICATION.md` and `docs/TODO.md`.
