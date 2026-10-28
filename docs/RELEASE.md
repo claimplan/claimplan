@@ -1,4 +1,8 @@
-# Source-only v0.1 release
+# Current source release
+
+[v0.1.1 experimental source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.1) is published at `569fca37683e9ae4720f7293d61df718e6204639`. Fresh public-tag installation, typecheck/35 tests, demo, installed CLI/ESM and docs build passed on Node 22.23.2; main Ubuntu/native/docs CI passed. CLI version is 0.1.1. See [saved release verification](../checks/release/results-v0.1.1.json). The Windows helper repair is included; predicate/policy semantics are unchanged.
+
+## Historical v0.1.0 release record
 
 Status: [v0.1.0 experimental source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) published on 2026-10-28 at `76423af793bccc9cb0c6b83b522a887f2d7af3e6`. The public tag resolves to that exact commit. A new temporary clone of the public tag passed `npm ci --ignore-scripts`, strict typecheck/35 tests, the demo (exits 0/1/2) and installed-package CLI/ESM checks. [Candidate CI](https://github.com/claimplan/claimplan/actions/runs/40652655946) passed on Node 22 and 24.
 

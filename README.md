@@ -8,7 +8,7 @@ ClaimPlan is a command-line tool and TypeScript library that checks whether a pa
 
 ## Status
 
-Experimental [source-only releases](https://github.com/claimplan/claimplan/releases) are available. The v0.1.0 public tag installation was verified; main contains subsequent packaging and documentation improvements. Not independently audited; no npm package has been published. Local Stellar Core checks passed 30 predicate-boundary cases and five execution controls on Core/RPC v30.0.0, ledger protocol 28. Customer validation remains pending.
+Experimental [source-only releases](https://github.com/claimplan/claimplan/releases) are available. The [v0.1.1 public tag](https://github.com/claimplan/claimplan/releases/tag/v0.1.1) passed fresh installation, tests, demo, installed CLI/library and docs checks. Not independently audited; no npm package has been published. Local Stellar Core checks passed 30 predicate-boundary cases and five execution controls on Core/RPC v30.0.0, ledger protocol 28. Separate customer/independent review is optional and unperformed.
 
 Read the [documentation site](https://claimplan.github.io/claimplan/), follow the [payout guide](https://claimplan.github.io/claimplan/payout-guide.html), or watch the [actual CLI demo](https://claimplan.github.io/claimplan/demo.html).
 

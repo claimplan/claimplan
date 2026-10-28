@@ -1,6 +1,6 @@
 # ClaimPlan progress tracker
 
-Current stage: **Local resource and native-platform checks complete for recorded environments; separate reviews optional and unperformed; Drips Pending review**.
+Current stage: **required implementation and delivery complete for the experimental offline scope; v0.1.1 published and verified; separate reviews optional and unperformed; last Drips observation Pending review**.
 
 The initial implementation is complete. It is an experimental source release; Drips approval has not been established. This tracker distinguishes implementation, independent evidence, release preparation and external approval. No percentage is assigned because the remaining work is not equal in size.
 
@@ -45,7 +45,7 @@ Done when: a documented, repeatable local Core run agrees with the supported sem
 
 Done when: actual feedback supports the workflow and the scope addresses a concrete need. No adoption claims before evidence. Maintainer standing authorization covers project-related outreach; two developer sessions are optional and have not occurred. No direct reviewer outreach has occurred.
 
-## 4. Prepare a reviewable v0.1 release — materials and local checks prepared
+## 4. Prepare a reviewable v0.1 release — complete for the declared scope
 
 - [x] Review the public policy/API/report compatibility contract (`docs/COMPATIBILITY.md`; pre-release compatibility remains explicit).
 - [x] Review diagnostics/validation: product behavior unchanged; integration timestamp mismatch errors now include expected/observed times. No developer feedback has been received.
@@ -89,8 +89,8 @@ Include this compact tracker in progress updates and handoffs:
 | Offline MVP | Complete |
 | Stellar Core verification | Complete |
 | Developer validation | Demo prepared; separate sessions optional and unperformed |
-| Release preparation | Materials and technical checks prepared; external review optional |
-| Release/distribution | Source-only experimental v0.1.0 published and verified |
+| Release preparation | Complete; external review optional and unperformed |
+| Release/distribution | Source-only experimental v0.1.1 published and verified |
 | Drips submission | Submitted; Pending review by organizers |
 
 Always identify the current task, actual verification evidence, blockers and next action. Mark only work actually completed; update this file when stage status changes.
@@ -98,3 +98,17 @@ Always identify the current task, actual verification evidence, blockers and nex
 ## Current delivery scope — 2026-10-28
 
 Separate semantic-review recruitment and usefulness sessions are optional, not release gates. Earlier descriptions of them as blockers are superseded; no review completion is claimed. See [master phase checklist](WAVE-CHECKLIST.md) for remaining required delivery artifacts.
+
+## Verified current handoff — 2026-10-28
+
+Required build and delivery work is complete for the declared experimental offline scope. The applicable Wave phases and exceptions are in WAVE-CHECKLIST.md. Optional validation checkboxes above remain unchecked because those activities were not performed; they do not block delivery. Organizer approval is outside our control and unverified beyond the last Pending review observation.
+
+- [x] Make separate reviewer recruitment optional in local codex.md, project AGENTS.md and roadmap.
+- [x] Build/publish eight-page docs site with actual analyzer examples and accessible navigation.
+- [x] Publish actual CLI recording and full text alternative; verify public playback/hash.
+- [x] Enforce protected-main PRs, seven required checks, no force push/deletion; approvals optional.
+- [x] Compare actual approved-repo presentation and add appropriate README/contact/credits.
+- [x] Supply/apply canonical batch issue utility; preserve completed issue state and optional review.
+- [x] Publish experimental v0.1.1 and verify a fresh public-tag checkout with all recorded release checks.
+
+Next: maintain the delivered project and respond to demonstrated defects or organizer feedback. No further feature, npm publication, hosted product or contract deployment is required by the current scope.

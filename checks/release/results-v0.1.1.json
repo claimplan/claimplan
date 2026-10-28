@@ -1,0 +1,47 @@
+{
+  "release": "v0.1.1",
+  "expectedCommit": "569fca37683e9ae4720f7293d61df718e6204639",
+  "checks": [
+    {
+      "command": "npm ci --ignore-scripts",
+      "passed": true
+    },
+    {
+      "command": "npm run check",
+      "passed": true
+    },
+    {
+      "command": "npm run demo",
+      "passed": true
+    },
+    {
+      "command": "npm run verify:package",
+      "passed": true
+    },
+    {
+      "command": "npm run docs:build",
+      "passed": true
+    }
+  ],
+  "actualCommit": "569fca37683e9ae4720f7293d61df718e6204639",
+  "cliVersion": "0.1.1",
+  "node": "v22.23.2",
+  "passed": true,
+  "releaseUrl": "https://github.com/claimplan/claimplan/releases/tag/v0.1.1",
+  "isPrerelease": true,
+  "documentation": "https://claimplan.github.io/claimplan/",
+  "demo": "https://claimplan.github.io/claimplan/demo.html",
+  "demoSha256": "40140b7c324e4d45605be99d7cf133026332047c259c0ef7dd1341f29c2017d7",
+  "verifiedOn": "2026-10-28",
+  "ciRuns": {
+    "ci": "https://github.com/claimplan/claimplan/actions/runs/40700743455",
+    "native": "https://github.com/claimplan/claimplan/actions/runs/40700743433",
+    "docs": "https://github.com/claimplan/claimplan/actions/runs/40700743332"
+  },
+  "limits": [
+    "Finite recorded environments and inputs only",
+    "Independent review/usefulness sessions optional and unperformed",
+    "No organizer approval verified",
+    "No npm publication or deployed product/contract"
+  ]
+}
