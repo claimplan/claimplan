@@ -38,7 +38,16 @@ try {
     assert.ifError(result.error);
     assert.equal(result.status, status, result.stderr);
     assert.equal(result.stderr, '');
-    assert.equal(JSON.parse(result.stdout).status, ['pass', 'fail', 'inconclusive'][status]);
+    const report = JSON.parse(result.stdout);
+    assert.equal(report.status, ['pass', 'fail', 'inconclusive'][status]);
+    if (status === 1) {
+      const overlap = report.findings.find(finding => finding.code === 'CLAIMANT_OVERLAP');
+      assert.ok(overlap);
+      assert.equal(overlap.operation, 1);
+      assert.deepEqual(overlap.claimants, [0, 1]);
+      assert.deepEqual(overlap.intervals, [{ start: '1801209600', end: '18446744073709551616' }]);
+    }
+    if (status === 2) assert.ok(report.findings.some(finding => finding.code === 'CREATION_TIME_REQUIRED'));
   }
   // Import by package name from inside the isolated consumer, exercising exports.
   const library = run(process.execPath, ['--input-type=module', '-e',
