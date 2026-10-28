@@ -8,6 +8,8 @@ ClaimPlan is a command-line tool and TypeScript library that checks whether a pa
 
 Early implementation, not audited. Source installation and offline examples work; no npm package has been published. Local Stellar Core checks passed 30 predicate-boundary cases and five execution controls on Core/RPC v30.0.0, ledger protocol 28. Customer validation remains pending.
 
+See the [compatibility contract](docs/COMPATIBILITY.md), [security policy](SECURITY.md) and [candidate release notes](CHANGELOG.md).
+
 Follow the [progress tracker and finish checklist](docs/TODO.md) for completed work, current stage and next steps.
 
 ## Run locally
@@ -84,6 +86,8 @@ try {
 
 ```sh
 npm run check
+npm run demo
+npm run verify:package
 npm pack --dry-run
 ```
 
@@ -97,7 +101,11 @@ Protocol behavior is grounded in [Stellar's claimable-balance guide](https://dev
 
 ## Next validation
 
+Run `node scripts/demo.mjs` after building for the synthetic two-recipient payout walkthrough. The [developer review guide](docs/DEVELOPER-VALIDATION.md) explains the reports and feedback checklist.
+
 Validate the workflow with developers who create claimable balances, review semantics independently and prepare the contributor/release material. Local Core boundary and execution controls have passed; developer usefulness has not been established. The tool has not been submitted to Drips Wave or awarded funding.
+
+Release and program materials: [source-only release checklist](docs/RELEASE.md), [contributor issue drafts](docs/CONTRIBUTOR-BACKLOG.md), and [Drips submission draft](docs/DRIPS-SUBMISSION.md). These documents do not indicate publication or acceptance.
 
 ## License
 

@@ -1,6 +1,6 @@
 # Implementation plan
 
-For the remaining project milestones and user-facing status, use [the progress tracker](TODO.md). The initial implementation slices below are complete; local protocol verification is complete. Developer validation is next.
+For the remaining project milestones and user-facing status, use [the progress tracker](TODO.md). The initial implementation slices below are complete; local protocol verification is complete for the recorded finite cases. Developer validation awaits actual feedback; release and final-stage submission materials have been prepared in parallel.
 
 ## Completed stage: local Stellar Core verification
 
@@ -42,3 +42,19 @@ Prepare a terminal demo and validate whole-plan policy reports with two develope
 - Customer validation remains pending; no adoption or audit claims.
 - Relative/absolute boundaries and input validation are the highest-risk areas.
 - No npm publication, deployment, grant application or Wave submission authorized by this implementation task.
+
+## Developer validation preparation — 2026-10-28
+
+Prepared a two-recipient synthetic payout with seven/fourteen-day handovers and a broken second-operation overlap, deterministic fixture generator, terminal demo checking exit codes 0/1/2, and `docs/DEVELOPER-VALIDATION.md` with expected reports and a feedback checklist. External sessions remain pending; no outreach performed. Next: collect two authorized developer reviews and address observed issues before deciding standalone/upstream direction.
+
+Verification: `npm run check` passed strict typecheck and all 35 tests; the terminal demo returned expected 0/1/2 outcomes; direct analyzer assertions confirmed both amounts, operation coverage and the exact second-operation overlap. Payout regeneration was byte-identical, `npm pack --dry-run` passed, and `git diff --check` passed. Core was not rerun because product semantics and the integration harness were unchanged. Changes remain local; no commit, push, publication or outreach performed.
+
+## Release and submission preparation — 2026-10-28
+
+User requested work through the last stage and batched Git pushes; this supersedes the earlier immediate-push instruction for this work. Prepare logical commits locally, then push them together. Added compatibility/security policies, issue/PR templates, contributor drafts, release notes/checklist and a sourced Drips application packet. Private vulnerability reporting, secret scanning/push protection and six repository topics were enabled and read back. Branch protection is absent; a suitable CI-based recommendation is recorded rather than silently locking the maintainer workflow. No outreach, published issues, release publication, app installation or application performed.
+
+Fresh source install, strict typecheck/35 tests, demo, isolated packed install/CLI exits/ESM import and npm pack dry run passed. Production audit reported zero known vulnerabilities. First fresh Core attempt failed its exact transaction-ledger timestamp check after ten valid before-boundary probes; owned-container cleanup succeeded and historical evidence was preserved. Added expected/actual timestamp diagnostics and reran without concurrent install/build work; result pending. Do not infer a product predicate defect or a completed fresh Core pass from this failed attempt.
+
+Clean-cache release check found that npm ci caches tarballs without the full registry metadata needed by a separate npm install --offline. The default package verification now permits dependency/metadata fetching during installation, with explicit --offline mode only for warmed caches. Runtime analysis remains offline. This avoids a false CI failure masked by a warm local npm cache. Fresh-cache verification of the repair is required before push.
+
+Final local release-preparation verification: the follow-up Core run passed 30 exact boundary comparisons and all five execution controls and removed its owned container. Public-analyzer replay reproduced saved intervals/timestamps; creation envelope has zero signatures. Both fixture generators were byte-identical, strict check/35 tests and targeted harness safety tests passed, package verification passed with a fresh cache and then explicit warmed-cache offline mode, and production audit found zero known vulnerabilities. Documentation links resolve and git diff --check passed. Developer feedback is still absent. Next: push the logical commits in one batch, inspect the new CI run, and prepare a source-only draft release; publication and program application remain explicit final actions.

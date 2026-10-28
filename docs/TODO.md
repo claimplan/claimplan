@@ -1,6 +1,6 @@
 # ClaimPlan progress tracker
 
-Current stage: **Developer validation — next; local Stellar Core verification complete**.
+Current stage: **Release preparation and submission draft prepared; developer feedback remains pending**.
 
 The initial implementation is complete. It is not yet a validated v0.1 release or a Drips-approved project. This tracker distinguishes implementation, independent evidence, release preparation and external approval. No percentage is assigned because the remaining work is not equal in size.
 
@@ -36,32 +36,32 @@ Done when: a documented, repeatable local Core run agrees with the supported sem
 
 ## 3. Validate usefulness — pending
 
-- [ ] Prepare a short terminal demo and example reports for review.
+- [x] Prepare a short terminal demo and example reports for review (`node scripts/demo.mjs`; see `docs/DEVELOPER-VALIDATION.md`).
 - [ ] Get feedback from two developers who create claimable balances.
-- [ ] Test one realistic, permissioned or synthetic payout workflow against a declared policy.
+- [x] Test one realistic, permissioned or synthetic payout workflow against a declared policy: two synthetic recipients, seven/fourteen-day recovery, and an intentional second-operation overlap.
 - [ ] Establish whether existing libraries or scripts already solve their whole-plan policy problem.
 - [ ] Document confusing output, missing rules and false-positive reports; fix observed problems.
 - [ ] Decide whether ClaimPlan should remain standalone or be contributed upstream.
 
 Done when: actual feedback supports the workflow and the scope addresses a concrete need. No adoption claims before evidence. Contacting people requires the user's authorization; no outreach has occurred.
 
-## 4. Prepare a reviewable v0.1 release — pending
+## 4. Prepare a reviewable v0.1 release — materials and local checks prepared
 
-- [ ] Review the public policy/API/report compatibility contract and document intended changes.
-- [ ] Improve diagnostics and validation only where tests or user feedback justify a change.
-- [ ] Add a security disclosure policy with a working private reporting route and explicit unaudited status.
-- [ ] Review resource limits and hostile/malformed input cases; resolve actionable findings.
-- [ ] Document supported runtime/platform coverage and untested environments accurately.
-- [ ] Add release notes, a reproducible terminal demo and a complete quick-start verification.
-- [ ] Draft scoped contributor issues with acceptance criteria and dependencies; avoid artificial issue volume.
-- [ ] Check repository topics, issue templates and suitable branch rules against actual CI names and maintainer capacity.
-- [ ] Re-run typecheck, tests, Core checks, example regeneration, clean package installation and dependency review for the release candidate.
+- [x] Review the public policy/API/report compatibility contract (`docs/COMPATIBILITY.md`; pre-release compatibility remains explicit).
+- [x] Review diagnostics/validation: product behavior unchanged; integration timestamp mismatch errors now include expected/observed times. No developer feedback has been received.
+- [x] Add `SECURITY.md`; enable and verify GitHub private vulnerability reporting, secret scanning and push protection. No independent audit claimed.
+- [x] Review structural/file limits and existing malformed-input regressions; document the parsed-JSON library boundary. Maximum-plan/adversarial resource characterization remains a scoped contributor task, not a performance guarantee.
+- [x] Document Linux/Ubuntu Node evidence and unverified macOS/Windows/alternative runtimes in `docs/COMPATIBILITY.md`.
+- [x] Add `CHANGELOG.md`, a reproducible demo, and isolated packed installation/CLI/ESM checks (`npm run verify:package`).
+- [x] Draft three substantive tasks in `docs/CONTRIBUTOR-BACKLOG.md` with scope, acceptance checks, dependencies and effort. No issues or Wave nominations published.
+- [x] Set repository topics, add issue/PR templates, and review branch protection against `Check (Node 22)` / `Check (Node 24)`. No protection exists; recommendation and maintainer decision recorded in `docs/RELEASE.md`.
+- [x] Re-run strict typecheck/35 tests, Core (30 boundary comparisons/five controls; saved unsigned-fixture replay), both example generators, isolated installation/ESM/CLI checks including a fresh npm cache, and dependency audit (zero known vulnerabilities). First Core attempt failed a timestamp assertion; passing follow-up is recorded in `docs/CORE-VERIFICATION.md`.
 
 Done when: a new contributor can follow the documented quick start, reproduce the supported results and understand the remaining limitations. An external audit is not claimed or treated as completed by a self-review.
 
 ## 5. Release/distribution — pending authorization
 
-- [ ] Confirm package naming/ownership and whether npm publication is wanted.
+- [x] Choose source-only candidate preparation; no npm ownership/name claim. npm publication remains a separate decision.
 - [ ] Prepare the final release tag, notes and package artifacts.
 - [ ] Obtain authorization for package publication and release creation.
 - [ ] Publish only the approved artifacts and verify installation from the chosen distribution channel.
@@ -70,10 +70,10 @@ Done when: the approved v0.1 artifact is obtainable and its documented installat
 
 ## 6. Drips Wave submission — separate program milestone
 
-- [ ] Recheck current Wave rules, application limits and the approved list before applying.
+- [ ] Official rules/limits and all 842 unique approved repositories inspected on 2026-10-28 (nine API pages; ClaimPlan absent). Authenticated remaining allowance and existing application state still need verification before applying.
 - [ ] Verify the repository is not already approved and that the submission accurately describes the CLI.
-- [ ] Assemble repository, docs, terminal-demo and verification links; use only artifacts that exist.
-- [ ] Prepare the contributor backlog and submission description around actual implemented functionality.
+- [x] Assemble evidence links and runnable demo in `docs/DRIPS-SUBMISSION.md`; verify new public file links after push. No release/video link invented.
+- [x] Prepare contributor backlog and candid application description in `docs/DRIPS-SUBMISSION.md`.
 - [ ] Obtain authorization before submitting the application or changing program settings.
 - [ ] Submit and record the organizer's decision; address any substantive feedback.
 
@@ -87,9 +87,9 @@ Include this compact tracker in progress updates and handoffs:
 | --- | --- |
 | Offline MVP | Complete |
 | Stellar Core verification | Complete |
-| Developer validation | Next |
-| Release preparation | Pending |
+| Developer validation | Demo prepared; two developer reviews pending |
+| Release preparation | Materials and local checks prepared; developer review pending |
 | Release/distribution | Pending authorization |
-| Drips submission | Pending readiness and authorization |
+| Drips submission | Draft prepared; application-state verification and authorization pending |
 
 Always identify the current task, actual verification evidence, blockers and next action. Mark only work actually completed; update this file when stage status changes.
