@@ -57,6 +57,14 @@ Two-developer usefulness validation and an independent audit remain pending. Exi
 
 ### Remaining work
 
-- Collect the two real developer usefulness reviews; the application explicitly discloses their absence.
+- Separate developer sessions and semantic-review recruitment are optional; keep their absence disclosed.
 - Await and record the organizer decision; respond to substantive feedback. Do not reapply while the current application is pending.
 - After approval, nominate only genuine contributor tasks and set complexity from actual scope. No Wave labels, reward points, assignments or funding claims have been created.
+
+## Supporting evidence update — 2026-10-28
+
+Public documentation: https://claimplan.github.io/claimplan/
+
+Actual CLI recording and full text alternative: https://claimplan.github.io/claimplan/demo.html
+
+These links supplement the existing repository evidence; do not create a duplicate application. The original submission description above is retained as historical text. No new organizer decision or private-dashboard edit is claimed by this update. Current resource/native evidence is linked from the documentation site. Separate reviews are optional and unperformed, not required delivery work.
