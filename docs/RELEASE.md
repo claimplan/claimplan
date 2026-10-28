@@ -2,7 +2,7 @@
 
 Status: [v0.1.0 experimental source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) published on 2026-10-28 at `76423af793bccc9cb0c6b83b522a887f2d7af3e6`. The public tag resolves to that exact commit. A new temporary clone of the public tag passed `npm ci --ignore-scripts`, strict typecheck/35 tests, the demo (exits 0/1/2) and installed-package CLI/ESM checks. [Candidate CI](https://github.com/claimplan/claimplan/actions/runs/40652655946) passed on Node 22 and 24.
 
-Developer validation remains open; this is not a validated or production-ready release. npm publication is outside this source-only release. The tag is immutable; subsequent main-branch documentation records the publication outcome.
+Independent review and developer sessions are optional and unperformed; this is an experimental release. npm publication is outside this source-only release. The tag is immutable; subsequent main-branch documentation records the publication outcome.
 
 ## Candidate contents and compatibility
 
@@ -38,11 +38,11 @@ The three scoped contributor issues are linked in [CONTRIBUTOR-BACKLOG.md](CONTR
 
 Reviewed requirement alignment (offline product, policy/report/CLI contract and honest validation claims), integration boundaries (package exports/files and the separate local signing harness), and release risks (malformed inputs, reproducible examples, CI installation checks and disclosure route). Missing private reporting and missing CI verification of the new payout artifacts were addressed. A fresh-cache check also caught and repaired an offline installation assumption: package verification permits registry access during installation by default, with a separate explicit warmed-cache mode. Product semantic code was not changed by this release preparation.
 
-Coverage limits: this is a self-review, not an independent audit. Existing tests cover malformed input and protocol boundaries; there is no exhaustive hostile-input SDK parser audit, maximum-plan benchmark, native macOS/Windows evidence or customer review. The first fresh Core attempt failed its exact timestamp requirement; historical evidence was preserved and the follow-up run passed all 30 boundary cases and five execution controls, and saved-fixture replay confirmed exact intervals/timestamps and an unsigned envelope. The initial scheduling failure remains documented; the timestamp diagnostics do not establish its root cause. Outstanding work is in the contributor backlog and progress tracker.
+Coverage limits: this is a self-review, not an independent audit. Existing tests cover malformed input and protocol boundaries; there is no exhaustive hostile-input SDK parser audit or customer review. Subsequent finite maximum-plan/resource and native macOS/Windows checks are recorded in RESOURCE-VERIFICATION.md and NATIVE-VERIFICATION.md. The first fresh Core attempt failed its exact timestamp requirement; historical evidence was preserved and the follow-up run passed all 30 boundary cases and five execution controls, and saved-fixture replay confirmed exact intervals/timestamps and an unsigned envelope. The initial scheduling failure remains documented; the timestamp diagnostics do not establish its root cause. Outstanding work is in the contributor backlog and progress tracker.
 
 ## Procedure for subsequent releases
 
-1. Complete or explicitly carry forward the two-reviewer validation gap as an experimental prerelease limitation.
+1. Carry forward unperformed optional independent review and usefulness sessions as evidence limitations, without making recruitment a release gate.
 2. Inspect the final diff, candidate checks and exact target commit. Keep local conversation history outside the public repository.
 3. Prepare a draft GitHub release targeting that commit with the candidate notes. A draft is not a public release and does not establish installation from a published artifact.
 4. Confirm maintainer authorization covers public tag/release creation with the reviewed tag and target; use existing standing authorization without asking again. Choose a new unused tag matching the intended package/CLI version; update version strings/tests/lockfile coherently and rerun checks. Never reuse the published `v0.1.0` tag.

@@ -1,6 +1,6 @@
 # Semantic review packet
 
-Status: prepared on 2026-10-28; independent review remains open in [issue #1](https://github.com/claimplan/claimplan/issues/1). The source comparison below was performed by the implementation assistant. It is not an independent assessment or formal audit. No reviewer has signed off.
+Status: prepared on 2026-10-28; independent review is optional and remains unperformed in [issue #1](https://github.com/claimplan/claimplan/issues/1). The source comparison below was performed by the implementation assistant. It is not an independent assessment or formal audit. No reviewer has signed off.
 
 ## Reproduce the target
 
@@ -71,4 +71,4 @@ Scoped assessment complete? Remaining work:
 Permission to quote feedback publicly:
 ```
 
-Two developer usefulness sessions remain a separate milestone; use [DEVELOPER-VALIDATION.md](DEVELOPER-VALIDATION.md). Neither Drips submission nor organizer acceptance supplies a semantic signoff or usefulness result.
+Two developer usefulness sessions are an optional, non-blocking validation activity; use [DEVELOPER-VALIDATION.md](DEVELOPER-VALIDATION.md). Neither Drips submission nor organizer acceptance supplies a semantic signoff or usefulness result.

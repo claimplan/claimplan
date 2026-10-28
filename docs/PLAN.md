@@ -40,7 +40,7 @@ The public program page lists Wave 10 among past Waves and no active/upcoming Wa
 ## Next actions and working rules
 
 - Await and record the organizer decision; address substantive feedback.
-- Collect two real developer reviews and resolve observed workflow issues.
+- Optionally collect developer feedback when requested; fix demonstrated workflow issues.
 - Review contributor work against acceptance checks; only nominate issues after program approval.
 - Maintain the offline/read-only boundary, exact arithmetic, synthetic fixtures and honest evidence limits.
 - The maintainer has granted standing project authorization in the local workspace instructions. Do not repeatedly ask for it; user-only authentication/attestations still require their participation.
@@ -64,4 +64,10 @@ Native baseline run 40668297880: both macOS jobs passed. Both Windows jobs passe
 
 ## Semantic review preparation
 
-The [semantic review packet](SEMANTIC-REVIEW.md) pins the inspected Core sources, maps protocol rules to implementation and existing tests, separates application policy from execution guarantees, and defines an independent report checklist. Assistant source comparison found no mismatch in the selected boundary/saturation rules. This preparation does not complete issue #1; an independent assessment and two usefulness sessions remain open.
+The [semantic review packet](SEMANTIC-REVIEW.md) pins the inspected Core sources, maps protocol rules to implementation and existing tests, separates application policy from execution guarantees, and defines an independent report checklist. Assistant source comparison found no mismatch in the selected boundary/saturation rules. This preparation does not complete issue #1. Independent assessment and usefulness sessions remain optional, unperformed validation.
+
+## Maintainer scope decision — 2026-10-28
+
+The maintainer has made separate reviewer recruitment optional in the delivery requirements and will rely on Drips for its program review. Do not recruit the previously suggested candidates or block delivery on issue #1 or two developer sessions. These assessments were not performed; their absence remains an evidence limitation rather than unfinished implementation. Drips review is an organizer assessment and must not be represented as an independent technical audit or customer validation. Earlier next-action lists requiring recruitment are superseded.
+
+Remaining internal closeout: reconcile stale status statements across delivery documents with completed resource/native evidence and this scope decision; map applicable master-playbook gates to evidence; perform a final release preflight; assess a new source-only patch prerelease carrying the Windows development-helper repair (never move v0.1.0). Then maintain the delivered CLI and respond to actual defects/program feedback. A hosted service, smart contract and npm publication are not required by this product scope.

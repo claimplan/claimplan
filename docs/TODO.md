@@ -1,8 +1,8 @@
 # ClaimPlan progress tracker
 
-Current stage: **Local resource and native-platform checks complete for recorded environments; independent/developer reviews still open; Drips Pending review**.
+Current stage: **Local resource and native-platform checks complete for recorded environments; separate reviews optional and unperformed; Drips Pending review**.
 
-The initial implementation is complete. It is not yet a validated v0.1 release or a Drips-approved project. This tracker distinguishes implementation, independent evidence, release preparation and external approval. No percentage is assigned because the remaining work is not equal in size.
+The initial implementation is complete. It is an experimental source release; Drips approval has not been established. This tracker distinguishes implementation, independent evidence, release preparation and external approval. No percentage is assigned because the remaining work is not equal in size.
 
 ## 1. Working offline MVP — complete
 
@@ -14,7 +14,7 @@ The initial implementation is complete. It is not yet a validated v0.1 release o
 - [x] Reject malformed inputs and report missing assumptions as inconclusive.
 - [x] Provide CLI, library API and three reproducible offline examples.
 - [x] Add README, specification, contribution guide and project instructions.
-- [x] Pass strict typecheck and 31 tests, including 1,000 generated predicate trees.
+- [x] Pass strict typecheck and 35 tests, including 1,000 generated predicate trees.
 - [x] Verify packed installation and exit codes 0/1/2.
 - [x] Pass GitHub CI on Node 22 and 24.
 
@@ -34,7 +34,7 @@ Evidence: `npm run test:core` completed successfully with 30 boundary comparison
 
 Done when: a documented, repeatable local Core run agrees with the supported semantic cases. Keep the offline suite for extreme integer cases that cannot be practically scheduled on a local ledger. Do not represent one finite test set as proof of all protocol behavior. No mainnet deployment or funds needed.
 
-## 3. Validate usefulness — pending
+## 3. Validate usefulness — optional, non-blocking
 
 - [x] Prepare a short terminal demo and example reports for review (`node scripts/demo.mjs`; see `docs/DEVELOPER-VALIDATION.md`).
 - [ ] Get feedback from two developers who create claimable balances.
@@ -43,7 +43,7 @@ Done when: a documented, repeatable local Core run agrees with the supported sem
 - [ ] Document confusing output, missing rules and false-positive reports; fix observed problems.
 - [ ] Decide whether ClaimPlan should remain standalone or be contributed upstream.
 
-Done when: actual feedback supports the workflow and the scope addresses a concrete need. No adoption claims before evidence. Maintainer standing authorization covers project-related outreach; two actual developer sessions remain pending. No direct reviewer outreach has occurred.
+Done when: actual feedback supports the workflow and the scope addresses a concrete need. No adoption claims before evidence. Maintainer standing authorization covers project-related outreach; two developer sessions are optional and have not occurred. No direct reviewer outreach has occurred.
 
 ## 4. Prepare a reviewable v0.1 release — materials and local checks prepared
 
@@ -88,9 +88,13 @@ Include this compact tracker in progress updates and handoffs:
 | --- | --- |
 | Offline MVP | Complete |
 | Stellar Core verification | Complete |
-| Developer validation | Demo prepared; two developer reviews pending |
-| Release preparation | Materials and local checks prepared; developer review pending |
+| Developer validation | Demo prepared; separate sessions optional and unperformed |
+| Release preparation | Materials and technical checks prepared; external review optional |
 | Release/distribution | Source-only experimental v0.1.0 published and verified |
 | Drips submission | Submitted; Pending review by organizers |
 
 Always identify the current task, actual verification evidence, blockers and next action. Mark only work actually completed; update this file when stage status changes.
+
+## Current delivery scope — 2026-10-28
+
+Separate semantic-review recruitment and usefulness sessions are optional, not release gates. Earlier descriptions of them as blockers are superseded; no review completion is claimed. See [master phase checklist](WAVE-CHECKLIST.md) for remaining required delivery artifacts.

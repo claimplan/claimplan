@@ -12,3 +12,5 @@
 - The product remains offline and never signs/submits. The separate, explicitly invoked Core-verification harness may sign synthetic transactions only inside its own ephemeral local network after verifying loopback endpoints and the standalone network identity. Never use mainnet/testnet, real assets, stored user keys, or unrelated containers for that harness.
 - Update the plan and documentation with implementation changes. Do not claim an audit, Stellar Core execution, adoption or program acceptance without evidence.
 - Maintain `docs/TODO.md` as the finish checklist. Always include a concise completed/current/next progress tracker in user-facing progress updates and handoffs, with actual evidence and blockers. Do not invent percentage completion.
+
+- Separate reviewer recruitment and two-developer usefulness sessions are optional, non-blocking validation activities. Do not recruit reviewers unless requested. Never mark an unperformed review as completed or equate Drips program review with a technical audit or customer validation.
