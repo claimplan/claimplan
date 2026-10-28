@@ -1,6 +1,6 @@
 # ClaimPlan v0.1 specification
 
-Status: implementation target. Offline, read-only, local files only. No signing, submission, wallet credentials, hosted services or smart contracts.
+Status: implemented experimental policy v1; independent semantic review remains open. Offline, read-only, local files only. No signing, submission, wallet credentials, hosted services or smart contracts.
 
 ## Workflow
 
