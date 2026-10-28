@@ -6,8 +6,10 @@ import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const temporary = mkdtempSync(join(tmpdir(), 'claimplan-package-'));
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+const offline = process.argv.includes('--offline');
+assert.ok(process.argv.slice(2).every(argument => argument === '--offline'), 'Only --offline is supported');
+const temporary = mkdtempSync(join(tmpdir(), 'claimplan-package-'));
 function run(command, args, cwd) {
   const result = spawnSync(command, args, { cwd, encoding: 'utf8', timeout: 120000 });
   assert.ifError(result.error);
@@ -24,7 +26,7 @@ try {
   assert.ok(!files.some(path => path.startsWith('integration/') || /(^|\/)\.env($|\.)/.test(path)));
   const consumer = join(temporary, 'consumer');
   mkdirSync(consumer);
-  run(npm, ['install', '--prefix', consumer, '--offline', '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', join(temporary, packed.filename)], consumer);
+  run(npm, ['install', '--prefix', consumer, ...(offline ? ['--offline'] : []), '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', join(temporary, packed.filename)], consumer);
   const installed = join(consumer, 'node_modules', '@claimplan', 'cli');
   const bin = process.platform === 'win32' ? join(installed, 'dist', 'cli.js') : join(consumer, 'node_modules', '.bin', 'claimplan');
   assert.ok(existsSync(bin));
@@ -57,7 +59,7 @@ try {
   const report = api.analyzeEnvelope(readFileSync(join(installed, 'examples', 'payout.xdr'), 'utf8'), JSON.parse(readFileSync(join(installed, 'examples', 'payout-policy.json'), 'utf8')));
   assert.equal(report.status, 'pass');
   assert.deepEqual(report.operations.map(op => op.amountStroops), ['1250000000', '805000000']);
-  console.log('Package verified: isolated offline install, installed CLI exits 0/1/2, ESM exports, payout amounts, and integration exclusion.');
+  console.log('Package verified: isolated install, installed CLI exits 0/1/2, ESM exports, payout amounts, and integration exclusion.');
 } finally {
   rmSync(temporary, { recursive: true, force: true });
 }

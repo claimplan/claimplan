@@ -1,6 +1,6 @@
 # Contributing
 
-Use Node >=22.12.0. Run `npm ci` and `npm run check`. Tests run entirely offline after dependencies are installed. Do not use mainnet funds, secret keys, real customer data or production transaction dumps as fixtures.
+Use Node >=22.12.0. Run `npm ci` and `npm run check`. The default test suite runs offline after dependencies are installed. The separate package-installation smoke check may fetch dependencies and registry metadata; installed analysis stays offline. Do not use mainnet funds, secret keys, real customer data or production transaction dumps as fixtures.
 
 Open an issue describing the behavior, expected outcome and a minimal synthetic reproduction. For predicate changes, cite current Stellar Core or protocol semantics and add a boundary test. Propose new policy behavior before expanding the schema.
 
