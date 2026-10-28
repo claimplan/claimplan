@@ -4,7 +4,7 @@ This development harness creates an ephemeral synthetic network. The shipped CLI
 
 ## Recorded result
 
-On 2026-10-27, `npm run test:core` passed all 30 boundary comparisons and five execution controls on Core/RPC **v30.0.0**, ledger protocol **28**, SDK **17.4.0**. [Saved results](../integration/core-results.json) include the unsigned fixture and actual ledger outcomes. Replaying the fixture through the public analyzer reproduced every saved interval; the owned container was removed. The offline suite passed 35 tests and strict typecheck. These results cover the listed cases and version only.
+On 2026-10-28, `npm run test:core` passed all 30 boundary comparisons and five execution controls on Core/RPC **v30.0.0**, ledger protocol **28**, SDK **17.4.0**. [Saved results](../integration/core-results.json) include the unsigned fixture and actual ledger outcomes. Replaying the fixture through the public analyzer reproduced every saved interval; the owned container was removed. The offline suite passed 35 tests and strict typecheck. These results cover the listed cases and version only. The first 2026-10-28 release-preparation attempt failed an exact transaction-ledger timestamp assertion after the ten before-boundary probes; it did not overwrite the prior evidence. A follow-up run passed all 30 comparisons and five controls without widening boundary requirements. The harness now includes actual/requested times in future mismatch errors. This diagnostic improvement does not establish the cause of the initial scheduling failure.
 
 ## Reproduce
 
