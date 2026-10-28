@@ -1,12 +1,16 @@
 # ClaimPlan
 
+[![CI](https://github.com/claimplan/claimplan/actions/workflows/ci.yml/badge.svg)](https://github.com/claimplan/claimplan/actions/workflows/ci.yml) [![Native verification](https://github.com/claimplan/claimplan/actions/workflows/native.yml/badge.svg)](https://github.com/claimplan/claimplan/actions/workflows/native.yml) [![Documentation](https://github.com/claimplan/claimplan/actions/workflows/docs.yml/badge.svg)](https://github.com/claimplan/claimplan/actions/workflows/docs.yml)
+
 Offline validation of Stellar claimable-balance payout plans.
 
 ClaimPlan is a command-line tool and TypeScript library that checks whether a payout's claimant conditions match its intended beneficiary and recovery rules before the transaction is submitted.
 
 ## Status
 
-Experimental [v0.1.0 source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) is published and its public tag installation has been verified. Not independently audited; no npm package has been published. Local Stellar Core checks passed 30 predicate-boundary cases and five execution controls on Core/RPC v30.0.0, ledger protocol 28. Customer validation remains pending.
+Experimental [source-only releases](https://github.com/claimplan/claimplan/releases) are available. The v0.1.0 public tag installation was verified; main contains subsequent packaging and documentation improvements. Not independently audited; no npm package has been published. Local Stellar Core checks passed 30 predicate-boundary cases and five execution controls on Core/RPC v30.0.0, ledger protocol 28. Customer validation remains pending.
+
+Read the [documentation site](https://claimplan.github.io/claimplan/), follow the [payout guide](https://claimplan.github.io/claimplan/payout-guide.html), or watch the [actual CLI demo](https://claimplan.github.io/claimplan/demo.html).
 
 See the [compatibility contract](docs/COMPATIBILITY.md), [security policy](SECURITY.md) and [release notes](CHANGELOG.md).
 
@@ -110,3 +114,15 @@ Release and program materials: [source-only release record/checklist](docs/RELEA
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Maintainer and community
+
+| Maintainer | Contact |
+| --- | --- |
+| OTimileyin | [GitHub profile](https://github.com/OTimileyin) |
+
+Use [repository issues](https://github.com/claimplan/claimplan/issues) for public questions and reproducible bugs; use private reporting for vulnerabilities. There is no separate Telegram or Discord channel. Separate reviewer recruitment and usefulness sessions are optional, not delivery gates. No independent audit or adoption is claimed.
+
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=claimplan/claimplan)](https://github.com/claimplan/claimplan/graphs/contributors)

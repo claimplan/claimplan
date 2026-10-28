@@ -1,0 +1,33 @@
+[
+  {
+    "key": "semantic-review",
+    "existingNumber": 1,
+    "title": "docs(review): independently assess predicate and policy semantics",
+    "labels": [
+      "type:review",
+      "complexity:substantial",
+      "optional"
+    ],
+    "body": "Optional, non-blocking review. No recruitment is required; no independent assessment has occurred.\n\n## Summary\n\n the current implementation has self-verification and finite Core evidence, but no independent semantic review.\n\n## Scope\n\n review the supported predicate operators, half-open boundaries, relative saturation, beneficiary/recovery windows, and the difference between protocol eligibility and policy choices. Compare against pinned Core/CAP-23 sources. Do not add signing or submission to the product.\n\n## Acceptance criteria\n\n- [ ] Record reviewed source versions, functions and each rule-to-implementation mapping.\n- [ ] Independently check before/at/after examples for every supported operator and handover role.\n- [ ] For discrepancies provide synthetic unsigned input, expected/actual intervals and a regression check; report no findings honestly when appropriate.\n- [ ] State unreviewed areas and avoid calling the exercise a formal audit.\n\nDependencies: `docs/SPEC.md`, `docs/CORE-VERIFICATION.md`, current passing CI. Effort: substantial protocol knowledge; scope review before assignment. Usefulness sessions are also optional and unperformed.\n\n\n## Tech stack\n\nTypeScript / Node.js 22 and 24; official Stellar SDK 17.4.0. Pinned Stellar Core/CAP sources.\n\nNo Wave assignment, points or rewards are promised. Use synthetic unsigned data only.\n"
+  },
+  {
+    "key": "resource-verification",
+    "existingNumber": 2,
+    "title": "test(resources): characterize maximum plans and malformed inputs",
+    "labels": [
+      "type:verification",
+      "complexity:substantial"
+    ],
+    "body": "Completed in the recorded finite scope; see evidence comments below. These criteria describe the original task.\n\n## Summary\n\n structural limits exist, but there is no recorded benchmark/corpus for a maximum 100-operation, 10-claimant plan or adversarial recursive envelope input.\n\n## Scope\n\n create deterministic synthetic fixtures/corpus within and beyond declared limits; measure local time and memory with runtime/host details, including malformed XDR nesting. Preserve the 1 MiB file boundary and fail-closed behavior. Do not claim universal performance bounds from one machine.\n\n## Acceptance criteria\n\n- [x] Supported maximum-size plans produce located, deterministic reports without skipped operations.\n- [x] Oversized/depth-invalid/trailing/noncanonical inputs return controlled errors; measure representative behavior in an isolated subprocess with a timeout.\n- [x] If resource limits are bypassed, provide one reproducible finding, a targeted fix and regression coverage.\n- [x] Record commands, seeds, observed limits and remaining SDK parser risk.\n\nDependencies: independent review of intended supported limits in `docs/COMPATIBILITY.md`; no new service/backend. Effort: medium to substantial, depending on findings.\n\n\n## Tech stack\n\nTypeScript / Node.js 22 and 24; official Stellar SDK 17.4.0. Development-only verification tooling; see linked repository evidence.\n\nNo Wave assignment, points or rewards are promised. Use synthetic unsigned data only.\n"
+  },
+  {
+    "key": "native-verification",
+    "existingNumber": 3,
+    "title": "test(platforms): verify native source and installed CLI behavior",
+    "labels": [
+      "type:verification",
+      "complexity:medium"
+    ],
+    "body": "Completed in the recorded finite scope; see evidence comments below. These criteria describe the original task.\n\n## Summary\n\n current local/CI evidence is Linux/Ubuntu; documentation explicitly leaves other native platforms unverified.\n\n## Scope\n\n run the documented source quick start, offline suite, demo and installed-package checks on each target with Node 22/24. Inspect FIFO test skipping and npm executable handling. Fix reproducible portability defects only; do not infer success from CI configuration alone.\n\n## Acceptance criteria\n\n- [x] Supply actual OS/Node/npm versions and command results for each tested environment.\n- [x] Validate installed command and ESM import; preserve exits 0/1/2 and deterministic output.\n- [x] Add CI coverage only after reproducing the platform setup and documenting supported exceptions.\n- [x] Update compatibility docs with evidence and any failures, leaving untested environments explicit.\n\nDependencies: registry access for package installation (or a deliberately warmed cache for optional offline mode), and maintainers with access to the target platforms. Effort: medium. No device purchases or paid runner usage authorized by this draft.\n\n\n## Tech stack\n\nTypeScript / Node.js 22 and 24; official Stellar SDK 17.4.0. Development-only verification tooling; see linked repository evidence.\n\nNo Wave assignment, points or rewards are promised. Use synthetic unsigned data only.\n"
+  }
+]

@@ -50,3 +50,13 @@ Coverage limits: this is a self-review, not an independent audit. Existing tests
 6. If defective, mark the release as affected, document the correction and issue a new version. Do not force-move an existing public tag. No database or production deployment rollback applies.
 
 No npm owner or package-name availability is assumed. npm publication would need a separate ownership/channel decision and installation verification against the registry.
+
+## Current delivery additions — 2026-10-28
+
+Published static documentation through the pinned GitHub Pages workflow; source is `site/`, builder is `scripts/build-docs.mjs`, generated output is ignored at `artifacts/site/`. `npm run docs:build` verifies actual analyzer examples and every relative destination. Desktop/mobile navigation, skip link and overflow checks passed locally. Source code remains offline; the site collects no transactions or wallet credentials.
+
+Presentation comparison: the live [approved list](https://www.drips.network/wave/stellar/repos) included [KindFi](https://github.com/kindfi-org/kindfi) and [Trustless Work](https://github.com/Trustless-Work/trustlesswork-smart-contract-stellar) on 2026-10-28. Their actual READMEs showed project/setup guidance and community links; Trustless Work also showed maintainers and contributor credits. ClaimPlan adopts working docs/demo links, CI badges, a verified maintainer GitHub contact and real contributor history. It does not invent social channels, deployments or endorsements. These observations are presentation evidence, not proof of program admission criteria.
+
+## Enforced main-branch policy — 2026-10-28
+
+Verified by GitHub REST readback: main requires pull requests, up-to-date status checks from GitHub Actions (app ID 15368), conversation resolution, and all seven actual check names: Check (Node 22), Check (Node 24), Native (macos-15, Node 22), Native (macos-15, Node 24), Native (windows-2025, Node 22), Native (windows-2025, Node 24), Build documentation. Administrators are included; force pushes and branch deletion are disabled. Required approving reviews is zero because separate review is optional and the repository has one verified maintainer. New changes go through branches and PRs; do not bypass or disable protection to deliver. The earlier absence-of-protection paragraph is historical and superseded.

@@ -78,3 +78,12 @@ ${code("import { readFileSync } from 'node:fs';\nimport { analyzeEnvelope, Input
 <h2>Project references</h2><ul><li><a href="https://github.com/claimplan/claimplan/blob/main/CONTRIBUTING.md">Contribution workflow</a></li><li><a href="https://github.com/claimplan/claimplan/blob/main/docs/WAVE-CHECKLIST.md">Wave delivery checklist</a></li><li><a href="https://github.com/claimplan/claimplan/blob/main/docs/CONTRIBUTOR-BACKLOG.md">Scoped contributor backlog</a></li><li><a href="https://github.com/claimplan/claimplan/blob/main/CHANGELOG.md">Release history</a></li></ul>
 <p>The repository and documentation use the MIT license. Contributor credits belong to the people shown in the <a href="https://github.com/claimplan/claimplan/graphs/contributors">actual GitHub contributor history</a>; no endorsements or customer adoption are implied.</p>` },
 ];
+
+// The screen recording is of actual CLI subprocesses streamed by the local viewer.
+pages.splice(4,0,{slug:'demo',title:'Watch the actual CLI workflow',section:'Demo video',body:({code,transcript})=>`
+<p class="lead">A 35-second silent recording shows three real command runs using unsigned synthetic fixtures. Read the complete text alternative below.</p>
+<video controls preload="metadata" aria-label="Actual ClaimPlan CLI recording; full text alternative follows"><source src="claimplan-demo.mp4" type="video/mp4">Your browser does not support this video. <a href="claimplan-demo.mp4">Download the MP4</a> or read the transcript below.</video>
+<p>Recorded on Node ${transcript.node}. The loopback viewer displays actual subprocess output and verifies each observed exit. It is a recording tool, not a ClaimPlan web interface. No transaction is signed or submitted. No audio is present.</p>
+<h2>Full text alternative</h2>
+${transcript.records.map(r=>`<h2>${r.title}</h2>${code('$ '+r.command+'\n\n'+r.output+'\nProcess exit: '+r.exit)}`).join('')}
+<p><a href="demo-transcript.json">Download the machine-readable transcript</a>. <a href="payout-guide.html">Follow the payout guide</a> to reproduce these checks.</p>`});

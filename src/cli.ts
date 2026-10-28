@@ -6,7 +6,7 @@ import { analyzeEnvelope } from './analyze.js';
 import { MAX_INPUT_BYTES } from './decode.js';
 import { InputError, type Report } from './types.js';
 
-const help = `ClaimPlan 0.1.0 — offline Stellar payout-policy checks
+const help = `ClaimPlan 0.1.1 — offline Stellar payout-policy checks
 
 Usage:
   claimplan check transaction.xdr --policy policy.json [--json]
@@ -72,7 +72,7 @@ async function main(): Promise<void> {
     const names = tokens.filter(t => t.kind === 'option').map(t => t.name);
     if (new Set(names).size !== names.length) throw new InputError('duplicate command option');
     if (args.length === 0 || values.help) { process.stdout.write(help); return; }
-    if (values.version && positionals.length === 0 && names.length === 1) { process.stdout.write('0.1.0\n'); return; }
+    if (values.version && positionals.length === 0 && names.length === 1) { process.stdout.write('0.1.1\n'); return; }
     if (values.version || positionals.length !== 2 || positionals[0] !== 'check' || !values.policy) {
       throw new InputError('expected: claimplan check transaction.xdr --policy policy.json [--json]');
     }

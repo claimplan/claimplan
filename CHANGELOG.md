@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.1.1 — 2026-10-28 (experimental source-only)
+
+- Added published static documentation and an actual CLI demo with a full text alternative. Documentation builds verify live analyzer examples and local destinations.
+- Made separate reviewer recruitment optional and non-blocking; no review completion or audit is claimed.
+- Added a repeatable issue batch utility and enforced PR/status-check protection on main.
+- CLI version identifies 0.1.1; predicate and policy semantics are unchanged.
 
 - Verified macOS 15 ARM64 and Windows Server 2025 x64 source/installed-command behavior on Node 22/24. Fixed the Windows development package-check helper by invoking npm-cli.js through Node and testing actual installed launchers under spaces/Unicode paths. Product analyzer source and published v0.1.0 tag are unchanged.
 

@@ -1,0 +1,29 @@
+{
+  "node": "v22.23.2",
+  "records": [
+    {
+      "title": "Valid two-recipient handover",
+      "command": "node dist/cli.js check examples/payout.xdr --policy examples/payout-policy.json",
+      "expected": 0,
+      "output": "ClaimPlan: PASS (claim-predicates-only)\nAssumed creation time: 1800000000 Unix seconds\nChecked create operations: 2\nScope: mathematical predicate eligibility only; no guarantee that a claim will execute.\n",
+      "exit": 0
+    },
+    {
+      "title": "Broken second-operation overlap",
+      "command": "node dist/cli.js check examples/payout-overlap.xdr --policy examples/payout-policy.json",
+      "expected": 1,
+      "output": "ClaimPlan: FAIL (claim-predicates-only)\nAssumed creation time: 1800000000 Unix seconds\nChecked create operations: 2\nERROR CLAIMANT_OVERLAP [operation 1, claimant 0, 1]: Both claimants are eligible; the first successful claimant receives the entire remaining balance.\n  [1801209600, 18446744073709551616) Unix seconds\nScope: mathematical predicate eligibility only; no guarantee that a claim will execute.\n",
+      "exit": 1
+    },
+    {
+      "title": "Missing creation-time assumption",
+      "command": "node dist/cli.js check examples/handover.xdr --policy examples/missing-time.json",
+      "expected": 2,
+      "output": "ClaimPlan: INCONCLUSIVE (claim-predicates-only)\nAssumed creation time: not supplied Unix seconds\nChecked create operations: 0\nINCONCLUSIVE CREATION_TIME_REQUIRED [transaction]: Supply creationTime as an explicit assumed creation-ledger Unix timestamp. No local-clock assumption was made.\nScope: mathematical predicate eligibility only; no guarantee that a claim will execute.\n",
+      "exit": 2
+    }
+  ],
+  "ok": true,
+  "recordedCommit": "b8cd4bfcc98cc78f6325e8cbeef4ac28cf6d6ef5",
+  "recordedOn": "2026-10-28"
+}
