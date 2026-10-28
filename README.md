@@ -6,9 +6,9 @@ ClaimPlan is a command-line tool and TypeScript library that checks whether a pa
 
 ## Status
 
-Early implementation, not audited. Source installation and offline examples work; no npm package has been published. Local Stellar Core checks passed 30 predicate-boundary cases and five execution controls on Core/RPC v30.0.0, ledger protocol 28. Customer validation remains pending.
+Experimental [v0.1.0 source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) is published and its public tag installation has been verified. Not independently audited; no npm package has been published. Local Stellar Core checks passed 30 predicate-boundary cases and five execution controls on Core/RPC v30.0.0, ledger protocol 28. Customer validation remains pending.
 
-See the [compatibility contract](docs/COMPATIBILITY.md), [security policy](SECURITY.md) and [candidate release notes](CHANGELOG.md).
+See the [compatibility contract](docs/COMPATIBILITY.md), [security policy](SECURITY.md) and [release notes](CHANGELOG.md).
 
 Follow the [progress tracker and finish checklist](docs/TODO.md) for completed work, current stage and next steps.
 
@@ -17,7 +17,7 @@ Follow the [progress tracker and finish checklist](docs/TODO.md) for completed w
 Requires Node.js **22.12.0 or newer** and npm.
 
 ```sh
-git clone https://github.com/claimplan/claimplan.git
+git clone --branch v0.1.0 https://github.com/claimplan/claimplan.git
 cd claimplan
 npm ci
 npm run build
@@ -103,9 +103,9 @@ Protocol behavior is grounded in [Stellar's claimable-balance guide](https://dev
 
 Run `node scripts/demo.mjs` after building for the synthetic two-recipient payout walkthrough. The [developer review guide](docs/DEVELOPER-VALIDATION.md) explains the reports and feedback checklist.
 
-Validate the workflow with developers who create claimable balances, review semantics independently and prepare the contributor/release material. Local Core boundary and execution controls have passed; developer usefulness has not been established. The tool has not been submitted to Drips Wave or awarded funding.
+Validate the workflow with developers who create claimable balances, review semantics independently and resolve findings from the published contributor backlog. Local Core boundary and execution controls have passed; developer usefulness has not been established. ClaimPlan was submitted to the Stellar Wave Program on 2026-10-28; its dashboard status is **Pending review**. No approval or funding is claimed.
 
-Release and program materials: [source-only release checklist](docs/RELEASE.md), [contributor issue drafts](docs/CONTRIBUTOR-BACKLOG.md), and [Drips submission draft](docs/DRIPS-SUBMISSION.md). These documents do not indicate publication or acceptance.
+Release and program materials: [source-only release record/checklist](docs/RELEASE.md), [contributor backlog](docs/CONTRIBUTOR-BACKLOG.md), and [Drips submission record](docs/DRIPS-SUBMISSION.md). The source prerelease is published and the Drips application is submitted; organizer approval remains pending.
 
 ## License
 

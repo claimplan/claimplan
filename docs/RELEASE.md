@@ -1,6 +1,8 @@
-# Source-only v0.1 release preparation
+# Source-only v0.1 release
 
-Status: candidate preparation, not a published release. Developer validation remains open. A source-only experimental prerelease may expose that limitation; do not call it validated or production ready. npm publication is outside this candidate path.
+Status: [v0.1.0 experimental source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) published on 2026-10-28 at `76423af793bccc9cb0c6b83b522a887f2d7af3e6`. The public tag resolves to that exact commit. A new temporary clone of the public tag passed `npm ci --ignore-scripts`, strict typecheck/35 tests, the demo (exits 0/1/2) and installed-package CLI/ESM checks. [Candidate CI](https://github.com/claimplan/claimplan/actions/runs/40652655946) passed on Node 22 and 24.
+
+Developer validation remains open; this is not a validated or production-ready release. npm publication is outside this source-only release. The tag is immutable; subsequent main-branch documentation records the publication outcome.
 
 ## Candidate contents and compatibility
 
@@ -30,7 +32,7 @@ Private vulnerability reporting, secret scanning and secret-scanning push protec
 
 At inspection on 2026-10-28 main had no branch protection or rulesets. Recommended collaborative policy: require both successful CI checks on pull requests, block force pushes/deletions, and keep a documented maintainer emergency path. Do not require unavailable independent approvals for a sole-maintainer repository. Protection remains a maintainer decision; applying a rule without checking its effect on the authorized push workflow can lock out delivery. No rule has been silently enabled by this preparation.
 
-Contributor issue drafts are in [CONTRIBUTOR-BACKLOG.md](CONTRIBUTOR-BACKLOG.md). Publish only scoped work the maintainer can actually review; no artificial issue count is needed.
+The three scoped contributor issues are linked in [CONTRIBUTOR-BACKLOG.md](CONTRIBUTOR-BACKLOG.md). They have no Wave labels, reward points or assignments.
 
 ## Self-review scope and findings
 
@@ -38,12 +40,12 @@ Reviewed requirement alignment (offline product, policy/report/CLI contract and 
 
 Coverage limits: this is a self-review, not an independent audit. Existing tests cover malformed input and protocol boundaries; there is no exhaustive hostile-input SDK parser audit, maximum-plan benchmark, native macOS/Windows evidence or customer review. The first fresh Core attempt failed its exact timestamp requirement; historical evidence was preserved and the follow-up run passed all 30 boundary cases and five execution controls, and saved-fixture replay confirmed exact intervals/timestamps and an unsigned envelope. The initial scheduling failure remains documented; the timestamp diagnostics do not establish its root cause. Outstanding work is in the contributor backlog and progress tracker.
 
-## Publish sequence and verification
+## Procedure for subsequent releases
 
 1. Complete or explicitly carry forward the two-reviewer validation gap as an experimental prerelease limitation.
 2. Inspect the final diff, candidate checks and exact target commit. Keep local conversation history outside the public repository.
 3. Prepare a draft GitHub release targeting that commit with the candidate notes. A draft is not a public release and does not establish installation from a published artifact.
-4. Obtain explicit approval for public tag/release creation with the reviewed tag and target. Choose `v0.1.0` only if publishing the version currently embedded in package metadata/CLI; otherwise update version strings/tests/lockfile coherently and rerun checks.
+4. Confirm maintainer authorization covers public tag/release creation with the reviewed tag and target; use existing standing authorization without asking again. Choose a new unused tag matching the intended package/CLI version; update version strings/tests/lockfile coherently and rerun checks. Never reuse the published `v0.1.0` tag.
 5. Publish the approved source-only prerelease, then clone/download that tag into a clean directory and repeat quick start/demo/package checks. Record the actual release URL and checksum of any separately supplied package artifact.
 6. If defective, mark the release as affected, document the correction and issue a new version. Do not force-move an existing public tag. No database or production deployment rollback applies.
 

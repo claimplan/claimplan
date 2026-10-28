@@ -1,6 +1,6 @@
 # Compatibility and support
 
-## v0.1 candidate contract
+## v0.1 experimental contract
 
 This is a pre-release contract, pending developer feedback. Policy `version: 1` and report `rulesVersion: "1"` describe the current rules, not a promise that all future v0.x releases are drop-in replacements. Release notes must identify changes to policy meaning, required fields, report structure, finding codes and exit behavior. Pin a source commit or exact package version in automated consumers and review upgrades.
 
@@ -31,4 +31,4 @@ The library's policy input is an already-parsed object, so it has no file-byte l
 
 ## Distribution
 
-Source installation is currently available. No npm package is published. The candidate release path is source-only; npm ownership and publication remain a separate decision. Developer examples and fixture generators live in the source checkout. `npm run verify:package` builds, packs and installs into an isolated temporary consumer with lifecycle scripts disabled, verifies installed CLI exits and imports the ESM API, then removes only its own temporary directory. Installation may fetch dependencies and registry metadata even after `npm ci`; the installed analyzer runs offline. For an explicitly warmed metadata/tarball cache, run `node scripts/verify-package.mjs --offline` after building. A cache populated solely by `npm ci` is insufficient for that optional mode.
+The [v0.1.0 source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) is published at `76423af`. A clean clone of its public tag passed source installation, typecheck/35 tests, demo and installed CLI/library checks on Linux/Node 22.23.2. No npm package is published; npm ownership and publication remain a separate decision. Developer examples and fixture generators live in the source checkout. `npm run verify:package` builds, packs and installs into an isolated temporary consumer with lifecycle scripts disabled, verifies installed CLI exits and imports the ESM API, then removes only its own temporary directory. Installation may fetch dependencies and registry metadata even after `npm ci`; the installed analyzer runs offline. For an explicitly warmed metadata/tarball cache, run `node scripts/verify-package.mjs --offline` after building. A cache populated solely by `npm ci` is insufficient for that optional mode.

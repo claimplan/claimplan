@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.1.0 candidate — unreleased
+## 0.1.0 — 2026-10-28 (experimental prerelease)
+
+Published as a [source-only GitHub prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) at commit `76423af`. Public tag installation, strict typecheck/35 tests, demo and installed CLI/library checks passed. No npm package is published.
 
 Initial experimental offline CLI and ESM library for whole-plan Stellar claimable-balance policy checks.
 
