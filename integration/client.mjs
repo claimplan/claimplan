@@ -99,7 +99,7 @@ export async function transactionResult(client, hash, closeTime) {
     if (body.error) throw new Error(`Local RPC transaction lookup failed: ${body.error.message}`);
     const result = decodeTransactionResult(body.result);
     if (result.status !== 'NOT_FOUND') {
-      if (result.createdAt !== closeTime) throw new Error('Actual ledger time differs from requested boundary');
+      if (result.createdAt !== closeTime) throw new Error(`Actual ledger time ${result.createdAt} differs from requested boundary ${closeTime}`);
       return { hash, ledger: result.ledger, closeTime: result.createdAt, status: result.status,
         ...operationResults(result) };
     }
