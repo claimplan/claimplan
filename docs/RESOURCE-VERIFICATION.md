@@ -1,8 +1,8 @@
 # Maximum-plan and malformed-input verification
 
-On 2026-10-28, **55 deterministic fixtures and 123 bounded library/CLI checks passed** on v22.23.2, Linux/x64, SDK 17.4.0. No analyzer defect, uncontrolled crash, timeout, output-budget breach or memory-budget breach was observed in the completed corpus. Product source is unchanged from the published v0.1.0 commit `76423af`; this adds development verification rather than a new protocol rule or runtime sandbox.
+On 2026-10-28, **55 deterministic fixtures and 123 bounded library/CLI checks passed on each of Node 22.23.2 and Node 24.21.0** (246 checks total), Linux/x64, SDK 17.4.0. No analyzer defect, uncontrolled crash, timeout, output-budget breach or memory-budget breach was observed in the completed input corpus. Product source is unchanged from published v0.1.0 commit `76423af`; this adds development verification rather than a protocol change or installed runtime sandbox.
 
-The [saved observations](../checks/resources/results.json) contain per-run outcomes, wall/CPU time, peak RSS, report hashes, corpus hashes, environment and source hashes. `sourceRevision` identifies the Git base of the measured working tree; `sourceHashes` identifies the actual tested analyzer/harness files. These measurements are not an independent audit, exhaustive fuzzing, mainnet execution or a service-level guarantee.
+Saved observations for [Node 22](../checks/resources/results.json) and [Node 24](../checks/resources/results-node24.json) contain per-run outcomes, wall/CPU time, peak RSS, report/input hashes, guard probes, environment and source hashes. Corpus and report-byte hashes matched across both runtimes. `sourceRevision` identifies the Git base of the measured working tree; `sourceHashes` identifies actual tested analyzer/harness content. These are not an independent audit, exhaustive fuzzing, mainnet execution or service-level guarantees.
 
 ## Reproduce
 
@@ -13,7 +13,7 @@ npm ci --ignore-scripts
 npm run test:resources
 ```
 
-Default observations go to ignored `artifacts/resource-results.json`. To deliberately refresh the checked-in evidence after reviewing a run:
+Default observations go to ignored `artifacts/resource-results.json`. Run under the desired Node executable; children use that same `process.execPath`. To deliberately refresh the checked-in evidence after reviewing a run:
 
 ```sh
 npm run test:resources -- checks/resources/results.json
@@ -42,36 +42,49 @@ The fixture generator uses asserted offsets in one known synthetic v0 envelope t
 | Control | Test setting |
 | --- | --- |
 | Address space | 2 GiB, kernel `RLIMIT_AS` |
-| Data allocations | 512 MiB, kernel `RLIMIT_DATA` |
 | V8 old space | 128 MiB; semi-space 4 MiB |
 | CPU | Five seconds per child |
 | Wall time | 15 seconds; parent kills the owned process group |
 | Combined stdout/stderr | 16 MiB; excess kills the owned group |
-| Peak RSS check | At most 256 MiB, asserted after exit |
+| Resident memory | 256 MiB watchdog, sampled every 20 ms; exceeding it kills the owned group |
+| Peak RSS check | At most 256 MiB, independently asserted after exit |
 | Core dumps | Disabled |
 
-These controls apply to the development harness, not to normal installed CLI execution. GNU time measures each cold child, including Node/SDK startup, file I/O, analysis and report serialization. Wall time includes scheduling delays; CPU time is recorded separately. GNU time forks the measured process from its small launcher, avoiding inherited parent-process RSS peaks dominating the observation. Peak RSS is an observation/assertion, not a live cgroup RSS ceiling. Kernel allocation/address-space limits and the V8 heap cap provide separate bounds. `--disable-wasm-trap-handler` is part of the recorded Node invocation.
+These controls apply to the development harness, not normal installed CLI execution. GNU time measures each fresh child, including Node/SDK startup, file I/O, analysis and report serialization. OS page-cache state and other host workloads are not controlled. Wall time includes scheduling delays; CPU time is recorded separately. GNU time forks the measured process from its small launcher, avoiding inherited parent-process RSS peaks dominating the observation. The parent samples the measured child through Linux `/proc`, while GNU time supplies the independent post-exit peak RSS check. Sampling can miss brief peaks or allow a brief overshoot before termination; it is not a hard cgroup RSS ceiling. The kernel address-space cap remains an absolute virtual-memory bound, alongside the V8 heap cap. `--disable-wasm-trap-handler` is part of the recorded invocation.
 
-The harness also verifies timeout and output-limit termination against deliberately misbehaving children. The hang probe writes a synchronous ready marker before entering its loop; its 400 ms activity timer starts only after that marker, while the unchanged 15-second outer deadline bounds startup. An initial Node 24 CI run failed a self-test that incorrectly included cold startup in the 400 ms window, before analyzer cases ran. The readiness handshake repairs that test assumption without widening analyzer-case budgets. CI matrix jobs finish independently so one failure does not cancel the other runtime. It kills only the process group it spawned and cleans only its own temporary directory.
+Separate guard probes deliberately exceed time, output and RSS budgets, and must be terminated for the corresponding reason. The RSS probe holds a 300 MiB external buffer; its observed RSS must exceed the threshold before the watchdog kills it. These probes are separate from the 123 analyzer-input checks. The hang probe writes a synchronous ready marker and starts its 400 ms activity timer after receipt; the unchanged 15-second outer deadline also bounds startup. Only spawned process groups and owned temporary directories are killed/removed.
 
-An initial 1 GiB address-space setting aborted even the existing tiny CLI example at about 81 MiB RSS. An SDK-plus-asynchronous-file-read baseline reproduced that setup failure; the library's synchronous path worked. The calibrated 2 GiB address-space/512 MiB data limits allow both normal baselines and the full corpus. This was a harness resource-setting issue, not evidence of an analyzer defect; failed preliminary runs were not counted as passes.
+Calibration was necessary rather than evidence of an analyzer defect:
+
+1. A 1 GiB address-space cap aborted even the existing tiny Node 22 CLI example at roughly 81 MiB RSS; an asynchronous-file-read baseline reproduced it. A 2 GiB virtual-address cap accommodates that runtime setup.
+2. Initial Node 24 CI attempts failed before analyzer cases. A 400 ms launch-to-ready assumption obscured the startup failure; an explicit ready handshake and child diagnostics separated startup from deliberate hanging. Matrix jobs now finish independently.
+3. A SHA-256-verified official Node 24.21.0 binary reproduced `Failed to reserve virtual memory for CodeRange` under the 512 MiB `RLIMIT_DATA` cap, even with ample address space. The same baseline starts with the 2 GiB address-space cap alone at about 40 MiB RSS: a sparse writable JIT reservation was being counted as data. The final harness replaces the incompatible data cap with the tested live RSS watchdog and post-exit peak check. Address-space, heap, CPU, wall and output limits remain enforced. Both exact runtimes then passed all guard probes and all input cases locally.
+
+Failed preliminary runs were not counted as successful input-corpus verification. The watchdog correction changes development supervision, not the analyzer's protocol/policy rules.
 
 ## Recorded observations
 
-Host: Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz; 8 logical CPUs; 7782 MiB total RAM; kernel 7.0.0-38-generic. Per-child maxima are shown, not throughput or averages.
+Host: Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz; 8 logical CPUs; 7782 MiB total RAM; kernel 7.0.0-38-generic. Per-child maxima are observations, not throughput or worst-case guarantees.
+
+| Runtime | Checks | Maximum wall ms | Maximum RSS MiB | Largest JSON bytes |
+| --- | ---: | ---: | ---: | ---: |
+| v22.23.2 | 123 | 2,051.57 | 99.82 | 3,053,746 |
+| v24.21.0 | 123 | 6,192.98 | 98.53 | 3,053,746 |
+
+Node 22 maximum-plan details:
 
 | Fixture | Envelope bytes | Maximum wall ms | Maximum RSS MiB |
 | --- | ---: | ---: | ---: |
-| max-handover-v0 | 146,224 | 4,591.74 | 92.10 |
-| max-handover-v1 | 146,252 | 2,030.10 | 91.52 |
-| max-handover-feeBump | 146,328 | 680.18 | 90.53 |
-| max-overlap-warning | 61,984 | 659.03 | 95.59 |
-| max-overlap-error | 61,984 | 641.45 | 94.70 |
-| max-depth-four-branching | 259,320 | 983.34 | 98.99 |
-| max-fragmented-windows | 173,984 | 1,275.02 | 99.52 |
-| exact-one-MiB-files | 1,048,576 | 1,333.58 | 96.11 |
+| max-handover-v0 | 146,224 | 2,051.57 | 91.74 |
+| max-handover-v1 | 146,252 | 612.31 | 91.71 |
+| max-handover-feeBump | 146,328 | 634.08 | 91.19 |
+| max-overlap-warning | 61,984 | 635.90 | 95.65 |
+| max-overlap-error | 61,984 | 659.81 | 94.55 |
+| max-depth-four-branching | 259,320 | 722.47 | 97.24 |
+| max-fragmented-windows | 173,984 | 701.26 | 99.82 |
+| exact-one-MiB-files | 1,048,576 | 621.40 | 96.68 |
 
-Across all 123 checks, the observed maximum wall time was **4,591.74 ms**, maximum RSS **99.52 MiB**, and largest JSON output **3,053,746 bytes**. These are results from one host/run under explicit limits; they are not worst-case bounds for all malformed input, hardware or SDK versions.
+These are one-host observations under explicit limits; they are not worst-case bounds for all malformed input, hardware or SDK versions.
 
 Remaining work: independent semantic/security review, native macOS/Windows verification, and two actual developer usefulness sessions. Keep these separate from this completed local corpus. The public prerelease/tag is unchanged.
 

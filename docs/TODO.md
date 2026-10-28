@@ -50,7 +50,7 @@ Done when: actual feedback supports the workflow and the scope addresses a concr
 - [x] Review the public policy/API/report compatibility contract (`docs/COMPATIBILITY.md`; pre-release compatibility remains explicit).
 - [x] Review diagnostics/validation: product behavior unchanged; integration timestamp mismatch errors now include expected/observed times. No developer feedback has been received.
 - [x] Add `SECURITY.md`; enable and verify GitHub private vulnerability reporting, secret scanning and push protection. No independent audit claimed.
-- [x] Review structural/file limits and existing malformed-input regressions; document the parsed-JSON library boundary. Maximum-plan/adversarial resource characterization now passes 55 fixtures/123 bounded API/CLI checks on the recorded Linux host; see `docs/RESOURCE-VERIFICATION.md`. This is finite evidence, not a performance guarantee.
+- [x] Review structural/file limits and existing malformed-input regressions; document the parsed-JSON library boundary. Maximum-plan/adversarial resource characterization now passes 55 fixtures/123 bounded API/CLI checks on each recorded Linux Node 22/24 runtime; see `docs/RESOURCE-VERIFICATION.md`. This is finite evidence, not a performance guarantee.
 - [x] Document Linux/Ubuntu Node evidence and unverified macOS/Windows/alternative runtimes in `docs/COMPATIBILITY.md`.
 - [x] Add `CHANGELOG.md`, a reproducible demo, and isolated packed installation/CLI/ESM checks (`npm run verify:package`).
 - [x] Draft three substantive tasks in `docs/CONTRIBUTOR-BACKLOG.md` with scope, acceptance checks, dependencies and effort. Published as issues #1–#3; no Wave nominations, reward points or assignments.

@@ -18,7 +18,7 @@ Dependencies: `docs/SPEC.md`, `docs/CORE-VERIFICATION.md`, current passing CI. E
 
 ## Exercise maximum-size plans and malformed XDR resource behavior — issue #2
 
-Local implementation and observations are now in [RESOURCE-VERIFICATION.md](RESOURCE-VERIFICATION.md): 55 fixtures/123 bounded checks passed. CI runs this corpus on Ubuntu/Node 22 and 24; consult the linked issue/run for the actual remote result. No analyzer defect was found in this finite corpus.
+Local implementation and observations are now in [RESOURCE-VERIFICATION.md](RESOURCE-VERIFICATION.md): 55 fixtures/123 bounded checks passed on each local Node 22/24 runtime. CI runs this corpus on Ubuntu/Node 22 and 24; consult the linked issue/run for the actual remote result. No analyzer defect was found in this finite corpus.
 
 Problem: structural limits exist, but there is no recorded benchmark/corpus for a maximum 100-operation, 10-claimant plan or adversarial recursive envelope input.
 
