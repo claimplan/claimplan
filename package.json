@@ -7,7 +7,7 @@
   "engines": { "node": ">=22.12.0" },
   "bin": { "claimplan": "dist/cli.js" },
   "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
-  "files": ["dist", "docs/SPEC.md", "examples", "README.md", "LICENSE"],
+  "files": ["dist", "docs/SPEC.md", "examples", "README.md", "LICENSE", "docs/COMPATIBILITY.md", "SECURITY.md", "CHANGELOG.md"],
   "repository": { "type": "git", "url": "git+https://github.com/claimplan/claimplan.git" },
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -15,7 +15,9 @@
     "test": "npm run build && node --test tests/*.test.mjs",
     "check": "npm run typecheck && npm test",
     "test:core": "npm run build && node integration/run.mjs",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "demo": "npm run build && node scripts/demo.mjs",
+    "verify:package": "npm run build && node scripts/verify-package.mjs"
   },
   "dependencies": { "@stellar/stellar-sdk": "17.4.0" },
   "devDependencies": { "@types/node": "22.20.5", "typescript": "7.0.2" }

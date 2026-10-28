@@ -27,7 +27,10 @@ jobs:
       - name: Verify reproducible synthetic examples
         run: |
           node scripts/generate-examples.mjs
+          node scripts/generate-payout.mjs
           git diff --exit-code -- examples
+      - run: node scripts/demo.mjs
+      - run: npm run verify:package
       - run: npm pack --dry-run
       - name: Verify passing example
         run: node dist/cli.js check examples/handover.xdr --policy examples/policy.json
