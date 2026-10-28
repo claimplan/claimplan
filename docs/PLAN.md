@@ -1,6 +1,6 @@
 # Implementation and delivery plan
 
-Current state: **experimental source release published and verified; Stellar Wave application submitted and Pending review; developer usefulness validation remains open**. Use [TODO.md](TODO.md) for the full checklist.
+Current state: **experimental v0.1.1 source release published and verified; Stellar Wave application submitted and Pending review; separate reviewer recruitment is optional and unperformed**. Use [TODO.md](TODO.md) for the full checklist.
 
 ## Completed implementation
 
@@ -21,7 +21,7 @@ The first release-preparation run failed an exact transaction-ledger timestamp a
 
 [v0.1.0 experimental source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0), commit `76423af793bccc9cb0c6b83b522a887f2d7af3e6`, published on 2026-10-28. [Candidate CI](https://github.com/claimplan/claimplan/actions/runs/40652655946) passed on Node 22 and 24. A new clone of the public tag resolved to that exact commit and passed dependency installation, strict typecheck/35 tests, demo exits 0/1/2 and packed CLI/ESM checks. No npm package was published and no service/contract deployed. Public tags are immutable; subsequent documentation commits record delivery status.
 
-Security reporting, compatibility contract, release notes and issue/PR templates exist. GitHub private vulnerability reporting, secret scanning and push protection are enabled. Six repository topics were set. Branch protection is absent; the reviewed CI-based recommendation is in [RELEASE.md](RELEASE.md). No independent audit is claimed.
+Security reporting, compatibility contract, release notes and issue/PR templates exist. GitHub private vulnerability reporting, secret scanning and push protection are enabled. Six repository topics were set. Main now enforces PRs and all seven actual checks, with optional approving reviews; see [RELEASE.md](RELEASE.md). No independent audit is claimed.
 
 A fresh-cache check found that npm ci caches tarballs without all metadata needed for a separate npm install --offline. The package smoke check now permits installation-time registry access by default, with optional --offline for a warmed cache. Both modes were verified after a fresh-cache install; runtime analysis stays offline.
 
@@ -29,7 +29,7 @@ A fresh-cache check found that npm ci caches tarballs without all metadata neede
 
 Three substantive issues are published: [independent semantic review #1](https://github.com/claimplan/claimplan/issues/1), [maximum-plan/malformed-input resource checks #2](https://github.com/claimplan/claimplan/issues/2), and [native macOS/Windows verification #3](https://github.com/claimplan/claimplan/issues/3). See [scope and acceptance criteria](CONTRIBUTOR-BACKLOG.md). They have no Wave labels, reward points or assignments.
 
-Two actual developer usefulness sessions remain pending. Use [the demo/session guide](DEVELOPER-VALIDATION.md), record permitted feedback, fix observed problems, and decide standalone versus upstream direction from evidence. Published self-tests and an issue requesting independent review do not count as customer feedback or an independent audit.
+Two developer usefulness sessions are optional and unperformed. Use [the demo/session guide](DEVELOPER-VALIDATION.md), record permitted feedback, fix observed problems, and decide standalone versus upstream direction from evidence. Published self-tests and an issue requesting independent review do not count as customer feedback or an independent audit.
 
 ## Stellar Wave application — submitted
 
@@ -75,3 +75,9 @@ Remaining internal closeout: reconcile stale status statements across delivery d
 ## Delivery closeout progress — 2026-10-28
 
 Reviewer recruitment is optional, as recorded in project AGENTS.md and local codex.md. Seven-page docs site deployed successfully at https://claimplan.github.io/claimplan/ in run 40699001886; both CI and Native verification at b8cd4bf passed. Local desktop/mobile checks covered 14 page/view combinations, keyboard skip/menu navigation and no horizontal page overflow or JavaScript errors. npm run check passed all 35 tests; installed package verification passed. Added an actual 34.64-second CLI recording with observed exits 0/1/2 and full text alternative; eighth docs page is awaiting publication. Main now enforces PRs and all seven observed checks, including administrators, with no required approving review, no force pushes and no deletion. Canonical issue batch utility preview/apply preserved #2/#3 closed and #1 open/optional, with scope/complexity labels and no assignments/rewards. Next: finish patch-release preflight and publish updated docs/video through protected PR workflow.
+
+## Required delivery closeout — verified 2026-10-28
+
+Published [v0.1.1 experimental source release](https://github.com/claimplan/claimplan/releases/tag/v0.1.1) at `569fca37683e9ae4720f7293d61df718e6204639` after protected PR #4 and all required checks passed. Main CI 40700743455, Native 40700743433 and Documentation 40700743332 succeeded. A fresh clone of the public tag matched that exact commit and passed dependency installation, strict typecheck/35 tests, demo, isolated installed CLI/ESM verification and docs build; CLI --version returned 0.1.1. Scoped temporary clone removed after success. See checks/release/results-v0.1.1.json. Original v0.1.0 remains immutable; no npm publication occurred.
+
+All eight public documentation pages returned HTTP 200. Browser playback metadata verified the actual 34.64-second demo and three complete transcript sections; the downloaded MP4 hash matched the committed asset. Required construction/delivery work in the applicable Wave phases is complete. Remaining activities are maintenance, actual organizer feedback/decision, and optional independent/user review. No reviewer recruitment is required. The last private Drips observation is still Pending review; it was not rechecked or changed during this closeout. Earlier pending-publication entries describe historical steps, superseded by this verified outcome.
