@@ -1,0 +1,141 @@
+{
+  "recordedOn": "2026-10-28",
+  "runId": 40669003448,
+  "runUrl": "https://github.com/claimplan/claimplan/actions/runs/40669003448",
+  "testedCommit": "5bc2c8cf2e7051734c6e655edb3c912a65ef757f",
+  "sdk": "17.4.0",
+  "jobs": [
+    {
+      "job": "Native (macos-15, Node 22)",
+      "url": "https://github.com/claimplan/claimplan/actions/runs/40669003448/job/122750719864",
+      "conclusion": "success",
+      "runtime": {
+        "node": "v22.23.2",
+        "platform": "darwin",
+        "arch": "arm64",
+        "kernel": "24.6.0",
+        "npm": "10.9.8"
+      },
+      "os": {
+        "ProductName": "macOS",
+        "ProductVersion": "15.7.9",
+        "BuildVersion": "24G830"
+      },
+      "tests": {
+        "tests": 35,
+        "pass": 35,
+        "fail": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "Run npm ci --ignore-scripts": "success",
+        "Run npm run check": "success",
+        "Run node scripts/generate-examples.mjs": "success",
+        "Run node scripts/generate-payout.mjs": "success",
+        "Run git diff --exit-code -- examples": "success",
+        "Run npm run demo": "success",
+        "Run npm run verify:package": "success",
+        "Run npm pack --dry-run": "success"
+      }
+    },
+    {
+      "job": "Native (macos-15, Node 24)",
+      "url": "https://github.com/claimplan/claimplan/actions/runs/40669003448/job/122750720141",
+      "conclusion": "success",
+      "runtime": {
+        "node": "v24.20.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "kernel": "24.6.0",
+        "npm": "11.19.0"
+      },
+      "os": {
+        "ProductName": "macOS",
+        "ProductVersion": "15.7.9",
+        "BuildVersion": "24G830"
+      },
+      "tests": {
+        "tests": 35,
+        "pass": 35,
+        "fail": 0,
+        "skipped": 0
+      },
+      "checks": {
+        "Run npm ci --ignore-scripts": "success",
+        "Run npm run check": "success",
+        "Run node scripts/generate-examples.mjs": "success",
+        "Run node scripts/generate-payout.mjs": "success",
+        "Run git diff --exit-code -- examples": "success",
+        "Run npm run demo": "success",
+        "Run npm run verify:package": "success",
+        "Run npm pack --dry-run": "success"
+      }
+    },
+    {
+      "job": "Native (windows-2025, Node 22)",
+      "url": "https://github.com/claimplan/claimplan/actions/runs/40669003448/job/122750720149",
+      "conclusion": "success",
+      "runtime": {
+        "node": "v22.23.4",
+        "platform": "win32",
+        "arch": "x64",
+        "kernel": "10.0.26100",
+        "npm": "10.9.9"
+      },
+      "os": {
+        "Caption": "Microsoft Windows Server 2025 Datacenter",
+        "Version": "10.0.26100",
+        "OSArchitecture": "64-bit"
+      },
+      "tests": {
+        "tests": 35,
+        "pass": 34,
+        "fail": 0,
+        "skipped": 1
+      },
+      "checks": {
+        "Run npm ci --ignore-scripts": "success",
+        "Run npm run check": "success",
+        "Run node scripts/generate-examples.mjs": "success",
+        "Run node scripts/generate-payout.mjs": "success",
+        "Run git diff --exit-code -- examples": "success",
+        "Run npm run demo": "success",
+        "Run npm run verify:package": "success",
+        "Run npm pack --dry-run": "success"
+      }
+    },
+    {
+      "job": "Native (windows-2025, Node 24)",
+      "url": "https://github.com/claimplan/claimplan/actions/runs/40669003448/job/122750720215",
+      "conclusion": "success",
+      "runtime": {
+        "node": "v24.22.1",
+        "platform": "win32",
+        "arch": "x64",
+        "kernel": "10.0.26100",
+        "npm": "11.19.1"
+      },
+      "os": {
+        "Caption": "Microsoft Windows Server 2025 Datacenter",
+        "Version": "10.0.26100",
+        "OSArchitecture": "64-bit"
+      },
+      "tests": {
+        "tests": 35,
+        "pass": 34,
+        "fail": 0,
+        "skipped": 1
+      },
+      "checks": {
+        "Run npm ci --ignore-scripts": "success",
+        "Run npm run check": "success",
+        "Run node scripts/generate-examples.mjs": "success",
+        "Run node scripts/generate-payout.mjs": "success",
+        "Run git diff --exit-code -- examples": "success",
+        "Run npm run demo": "success",
+        "Run npm run verify:package": "success",
+        "Run npm pack --dry-run": "success"
+      }
+    }
+  ]
+}

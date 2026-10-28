@@ -13,3 +13,5 @@ Regenerate synthetic examples with `node scripts/generate-examples.mjs` and `nod
 Report private security details through [GitHub private vulnerability reporting](https://github.com/claimplan/claimplan/security/advisories/new), following [SECURITY.md](SECURITY.md). Public issues should not contain credentials, sensitive transactions or exploit details requiring private disclosure. No independent security audit has been performed.
 
 On Linux with GNU time and util-linux `prlimit`, run `npm run test:resources` for the bounded maximum-plan/malformed-input corpus. See [resource verification](docs/RESOURCE-VERIFICATION.md) for test budgets, saved observations and unsupported environments. This development harness is excluded from the package.
+
+Native CI covers macOS 15 ARM64 and Windows Server 2025 x64 on Node 22/24. See [native verification](docs/NATIVE-VERIFICATION.md) for actual versions, the Windows npm.cmd helper repair, path coverage and the Windows FIFO skip. Use current main for development checks.

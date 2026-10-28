@@ -1,6 +1,6 @@
 # ClaimPlan progress tracker
 
-Current stage: **Experimental source release published and verified; Drips application submitted, pending organizer review; developer feedback still open**.
+Current stage: **Local resource and native-platform checks complete for recorded environments; independent/developer reviews still open; Drips Pending review**.
 
 The initial implementation is complete. It is not yet a validated v0.1 release or a Drips-approved project. This tracker distinguishes implementation, independent evidence, release preparation and external approval. No percentage is assigned because the remaining work is not equal in size.
 
@@ -51,7 +51,7 @@ Done when: actual feedback supports the workflow and the scope addresses a concr
 - [x] Review diagnostics/validation: product behavior unchanged; integration timestamp mismatch errors now include expected/observed times. No developer feedback has been received.
 - [x] Add `SECURITY.md`; enable and verify GitHub private vulnerability reporting, secret scanning and push protection. No independent audit claimed.
 - [x] Review structural/file limits and existing malformed-input regressions; document the parsed-JSON library boundary. Maximum-plan/adversarial resource characterization now passes 55 fixtures/123 bounded API/CLI checks on each recorded Linux Node 22/24 runtime; see `docs/RESOURCE-VERIFICATION.md`. This is finite evidence, not a performance guarantee.
-- [x] Document Linux/Ubuntu Node evidence and unverified macOS/Windows/alternative runtimes in `docs/COMPATIBILITY.md`.
+- [x] Document verified Linux/Ubuntu, macOS 15 ARM64 and Windows Server 2025 x64 evidence on Node 22/24; retain unverified OS/architecture/runtime limits in `docs/COMPATIBILITY.md` and `docs/NATIVE-VERIFICATION.md`.
 - [x] Add `CHANGELOG.md`, a reproducible demo, and isolated packed installation/CLI/ESM checks (`npm run verify:package`).
 - [x] Draft three substantive tasks in `docs/CONTRIBUTOR-BACKLOG.md` with scope, acceptance checks, dependencies and effort. Published as issues #1–#3; no Wave nominations, reward points or assignments.
 - [x] Set repository topics, add issue/PR templates, and review branch protection against `Check (Node 22)` / `Check (Node 24)`. No protection exists; recommendation and maintainer decision recorded in `docs/RELEASE.md`.

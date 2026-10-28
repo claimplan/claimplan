@@ -34,6 +34,8 @@ Dependencies: independent review of intended supported limits in `docs/COMPATIBI
 
 ## Reproduce source installation on macOS and Windows — issue #3
 
+Implementation and recorded four-job evidence are in [NATIVE-VERIFICATION.md](NATIVE-VERIFICATION.md). The reproduced Windows npm.cmd subprocess defect is fixed in the development helper on main. Both macOS and Windows source/installed-command checks passed on Node 22/24; other OS/architecture combinations remain unverified.
+
 Problem: current local/CI evidence is Linux/Ubuntu; documentation explicitly leaves other native platforms unverified.
 
 Scope: run the documented source quick start, offline suite, demo and installed-package checks on each target with Node 22/24. Inspect FIFO test skipping and npm executable handling. Fix reproducible portability defects only; do not infer success from CI configuration alone.

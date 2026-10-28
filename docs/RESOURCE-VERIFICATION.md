@@ -86,6 +86,6 @@ Node 22 maximum-plan details:
 
 These are one-host observations under explicit limits; they are not worst-case bounds for all malformed input, hardware or SDK versions.
 
-Remaining work: independent semantic/security review, native macOS/Windows verification, and two actual developer usefulness sessions. Keep these separate from this completed local corpus. The public prerelease/tag is unchanged.
+Native macOS/Windows source/installed-command coverage is now recorded separately in [NATIVE-VERIFICATION.md](NATIVE-VERIFICATION.md). Remaining work includes independent semantic/security review, broader unverified OS/architecture combinations, and two actual developer usefulness sessions. Keep these separate from this completed local corpus. The public prerelease/tag is unchanged.
 
 Method references: [Linux resource limits](https://man7.org/linux/man-pages/man2/getrlimit.2.html), [Node resource usage and KiB units](https://nodejs.org/docs/latest-v22.x/api/process.html#processresourceusage). See the installed GNU time `--help` for the `%M`, `%U` and `%S` fields used by the runner.

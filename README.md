@@ -14,10 +14,10 @@ Follow the [progress tracker and finish checklist](docs/TODO.md) for completed w
 
 ## Run locally
 
-Requires Node.js **22.12.0 or newer** and npm.
+Requires Node.js **22.12.0 or newer** and npm. Current main has [verified macOS/Windows source and installed-command checks](docs/NATIVE-VERIFICATION.md); the published v0.1.0 archive predates a Windows development-helper fix.
 
 ```sh
-git clone --branch v0.1.0 https://github.com/claimplan/claimplan.git
+git clone https://github.com/claimplan/claimplan.git
 cd claimplan
 npm ci
 npm run build
