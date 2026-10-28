@@ -12,6 +12,7 @@ jobs:
     name: Check (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         node: ['22', '24']
     steps:

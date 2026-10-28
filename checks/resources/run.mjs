@@ -16,7 +16,7 @@ const budgets = { addressSpaceBytes: 2 * 1024 ** 3, dataBytes: 512 * 1024 ** 2, 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 let serial = 0;
 
-function bounded(args, { timeoutMs = budgets.timeoutMs, outputBytes = budgets.outputBytes } = {}) {
+function bounded(args, { timeoutMs = budgets.timeoutMs, outputBytes = budgets.outputBytes, readyTimeoutMs = null } = {}) {
   const metrics = join(temporary, `metrics-${serial++}.txt`);
   const command = ['--quiet', '--format=%M %U %S', '--output', metrics,
     'prlimit', `--as=${budgets.addressSpaceBytes}`, `--data=${budgets.dataBytes}`, `--cpu=${budgets.cpuSeconds}`, '--core=0', '--',
@@ -31,14 +31,17 @@ function bounded(args, { timeoutMs = budgets.timeoutMs, outputBytes = budgets.ou
       try { process.kill(-child.pid, 'SIGKILL'); } catch (error) { if (error.code !== 'ESRCH') reject(error); }
     };
     const timer = setTimeout(() => kill('timeout'), timeoutMs);
+    let readyTimer = null;
     for (const [stream, chunks] of [[child.stdout, stdout], [child.stderr, stderr]]) stream.on('data', chunk => {
       bytes += chunk.length;
       if (bytes > outputBytes) kill('output-limit');
       else chunks.push(chunk);
+      if (readyTimeoutMs !== null && readyTimer === null && stream === child.stdout && Buffer.concat(stdout).includes(Buffer.from('ready\n'))) readyTimer = setTimeout(() => kill('timeout'), readyTimeoutMs);
     });
-    child.on('error', error => { clearTimeout(timer); reject(error); });
+    child.on('error', error => { clearTimeout(timer); clearTimeout(readyTimer); reject(error); });
     child.on('close', (status, signal) => {
       clearTimeout(timer);
+      clearTimeout(readyTimer);
       let usage = null;
       if (!reason) {
         try {
@@ -107,7 +110,7 @@ function check(report, expected) {
 }
 
 try {
-  const timeout = await bounded(['-e', "console.log('ready'); while (true) {}"], { timeoutMs: 400 });
+  const timeout = await bounded(['-e', "require('node:fs').writeFileSync(1, 'ready\\n'); while (true) {}"], { readyTimeoutMs: 400 });
   assert.equal(timeout.reason, 'timeout');
   assert.match(timeout.stdout.toString(), /ready/);
   const overflow = await bounded(['-e', "process.stdout.write('x'.repeat(65536))"], { outputBytes: 1024 });

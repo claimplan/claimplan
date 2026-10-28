@@ -52,7 +52,7 @@ The fixture generator uses asserted offsets in one known synthetic v0 envelope t
 
 These controls apply to the development harness, not to normal installed CLI execution. GNU time measures each cold child, including Node/SDK startup, file I/O, analysis and report serialization. Wall time includes scheduling delays; CPU time is recorded separately. GNU time forks the measured process from its small launcher, avoiding inherited parent-process RSS peaks dominating the observation. Peak RSS is an observation/assertion, not a live cgroup RSS ceiling. Kernel allocation/address-space limits and the V8 heap cap provide separate bounds. `--disable-wasm-trap-handler` is part of the recorded Node invocation.
 
-The harness also verifies timeout and output-limit termination against deliberately misbehaving children. It kills only the process group it spawned and cleans only its own temporary directory.
+The harness also verifies timeout and output-limit termination against deliberately misbehaving children. The hang probe writes a synchronous ready marker before entering its loop; its 400 ms activity timer starts only after that marker, while the unchanged 15-second outer deadline bounds startup. An initial Node 24 CI run failed a self-test that incorrectly included cold startup in the 400 ms window, before analyzer cases ran. The readiness handshake repairs that test assumption without widening analyzer-case budgets. CI matrix jobs finish independently so one failure does not cancel the other runtime. It kills only the process group it spawned and cleans only its own temporary directory.
 
 An initial 1 GiB address-space setting aborted even the existing tiny CLI example at about 81 MiB RSS. An SDK-plus-asynchronous-file-read baseline reproduced that setup failure; the library's synchronous path worked. The calibrated 2 GiB address-space/512 MiB data limits allow both normal baselines and the full corpus. This was a harness resource-setting issue, not evidence of an analyzer defect; failed preliminary runs were not counted as passes.
 
@@ -62,16 +62,16 @@ Host: Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz; 8 logical CPUs; 7782 MiB total R
 
 | Fixture | Envelope bytes | Maximum wall ms | Maximum RSS MiB |
 | --- | ---: | ---: | ---: |
-| max-handover-v0 | 146,224 | 1,150.54 | 92.60 |
-| max-handover-v1 | 146,252 | 899.49 | 91.31 |
-| max-handover-feeBump | 146,328 | 940.06 | 92.39 |
-| max-overlap-warning | 61,984 | 767.36 | 94.85 |
-| max-overlap-error | 61,984 | 837.76 | 95.43 |
-| max-depth-four-branching | 259,320 | 869.26 | 98.38 |
-| max-fragmented-windows | 173,984 | 781.75 | 102.54 |
-| exact-one-MiB-files | 1,048,576 | 756.44 | 96.87 |
+| max-handover-v0 | 146,224 | 4,591.74 | 92.10 |
+| max-handover-v1 | 146,252 | 2,030.10 | 91.52 |
+| max-handover-feeBump | 146,328 | 680.18 | 90.53 |
+| max-overlap-warning | 61,984 | 659.03 | 95.59 |
+| max-overlap-error | 61,984 | 641.45 | 94.70 |
+| max-depth-four-branching | 259,320 | 983.34 | 98.99 |
+| max-fragmented-windows | 173,984 | 1,275.02 | 99.52 |
+| exact-one-MiB-files | 1,048,576 | 1,333.58 | 96.11 |
 
-Across all 123 checks, the observed maximum wall time was **3,847.18 ms**, maximum RSS **102.54 MiB**, and largest JSON output **3,053,746 bytes**. These are results from one host/run under explicit limits; they are not worst-case bounds for all malformed input, hardware or SDK versions.
+Across all 123 checks, the observed maximum wall time was **4,591.74 ms**, maximum RSS **99.52 MiB**, and largest JSON output **3,053,746 bytes**. These are results from one host/run under explicit limits; they are not worst-case bounds for all malformed input, hardware or SDK versions.
 
 Remaining work: independent semantic/security review, native macOS/Windows verification, and two actual developer usefulness sessions. Keep these separate from this completed local corpus. The public prerelease/tag is unchanged.
 
