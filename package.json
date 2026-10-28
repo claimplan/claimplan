@@ -1,6 +1,6 @@
 {
   "name": "@claimplan/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Offline policy checks for Stellar claimable-balance payout plans",
   "type": "module",
   "license": "MIT",
