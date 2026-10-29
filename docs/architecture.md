@@ -4,7 +4,7 @@ ClaimPlan is an experimental offline TypeScript CLI and ESM library for authors 
 
 Native claimable balances make eligibility conditional on a claimant's address and predicate. Individually plausible predicates can combine into an overlap, gap or unreachable role. ClaimPlan models those windows across every create operation, conditional on the balance still being unclaimed.
 
-[Specification](SPEC.md) owns exact semantics; [compatibility](COMPATIBILITY.md) owns supported interfaces; the [verification records](CORE-VERIFICATION.md) distinguishes observed results from limitations. This document describes the implementation, not proposed contributor features.
+[Specification](SPEC.md) owns exact semantics; [compatibility](COMPATIBILITY.md) owns supported interfaces; the [evidence index](../evidence/index.md) distinguishes observed results from limitations. This document describes the implementation, not proposed contributor features.
 
 ## Runtime flow
 

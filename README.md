@@ -12,7 +12,7 @@ Experimental [source-only releases](https://github.com/claimplan/claimplan/relea
 
 Read the [documentation site](https://claimplan.github.io/claimplan/), follow the [payout guide](https://claimplan.github.io/claimplan/payout-guide.html), or watch the [actual CLI demo](https://claimplan.github.io/claimplan/demo.html).
 
-See the [architecture](docs/architecture.md), [compatibility contract](docs/COMPATIBILITY.md), [security policy](SECURITY.md) and [release notes](CHANGELOG.md).
+See the [architecture](docs/architecture.md), [evidence index](evidence/index.md), [compatibility contract](docs/COMPATIBILITY.md), [security policy](SECURITY.md) and [release notes](CHANGELOG.md).
 
 Follow the [progress tracker and finish checklist](docs/TODO.md) for completed work, current stage and next steps.
 
