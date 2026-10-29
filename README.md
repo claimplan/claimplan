@@ -20,7 +20,7 @@ Latest verified release: [v0.1.1 experimental source-only prerelease](https://gi
 | [TODO](docs/TODO.md) / [plan](docs/PLAN.md) | Unfinished work / implementation decisions and history |
 | [Submission record](docs/DRIPS-SUBMISSION.md) | Original 2026-10-28 application; last observed Pending review, not a fresh decision |
 
-The [published documentation](https://claimplan.github.io/claimplan/), [payout guide](https://claimplan.github.io/claimplan/payout-guide.html) and [actual CLI demo with text alternative](https://claimplan.github.io/claimplan/demo.html) describe the existing product. Proposed audit documentation changes are built locally and are not yet deployed.
+The [published documentation](https://claimplan.github.io/claimplan/), [payout guide](https://claimplan.github.io/claimplan/payout-guide.html) and [actual CLI demo with text alternative](https://claimplan.github.io/claimplan/demo.html) describe the existing product. The 2026-10-29 audit verifies proposed documentation changes locally; publication is a separate maintainer-authorized action.
 
 ## Run locally
 
@@ -59,6 +59,8 @@ node dist/cli.js check examples/handover.xdr --policy examples/missing-time.json
 | 0 | Completed predicate-policy analysis without errors; warnings may remain |
 | 1 | Proven predicate or declared-policy violations |
 | 2 | Invalid/unsupported input or inconclusive analysis |
+
+Known output-delivery exception: an early-closed stdout pipe can currently exit 1 with an unhandled EPIPE ([#13](https://github.com/claimplan/claimplan/issues/13)); that is not a policy finding. Automation should also require a complete valid report.
 
 JSON input failures have an `error` object; completed reports contain `findings`. A pass concerns only the declared policy and assumptions. It does not establish signatures, account/trustline state, issuer controls, funding, reserves, key access, actual ledger time, transaction acceptance or successful claim execution. A balance can be claimed only while it remains unconsumed. Policy v1 reports asset/amount but does not compare a separate business budget.
 

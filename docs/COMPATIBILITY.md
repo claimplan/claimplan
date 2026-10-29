@@ -15,6 +15,8 @@ This is a pre-release contract, pending developer feedback. Policy `version: 1` 
 | JSON | Decimal strings for exact time/amount fields; half-open intervals; deterministic ordering; no wall-clock timestamps |
 | Errors | JSON `error` object for invalid CLI input; normal `findings` for completed analyses |
 
+Known output-delivery exception (reproduced 2026-10-29): a reader closing stdout early can produce an unhandled EPIPE and process exit 1 rather than a complete report. See [#13](https://github.com/claimplan/claimplan/issues/13). Do not infer a proven policy violation from an exit code without a valid report; this audit does not change the runtime behavior.
+
 Consumers should branch on status, severity and finding codes, rather than matching English prose. Human messages may improve without a rules-version change. Warning-only reports can pass. A partially analyzed transaction is explicitly marked, and remains partial even if its predicate checks pass. See [SPEC.md](SPEC.md) for schema and semantics.
 
 ## Runtime/platform evidence

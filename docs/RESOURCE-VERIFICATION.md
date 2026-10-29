@@ -89,3 +89,7 @@ These are one-host observations under explicit limits; they are not worst-case b
 Native macOS/Windows source/installed-command coverage is now recorded separately in [NATIVE-VERIFICATION.md](NATIVE-VERIFICATION.md). Independent review and developer usefulness sessions are optional and unperformed; broader OS/architecture combinations remain unverified. Keep these separate from this completed local corpus. The original v0.1.0 tag is unchanged. v0.1.1 includes this tooling; the saved source hashes describe the exact earlier recorded runs, while current CI reruns the corpus.
 
 Method references: [Linux resource limits](https://man7.org/linux/man-pages/man2/getrlimit.2.html), [Node resource usage and KiB units](https://nodejs.org/docs/latest-v22.x/api/process.html#processresourceusage). See the installed GNU time `--help` for the `%M`, `%U` and `%S` fields used by the runner.
+
+## Provenance clarification from the 2026-10-29 audit
+
+Both historical records name HEAD `b91520441f62bc211e0d078f494746fe0ec1e277`, but their recorded `checks/resources/run.mjs` hash differs from that revision. All recorded source hashes match content at later commit `ad0443575e3b0e57406a150201e23905721c8061`. This reconstructs matching file content; it does not establish that later commit was checked out when the measurements ran. The original records are retained unchanged. Use their exact per-file hashes and do not infer a clean whole-tree snapshot. The new local audit corpus run passed separately and wrote only ignored observations.

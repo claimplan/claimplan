@@ -33,3 +33,7 @@ Twenty follow-on issues (#6–#25) were published after inspecting the implement
 The maintainer explicitly excludes automated dependency-update bots and requests an audit/cleanup PR without release, deployment, submission, reviewer recruitment or merge. Published issue scope/state changes need separate authorization. Existing verification datasets, source, tests and harnesses are retained.
 
 Architecture and a lightweight evidence index were added from actual source and records. Repeated delivery checklists were replaced by clear document ownership. The older Wave applicability map remains as historical context, not proof of compliance with a newer reference. Current audit outcomes and any reference-version limitation belong in FINAL-AUDIT.md once the audit record is complete.
+
+## Historical research and presentation references
+
+The 2026-10-27 landscape work acknowledged [stellar-expert/claimable-balance-utils](https://github.com/stellar-expert/claimable-balance-utils) and [hanseartic/stellar-resolve-claimant-predicates](https://github.com/hanseartic/stellar-resolve-claimant-predicates) as prior art; it did not establish adoption or uniqueness. The 2026-10-28 presentation comparison used the then-live [approved directory](https://www.drips.network/wave/stellar/repos), [KindFi](https://github.com/kindfi-org/kindfi) and [Trustless Work](https://github.com/Trustless-Work/trustlesswork-smart-contract-stellar). Their repository links remain available; historical comparison is not a current admission criterion or endorsement.
