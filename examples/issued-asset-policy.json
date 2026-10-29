@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "creationTime": "1800000000",
+  "operations": [
+    {
+      "operation": 0,
+      "beneficiary": "GAAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQDZ7H",
+      "recovery": "GABAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEJXA",
+      "handoverAfter": "60",
+      "exclusive": true,
+      "continuousCoverage": true
+    }
+  ]
+}
