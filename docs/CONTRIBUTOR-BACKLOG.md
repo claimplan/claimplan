@@ -1,57 +1,17 @@
-# Contributor backlog
+# Contributor backlog history and maintenance
 
-## Current contributor opportunities — 2026-10-29
+[CONTRIBUTOR-START-HERE.md](CONTRIBUTOR-START-HERE.md) is the authoritative current opportunity/issue-audit entry. This file preserves why the backlog exists and how its metadata is maintained; it is not another open-work checklist.
 
-[Start with the 20 scoped issues across ten tracks](CONTRIBUTOR-START-HERE.md). Issues #6–#25 are open follow-on improvements, each with context, four acceptance checks, validation, constraints, coordination notes and a rough effort estimate. Existing #1–#3 below are historical verification tasks and are not counted in that new batch. No assignments, Wave points or rewards are promised.
+## Historical verification tasks
 
-These tasks are published as GitHub issues [#1](https://github.com/claimplan/claimplan/issues/1), [#2](https://github.com/claimplan/claimplan/issues/2) and [#3](https://github.com/claimplan/claimplan/issues/3). They are not Wave nominations. No points, rewards or assignments are promised.
+- [#1](https://github.com/claimplan/claimplan/issues/1): optional independent semantic review, still unperformed. The [review packet](SEMANTIC-REVIEW.md) is implementation-assisted preparation, not a completed external audit.
+- [#2](https://github.com/claimplan/claimplan/issues/2): completed resource/malformed-input verification. Keep the actual [runner and saved measurements](RESOURCE-VERIFICATION.md), rather than advertising its original problem as still missing.
+- [#3](https://github.com/claimplan/claimplan/issues/3): completed scoped native verification and Windows helper repair. Exact [platform evidence/limits](NATIVE-VERIFICATION.md) remain authoritative.
 
-## Optional independent review of interval semantics and policy distinction — issue #1
+On 2026-10-29, twenty follow-on issues (#6–#25) were published across ten tracks, with context, acceptance checks, validation, coordination and rough effort estimates. They do not reopen the completed MVP or establish adoption. Current classifications, open-PR coordination and the maintainer exclusion affecting #23 are in the contributor entry. No rewards, points or assignments are promised.
 
-Problem: the current implementation has self-verification and finite Core evidence, but no independent semantic review.
+## Canonical batch utility
 
-Scope: review the supported predicate operators, half-open boundaries, relative saturation, beneficiary/recovery windows, and the difference between protocol eligibility and policy choices. Compare against pinned Core/CAP-23 sources. Do not add signing or submission to the product.
+`checks/backlog/issues.json` retains all 23 published specifications/identifiers, including completed and now-excluded historical requests. `node scripts/sync-issues.mjs` previews; `--apply` deliberately creates/updates managed issues and labels. It preserves state, so an old checked-off body does not itself reopen an issue. The utility currently reads only the first 100 issues/labels and patches existing entries even when unchanged; #24 remains useful work.
 
-Acceptance:
-- Record reviewed source versions, functions and each rule-to-implementation mapping.
-- Independently check before/at/after examples for every supported operator and handover role.
-- For discrepancies provide synthetic unsigned input, expected/actual intervals and a regression check; report no findings honestly when appropriate.
-- State unreviewed areas and avoid calling the exercise a formal audit.
-
-Dependencies: `docs/SPEC.md`, `docs/CORE-VERIFICATION.md`, current passing CI. Effort: substantial protocol knowledge; scope review before assignment. Both independent review and usefulness sessions are optional, non-blocking activities; no recruitment or completed feedback is claimed.
-
-## Exercise maximum-size plans and malformed XDR resource behavior — issue #2
-
-Local implementation and observations are now in [RESOURCE-VERIFICATION.md](RESOURCE-VERIFICATION.md): 55 fixtures/123 bounded checks passed on each local Node 22/24 runtime. CI runs this corpus on Ubuntu/Node 22 and 24; consult the linked issue/run for the actual remote result. No analyzer defect was found in this finite corpus.
-
-Problem: structural limits exist, but there is no recorded benchmark/corpus for a maximum 100-operation, 10-claimant plan or adversarial recursive envelope input.
-
-Scope: create deterministic synthetic fixtures/corpus within and beyond declared limits; measure local time and memory with runtime/host details, including malformed XDR nesting. Preserve the 1 MiB file boundary and fail-closed behavior. Do not claim universal performance bounds from one machine.
-
-Acceptance:
-- Supported maximum-size plans produce located, deterministic reports without skipped operations.
-- Oversized/depth-invalid/trailing/noncanonical inputs return controlled errors; measure representative behavior in an isolated subprocess with a timeout.
-- If resource limits are bypassed, provide one reproducible finding, a targeted fix and regression coverage.
-- Record commands, seeds, observed limits and remaining SDK parser risk.
-
-Dependencies: independent review of intended supported limits in `docs/COMPATIBILITY.md`; no new service/backend. Effort: medium to substantial, depending on findings.
-
-## Reproduce source installation on macOS and Windows — issue #3
-
-Implementation and recorded four-job evidence are in [NATIVE-VERIFICATION.md](NATIVE-VERIFICATION.md). The reproduced Windows npm.cmd subprocess defect is fixed in the development helper on main. Both macOS and Windows source/installed-command checks passed on Node 22/24; other OS/architecture combinations remain unverified.
-
-Problem: current local/CI evidence is Linux/Ubuntu; documentation explicitly leaves other native platforms unverified.
-
-Scope: run the documented source quick start, offline suite, demo and installed-package checks on each target with Node 22/24. Inspect FIFO test skipping and npm executable handling. Fix reproducible portability defects only; do not infer success from CI configuration alone.
-
-Acceptance:
-- Supply actual OS/Node/npm versions and command results for each tested environment.
-- Validate installed command and ESM import; preserve exits 0/1/2 and deterministic output.
-- Add CI coverage only after reproducing the platform setup and documenting supported exceptions.
-- Update compatibility docs with evidence and any failures, leaving untested environments explicit.
-
-Dependencies: registry access for package installation (or a deliberately warmed cache for optional offline mode), and maintainers with access to the target platforms. Effort: medium. No device purchases or paid runner usage authorized by this draft.
-
-## Batch issue maintenance
-
-`node scripts/sync-issues.mjs` previews the canonical three issues and project metadata labels. `node scripts/sync-issues.mjs --apply` creates missing labels/issues and updates known ones in one run, preserving issue state and existing unrelated labels. It never assigns people, promises rewards or reopens completed work. Specifications are in `checks/backlog/issues.json`; update them with scoped acceptance criteria before adding new work. The utility currently handles the first 100 issues/labels in this small repository; extend pagination before using it with larger backlogs.
+A preview is not an authorization to publish, revive excluded scope or rewrite an issue. Do not run bulk apply during this cleanup. In particular, the retained #23 body is not an invitation to configure automation contrary to AGENTS.md. Any closure/substantial issue rewrite needs explicit maintainer authorization; this audit made no GitHub issue changes.
