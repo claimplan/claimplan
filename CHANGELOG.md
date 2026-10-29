@@ -7,7 +7,7 @@
 - Added a repeatable issue batch utility and enforced PR/status-check protection on main.
 - CLI version identifies 0.1.1; predicate and policy semantics are unchanged.
 
-- Verified macOS 15 ARM64 and Windows Server 2025 x64 source/installed-command behavior on Node 22/24. Fixed the Windows development package-check helper by invoking npm-cli.js through Node and testing actual installed launchers under spaces/Unicode paths. Product analyzer source and published v0.1.0 tag are unchanged.
+- Verified macOS 15 ARM64 and Windows Server 2025 x64 source/installed-command behavior on Node 22/24. Fixed the Windows development package-check helper by invoking npm-cli.js through Node and testing actual installed launchers under spaces/Unicode paths. Predicate/policy analysis source and the published v0.1.0 tag are unchanged; the CLI version text identifies 0.1.1.
 
 - Added a development-only Linux resource corpus: 55 deterministic fixtures and 123 bounded CLI/library checks, covering maximum supported plan structures, fragmented windows, malformed XDR/JSON and exact file-size limits. CI runs it on Node 22/24; recorded measurements and limits are in `docs/RESOURCE-VERIFICATION.md`. The published v0.1.0 analyzer source is unchanged.
 

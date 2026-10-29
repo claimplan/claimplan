@@ -1,6 +1,6 @@
 # Developer validation
 
-Status: review material prepared; no external feedback collected. These synthetic examples demonstrate behavior, not adoption or an independent review.
+Status: optional, non-blocking review material; no external feedback collected. These synthetic examples demonstrate behavior, not adoption or an independent review.
 
 ## Three-minute terminal demo
 
@@ -40,7 +40,7 @@ Regenerate the payout fixtures with `node scripts/generate-payout.mjs`. All addr
 
 ## Feedback session checklist
 
-Use the same session with two developers who actually create claimable balances. Project outreach is covered by maintainer standing authorization; no direct invitations or sessions have occurred yet. Ask permission before retaining their comments or naming them publicly.
+If the maintainer later requests sessions, use the same exercise with two developers who actually create claimable balances. Do not recruit anyone as part of the current audit; no direct invitations or sessions have occurred. Ask permission before retaining their comments or naming them publicly.
 
 1. Ask how they currently check beneficiary/recovery conditions. Record the concrete workflow and existing tools before explaining ClaimPlan.
 2. Give them the quick start and ask them to identify the affected payment, failure interval and corrective action from the broken report without prompting.
@@ -51,6 +51,6 @@ Use the same session with two developers who actually create claimable balances.
 
 For each session record locally: date, anonymous reviewer label, relevant experience, workflow, commands/version, expected and observed result, exact confusing output, existing alternatives, permission to quote, and follow-up. Keep private notes outside the public repository. No reviewer names or feedback are supplied by this template.
 
-## Decision gate
+## Optional evidence assessment
 
-Developer validation remains incomplete until two actual sessions and one realistic workflow review produce evidence. Then document supported conclusions and unresolved objections, fix observed problems with regression checks where needed, and decide whether to continue standalone, narrow scope, or propose an upstream contribution. Two reviews do not establish broad demand or an audit. The experimental source prerelease is published and the Stellar Wave application is submitted under maintainer authorization. Both retain this developer-validation gap; neither establishes usefulness.
+If optional developer validation is undertaken, its conclusions require actual sessions and workflow evidence; preparing this guide does not complete it. Then document supported conclusions and unresolved objections, fix observed problems with regression checks where needed, and decide whether to continue standalone, narrow scope, or propose an upstream contribution. Two reviews do not establish broad demand or an audit. The experimental source prerelease is published and the Stellar Wave application is submitted under maintainer authorization. Both retain this developer-validation gap; neither establishes usefulness.

@@ -1,114 +1,23 @@
-# ClaimPlan progress tracker
+# Current unfinished work
 
-Current stage: **required implementation and delivery complete for the experimental offline scope; v0.1.1 published and verified; separate reviews optional and unperformed; last Drips observation Pending review**.
+The experimental v0.1.1 implementation and published artifacts are recorded in [RELEASE.md](RELEASE.md) and the [evidence index](../evidence/index.md). This file lists unfinished actions only; it does not repeat completed delivery gates.
 
-The initial implementation is complete. It is an experimental source release; Drips approval has not been established. This tracker distinguishes implementation, independent evidence, release preparation and external approval. No percentage is assigned because the remaining work is not equal in size.
+## Maintainer decisions and review
 
-## 1. Working offline MVP — complete
+- [ ] Review the audit feature-branch PR and its actual checks. The agent must not merge it or deploy the documentation changes.
+- [ ] Supply/confirm the authoritative Stellar Project Approval Playbook v2.0.0 reference if still unavailable; do not infer full compliance from the older Wave prompt.
+- [ ] Decide on the contributor issue recommendations, especially closing #23 as not planned. No published issue state/scope is changed by this cleanup.
+- [ ] Review [PR #27](https://github.com/claimplan/claimplan/pull/27) against #14; an open PR is not completed functionality on main.
 
-- [x] Create GitHub organization and public repository.
-- [x] Define policy v1, report format, scope and exit codes.
-- [x] Implement exact bigint predicate/interval analysis.
-- [x] Decode v0, v1 and fee-bump XDR using the official SDK.
-- [x] Check beneficiary/recovery windows, gaps, overlaps and unreachable claimants.
-- [x] Reject malformed inputs and report missing assumptions as inconclusive.
-- [x] Provide CLI, library API and three reproducible offline examples.
-- [x] Add README, specification, contribution guide and project instructions.
-- [x] Pass strict typecheck and 35 tests, including 1,000 generated predicate trees.
-- [x] Verify packed installation and exit codes 0/1/2.
-- [x] Pass GitHub CI on Node 22 and 24.
+## Technical follow-up
 
-Evidence: [verified release-candidate CI](https://github.com/claimplan/claimplan/actions/runs/40652655946), [implementation CI](https://github.com/claimplan/claimplan/actions/runs/40515788768). These are model/SDK/CLI tests, not execution against Stellar Core.
+- [ ] Resolve the known output-pipe failure in [#13](https://github.com/claimplan/claimplan/issues/13) through a separately reviewed change; this cleanup preserves runtime behavior.
+- [ ] Investigate the fresh local Core run's RPC catch-up timeout before claiming a renewed successful Core execution. Preserve the historical passing dataset and exact identity/timestamp guards.
+- [ ] Select optional follow-on work from [CONTRIBUTOR-START-HERE.md](CONTRIBUTOR-START-HERE.md); those proposed enhancements are not retroactive requirements for v0.1.1.
 
-## 2. Verify against Stellar Core — complete
+## External and optional validation
 
-- [x] Inspect local Docker/Core availability and select a verified compatible local network version (Quickstart image digest pinned; Core/RPC v30.0.0, ledger protocol 28).
-- [x] Create a local-only test harness with synthetic accounts and assets (`npm run test:core`); a full run including controls passed.
-- [x] Compare predicted eligibility with actual claim outcomes immediately before, at and after deadlines: 30 actual Core comparisons passed.
-- [x] Cover absolute and relative predicates, AND/OR/NOT, contradictions and multi-claimant handovers.
-- [x] Separate intentional claim failure from trustline, funding, reserve and authorization failures: all five controls passed.
-- [x] Record Core version, fixtures, commands, expected outcomes and actual outcomes in `integration/core-results.json` and `docs/CORE-VERIFICATION.md`.
-- [x] Review discrepancies: no product predicate mismatch observed; harness RPC timestamp compatibility has regression coverage.
+- [ ] Record an actual organizer decision when available. The last authenticated observation was Pending review on 2026-10-28; no current approval is established.
+- [ ] Independent semantic review and two developer usefulness sessions are optional and unperformed. Do not recruit reviewers/developers as part of this audit. Use the existing guides only if the maintainer later requests those activities.
 
-Evidence: `npm run test:core` completed successfully with 30 boundary comparisons and five execution controls on Core/RPC v30.0.0, ledger protocol 28. The [saved evidence](../integration/core-results.json) replays through the public analyzer; the creation fixture is unsigned. The owned container was removed. Offline typecheck/35 tests and package exclusion of the integration harness passed. [Node 22/24 CI](https://github.com/claimplan/claimplan/actions/runs/40523032332) passed for the RPC compatibility change. See [reproduction and limits](CORE-VERIFICATION.md).
-
-Done when: a documented, repeatable local Core run agrees with the supported semantic cases. Keep the offline suite for extreme integer cases that cannot be practically scheduled on a local ledger. Do not represent one finite test set as proof of all protocol behavior. No mainnet deployment or funds needed.
-
-## 3. Validate usefulness — optional, non-blocking
-
-- [x] Prepare a short terminal demo and example reports for review (`node scripts/demo.mjs`; see `docs/DEVELOPER-VALIDATION.md`).
-- [ ] Get feedback from two developers who create claimable balances.
-- [x] Test one realistic, permissioned or synthetic payout workflow against a declared policy: two synthetic recipients, seven/fourteen-day recovery, and an intentional second-operation overlap.
-- [ ] Establish whether existing libraries or scripts already solve their whole-plan policy problem.
-- [ ] Document confusing output, missing rules and false-positive reports; fix observed problems.
-- [ ] Decide whether ClaimPlan should remain standalone or be contributed upstream.
-
-Done when: actual feedback supports the workflow and the scope addresses a concrete need. No adoption claims before evidence. Maintainer standing authorization covers project-related outreach; two developer sessions are optional and have not occurred. No direct reviewer outreach has occurred.
-
-## 4. Prepare a reviewable v0.1 release — complete for the declared scope
-
-- [x] Review the public policy/API/report compatibility contract (`docs/COMPATIBILITY.md`; pre-release compatibility remains explicit).
-- [x] Review diagnostics/validation: product behavior unchanged; integration timestamp mismatch errors now include expected/observed times. No developer feedback has been received.
-- [x] Add `SECURITY.md`; enable and verify GitHub private vulnerability reporting, secret scanning and push protection. No independent audit claimed.
-- [x] Review structural/file limits and existing malformed-input regressions; document the parsed-JSON library boundary. Maximum-plan/adversarial resource characterization now passes 55 fixtures/123 bounded API/CLI checks on each recorded Linux Node 22/24 runtime; see `docs/RESOURCE-VERIFICATION.md`. This is finite evidence, not a performance guarantee.
-- [x] Document verified Linux/Ubuntu, macOS 15 ARM64 and Windows Server 2025 x64 evidence on Node 22/24; retain unverified OS/architecture/runtime limits in `docs/COMPATIBILITY.md` and `docs/NATIVE-VERIFICATION.md`.
-- [x] Add `CHANGELOG.md`, a reproducible demo, and isolated packed installation/CLI/ESM checks (`npm run verify:package`).
-- [x] Draft three substantive tasks in `docs/CONTRIBUTOR-BACKLOG.md` with scope, acceptance checks, dependencies and effort. Published as issues #1–#3; no Wave nominations, reward points or assignments.
-- [x] Set repository topics, add issue/PR templates, and review branch protection against `Check (Node 22)` / `Check (Node 24)`. No protection exists; recommendation and maintainer decision recorded in `docs/RELEASE.md`.
-- [x] Re-run strict typecheck/35 tests, Core (30 boundary comparisons/five controls; saved unsigned-fixture replay), both example generators, isolated installation/ESM/CLI checks including a fresh npm cache, and dependency audit (zero known vulnerabilities). First Core attempt failed a timestamp assertion; passing follow-up is recorded in `docs/CORE-VERIFICATION.md`.
-
-Done when: a new contributor can follow the documented quick start, reproduce the supported results and understand the remaining limitations. An external audit is not claimed or treated as completed by a self-review.
-
-## 5. Release/distribution — source-only experimental prerelease complete
-
-- [x] Choose source-only candidate preparation; no npm ownership/name claim. npm publication remains a separate decision.
-- [x] Publish source-only `v0.1.0` tag and notes at the tested commit `76423af`; no npm artifact publication.
-- [x] Maintainer standing authorization covers release creation/publication. Source-only distribution chosen; npm publication remains outside this release.
-- [x] Publish [v0.1.0](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) and verify a clean clone of its public tag: dependency installation, strict typecheck/35 tests, demo and installed CLI/library checks passed.
-
-Done when: the approved v0.1 artifact is obtainable and its documented installation works. A source-only release is an option; npm publication is not mandatory. No website, dashboard, hosted API or deployed smart contract is required.
-
-## 6. Drips Wave submission — submitted; organizer decision pending
-
-- [x] Official rules/limits and all 842 unique approved repositories inspected on 2026-10-28 (nine API pages; ClaimPlan absent). Signed-in onboarding confirmed application allowance and that ClaimPlan was selectable without an existing application.
-- [x] Verify existing state and submit an accurate description of the offline CLI, three scoped issues, finite verification and pending developer reviews.
-- [x] Assemble evidence links and runnable demo in `docs/DRIPS-SUBMISSION.md`; verify new public file links after push. No release/video link invented.
-- [x] Prepare contributor backlog and candid application description in `docs/DRIPS-SUBMISSION.md`.
-- [x] Maintainer standing authorization covers the application and necessary project settings; user completed browser sign-in; Drips app installed for only `claimplan/claimplan`.
-- [x] Submit the selected repository and verify the success screen and **Pending review** status in the maintainer dashboard on 2026-10-28.
-- [ ] Record the organizer's decision and address substantive feedback. No approval or rewards claimed.
-
-Done when: the application has a recorded decision. Acceptance belongs to the organizers and cannot be promised. SCF funding is a different program and is outside this finish checklist.
-
-## Reporting convention
-
-Include this compact tracker in progress updates and handoffs:
-
-| Stage | State |
-| --- | --- |
-| Offline MVP | Complete |
-| Stellar Core verification | Complete |
-| Developer validation | Demo prepared; separate sessions optional and unperformed |
-| Release preparation | Complete; external review optional and unperformed |
-| Release/distribution | Source-only experimental v0.1.1 published and verified |
-| Drips submission | Submitted; Pending review by organizers |
-
-Always identify the current task, actual verification evidence, blockers and next action. Mark only work actually completed; update this file when stage status changes.
-
-## Current delivery scope — 2026-10-28
-
-Separate semantic-review recruitment and usefulness sessions are optional, not release gates. Earlier descriptions of them as blockers are superseded; no review completion is claimed. See [master phase checklist](WAVE-CHECKLIST.md) for remaining required delivery artifacts.
-
-## Verified current handoff — 2026-10-28
-
-Required build and delivery work is complete for the declared experimental offline scope. The applicable Wave phases and exceptions are in WAVE-CHECKLIST.md. Optional validation checkboxes above remain unchecked because those activities were not performed; they do not block delivery. Organizer approval is outside our control and unverified beyond the last Pending review observation.
-
-- [x] Make separate reviewer recruitment optional in local codex.md, project AGENTS.md and roadmap.
-- [x] Build/publish eight-page docs site with actual analyzer examples and accessible navigation.
-- [x] Publish actual CLI recording and full text alternative; verify public playback/hash.
-- [x] Enforce protected-main PRs, seven required checks, no force push/deletion; approvals optional.
-- [x] Compare actual approved-repo presentation and add appropriate README/contact/credits.
-- [x] Supply/apply canonical batch issue utility; preserve completed issue state and optional review.
-- [x] Publish experimental v0.1.1 and verify a fresh public-tag checkout with all recorded release checks.
-
-Next: maintain the delivered project and respond to demonstrated defects or organizer feedback. No further feature, npm publication, hosted product or contract deployment is required by the current scope.
+Do not publish a release/npm artifact, deploy documentation, change funding submissions or introduce dependency-update bots through this task. Maintainer review and an explicit later authorization determine further external actions.
