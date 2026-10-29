@@ -1,31 +1,23 @@
-# Stellar Wave delivery checklist
+# Historical Wave Builder applicability map
 
-The user's Stellar Wave Builder prompt supplied on 2026-10-28 is the phase checklist. The local universal codex.md remains the engineering workflow. Direct implementation replaces instructions for another coding agent; user-requested batched pushes supersede immediate pushes. Separate reviewer recruitment and usefulness sessions are optional and unperformed, not delivery gates. Drips review is not an independent audit.
+This file preserves the mapping of the older Stellar Wave Builder prompt supplied on 2026-10-28. It is not the current unfinished-work list, evidence ledger or a v2.0.0 compliance certificate. Use [TODO.md](TODO.md), [evidence/index.md](../evidence/index.md) and the audit record for those purposes.
 
-| Phase | Evidence / applicability | Remaining |
-| --- | --- | --- |
-| 1. Ecosystem reconnaissance | Local historical landscape research; live program/repository checks recorded in DRIPS-SUBMISSION.md | Refresh live claims before adding ecosystem-dependent features |
-| 2. Ideas | Historical landscape and selection record in local conversation handoff | No new ideation required for delivery |
-| 3. Critical review | Offline whole-plan checker selected; single-predicate prior art acknowledged; no adoption/uniqueness promise | Optional real-user feedback |
-| 4. Name, scope, structure | ClaimPlan, one offline CLI/library repository, README and SPEC.md | None for current scope |
-| 5. Contract architecture | No contracts; native Stellar predicates are decoded locally | Not applicable |
-| 6. Contract coding prompt | No contracts or separate coding agent | Not applicable |
-| 7. App coding prompt | Direct TypeScript implementation, package lock, SPEC.md and CI | No web product/indexer/wallet required |
-| 8. Environment and deployment | Core local harness, native matrix, installed command checks | Completed; public-tag checks in checks/release/results-v0.1.1.json |
-| 9. Hosting topology | CLI remains local; public docs are static GitHub Pages | Published and HTTP-verified static docs; no product backend |
-| 10. Repo hygiene | Contribution/security guides, topics, pinned CI, issues and source release exist | Completed; protected PR #4 and v0.1.1 published/verified |
-| 11. Documentation site | Existing Markdown reference and examples | Completed; eight public pages, live examples and navigation verified |
-| 12. Submission | Application submitted; last observed Pending review | Completed supporting artifacts and repository links; last organizer status Pending review; no duplicate application |
-| 13. Post-approval iteration | Contribution/backlog/maintenance process exists | Respond to actual feedback; organizer decision outside our control |
+The old prompt's contract/application structure was adapted to an offline CLI. Direct implementation replaced prompts for another coding agent; the maintainer's batched-push preference superseded immediate pushes. Separate reviewer recruitment was subsequently made optional. Keeping this map preserves why entire infrastructure phases were intentionally inapplicable.
 
-## Documentation implementation plan
+| Older phase | Product-specific applicability / authoritative record |
+| --- | --- |
+| 1. Ecosystem reconnaissance | Historical research and dated public checks; [submission record](DRIPS-SUBMISSION.md). Do not present old ecosystem counts as current. |
+| 2. Ideas | Historical selection of whole-plan native-predicate tooling; [plan](PLAN.md). No adoption/uniqueness proof. |
+| 3. Critical review | Scoped offline approach and acknowledged prior art; optional usefulness assessment remains unperformed. |
+| 4. Name, scope, structure | One CLI/library repository; [README](../README.md), [architecture](architecture.md), [specification](SPEC.md). |
+| 5. Contract architecture | Not applicable: no ClaimPlan contract. |
+| 6. Contract coding prompt | Not applicable: no contract or second implementation agent. |
+| 7. App coding prompt | Direct TypeScript implementation; no hosted application/indexer/wallet. |
+| 8. Environment and deployment | Source/package and local Core verification, with separately dated evidence and limitations. |
+| 9. Hosting topology | Local product plus a separate static documentation site; no hosted analysis runtime. |
+| 10. Repo hygiene | [Contribution guide](../CONTRIBUTING.md), [security scope](../SECURITY.md), protected PR workflow and [release procedure](RELEASE.md). |
+| 11. Documentation site | Existing dependency-free static generator, reference guides and recorded CLI demonstration. New audit links require maintainer-authorized publication. |
+| 12. Submission | Actual form, original links and last Pending review observation in the submission record. No approval or duplicate application implied. |
+| 13. Post-approval iteration | Ongoing maintenance and actual feedback, not a finite feature list or guaranteed program admission. |
 
-Use a dependency-free Node generator and static HTML/CSS, hosted by GitHub Pages. Keep canonical specifications in docs/ and generate worked report examples through the actual analyzer. No analytics, wallet connection, user input uploads or product backend. Pages: introduction, quick start, policy mechanics, payout guide, CLI/library reference, verification and contributing. Mobile navigation, keyboard focus, readable code and local links must work.
-
-Design: white page (#ffffff), navy ink (#202d4a), slate secondary text (#506179), blue links (#244ca4), pale blue panels (#eef3fb), teal timeline (#087c77). System sans body and Georgia chapter headings; monospace only for commands/data. A quiet sidebar and narrow reading column frame one characteristic visual: the beneficiary/recovery time handover. No marketing cards or decorative animation. All content left aligned.
-
-Acceptance: build without adding runtime dependencies; all generated local links resolve; documented commands match CLI; actual example JSON appears in reference; desktop/mobile browser checks show readable navigation and no horizontal page overflow; published HTTPS pages respond successfully. Deploy only generated site output. Previous successful deployment can be restored by reverting the source change and rerunning Pages.
-
-## Delivery boundary
-
-Applicable construction/delivery gates are satisfied for the experimental offline CLI. Phase 13 is an ongoing maintenance process, not a finite feature list or a promise of approval. Optional independent review remains unperformed. The public docs/demo augment the repository evidence already linked in the application; no private-dashboard edit, new application or organizer decision is claimed.
+The historical style plan is implemented in [site/style.css](../site/style.css): a narrow reading column, quiet navigation, explicit handover visual, keyboard focus and mobile layout. Static generation/output verification is documented by the architecture and evidence index; those implementation details are not duplicated here.

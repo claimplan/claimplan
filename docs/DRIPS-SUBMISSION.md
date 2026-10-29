@@ -1,10 +1,10 @@
 # Stellar Wave submission packet
 
-Submitted 2026-10-28. Status: **Pending review**, verified in the signed-in maintainer dashboard after a successful submission screen. No approval is claimed. Developer validation is pending. The [experimental source-only v0.1.0 release](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) is published and public-tag installation is verified. Program membership and a particular Wave sprint are separate concepts.
+Historical submission on 2026-10-28. Last authenticated status observation: **Pending review**, verified in the signed-in maintainer dashboard after a successful submission screen. No approval is claimed. Separate developer/independent review is optional and unperformed. The [experimental source-only v0.1.0 release](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) is published and public-tag installation is verified. Program membership and a particular Wave sprint are separate concepts.
 
 ## Live program check
 
-The [official Stellar program page](https://www.drips.network/wave/stellar) currently lists Wave 10 (October 15–22) among past Waves and reports no active/upcoming Waves. Do not promise participation in Wave 10 or assume a future date.
+At the 2026-10-28 check, the [official Stellar program page](https://www.drips.network/wave/stellar) listed Wave 10 (October 15–22) among past Waves and reported no active/upcoming Waves at that time. Do not promise participation in Wave 10 or assume a future date.
 
 [Maintainer onboarding](https://docs.drips.network/wave/maintainers/participating-in-a-wave/) requires GitHub sign-in, installing the Drips Wave app for the organization, selecting public repositories, and explicitly applying to the relevant program; organizers decide admission. The [application-limit guide](https://docs.drips.network/wave/maintainers/repo-application-limits/) says allowances may be configured for both people and organizations. Authenticated onboarding confirmed sufficient allowance for this single repository before submission. Account-wide quota details are not retained in this public record.
 
@@ -12,7 +12,7 @@ The [terms](https://docs.drips.network/wave/terms-and-rules/) make repository se
 
 On 2026-10-28 the public directory API was fetched across all nine pages (100 records per page maximum): 842 unique repositories, all with approved status, and no exact `claimplan/claimplan` match. Source: [program repository API](https://wave-api.drips.network/api/wave-programs/fdc01c95-806f-4b6a-998b-a6ed37e0d81b/repos). Counts and uniqueness were checked before accepting the result; applicant identity/contact fields were not retained. This is a point-in-time public approval check, not ClaimPlan's private application history. Before submission, signed-in onboarding confirmed ClaimPlan was selectable without an existing application. After submission the maintainer dashboard listed `claimplan/claimplan → Stellar`, dated October 28, with **Pending review** status. Use the documented appeal process if a rejection is later recorded; do not submit duplicates. The historical 2026-10-27 landscape review remains context, not a guarantee of uniqueness or demand.
 
-## Project description
+## Submission-time project description
 
 ClaimPlan is an offline TypeScript CLI/library for reviewing Stellar claimable-balance payout plans before submission. It decodes unsigned transaction-envelope XDR and compares every create operation with an explicit beneficiary/recovery policy. Reports locate overlaps, gaps and unreachable conditions using exact integer time intervals, with deterministic JSON and CI exit codes.
 
@@ -20,7 +20,7 @@ The project needs no dashboard, hosted API or deployed smart contract. It does n
 
 Predicate utilities already exist; ClaimPlan's proposed contribution is a whole-plan policy-checking workflow. The implementation has 35 offline tests and finite local Core evidence covering 30 boundary comparisons and five execution controls on the pinned version. It has not received an independent audit, two-developer usefulness validation, demonstrated adoption or program approval. Contributor work is scoped around independent semantic review, input/resource boundaries and unverified native platforms.
 
-## Evidence links
+## Submission-time evidence links
 
 - [Repository and quick start](https://github.com/claimplan/claimplan)
 - [Specification](https://github.com/claimplan/claimplan/blob/main/docs/SPEC.md)
@@ -32,7 +32,7 @@ Predicate utilities already exist; ClaimPlan's proposed contribution is a whole-
 - [Contributor backlog](https://github.com/claimplan/claimplan/blob/main/docs/CONTRIBUTOR-BACKLOG.md) and published issues [#1](https://github.com/claimplan/claimplan/issues/1), [#2](https://github.com/claimplan/claimplan/issues/2), [#3](https://github.com/claimplan/claimplan/issues/3)
 - [Source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0)
 
-The packet and implementation links are public. The release is published; the demo is runnable source, not a hosted video. Check these links and current authenticated application state before submitting.
+These were the submission-time links. The original demo was runnable source; the hosted video and documentation site were published later. Do not imply they were included in the original form. Recheck authenticated state before any separately authorized submission action.
 
 ## Submitted form and follow-up
 
@@ -68,3 +68,7 @@ Public documentation: https://claimplan.github.io/claimplan/
 Actual CLI recording and full text alternative: https://claimplan.github.io/claimplan/demo.html
 
 These links supplement the existing repository evidence; do not create a duplicate application. The original submission description above is retained as historical text. No new organizer decision or private-dashboard edit is claimed by this update. Current resource/native evidence is linked from the documentation site. Separate reviews are optional and unperformed, not required delivery work.
+
+## Current record ownership
+
+This document preserves the actual application, not current release or issue-readiness status. Use [RELEASE.md](RELEASE.md), the [evidence index](../evidence/index.md) and [contributor entry](CONTRIBUTOR-START-HERE.md) for later changes. This audit did not access the private dashboard, edit the form or submit another application. An organizer decision remains unverified beyond the dated observation above.

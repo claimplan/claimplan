@@ -4,72 +4,69 @@
 
 Offline validation of Stellar claimable-balance payout plans.
 
-ClaimPlan is a command-line tool and TypeScript library that checks whether a payout's claimant conditions match its intended beneficiary and recovery rules before the transaction is submitted.
+ClaimPlan is an experimental TypeScript CLI and ESM library. It decodes transaction-envelope XDR and checks every native CreateClaimableBalance operation against an explicit beneficiary/recovery policy before submission. Reports identify eligibility overlaps, gaps, unreachable claimants and role-window problems. ClaimPlan never signs or submits transactions.
 
-## Status
+## Status and reference
 
-Experimental [source-only releases](https://github.com/claimplan/claimplan/releases) are available. The [v0.1.1 public tag](https://github.com/claimplan/claimplan/releases/tag/v0.1.1) passed fresh installation, tests, demo, installed CLI/library and docs checks. Not independently audited; no npm package has been published. Local Stellar Core checks passed 30 predicate-boundary cases and five execution controls on Core/RPC v30.0.0, ledger protocol 28. Separate customer/independent review is optional and unperformed.
+Latest verified release: [v0.1.1 experimental source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.1). No npm package, independent audit, established adoption or program approval is claimed. Main contains later documentation/onboarding changes. Separate review and usefulness sessions are optional and unperformed.
 
-Read the [documentation site](https://claimplan.github.io/claimplan/), follow the [payout guide](https://claimplan.github.io/claimplan/payout-guide.html), or watch the [actual CLI demo](https://claimplan.github.io/claimplan/demo.html).
+| Reference | Owns |
+| --- | --- |
+| [Architecture](docs/architecture.md) | Modules, data flow and runtime/development trust boundaries |
+| [Specification](docs/SPEC.md) and [compatibility](docs/COMPATIBILITY.md) | Exact policy, API, report and supported-environment contracts |
+| [Evidence index](evidence/index.md) | Claims, actual observations, dates, revisions and limitations |
+| [Release record](docs/RELEASE.md) | Verified tags, protected workflow and future release procedure |
+| [Contributor entry](docs/CONTRIBUTOR-START-HERE.md) | Current opportunities, dependencies and issue recommendations |
+| [TODO](docs/TODO.md) / [plan](docs/PLAN.md) | Unfinished work / implementation decisions and history |
+| [Submission record](docs/DRIPS-SUBMISSION.md) | Original 2026-10-28 application; last observed Pending review, not a fresh decision |
 
-See the [compatibility contract](docs/COMPATIBILITY.md), [security policy](SECURITY.md) and [release notes](CHANGELOG.md).
-
-Follow the [progress tracker and finish checklist](docs/TODO.md) for completed work, current stage and next steps.
+The [published documentation](https://claimplan.github.io/claimplan/), [payout guide](https://claimplan.github.io/claimplan/payout-guide.html) and [actual CLI demo with text alternative](https://claimplan.github.io/claimplan/demo.html) describe the existing product. The 2026-10-29 audit verifies proposed documentation changes locally; publication is a separate maintainer-authorized action.
 
 ## Run locally
 
-Requires Node.js **22.12.0 or newer** and npm. Current main has [verified macOS/Windows source and installed-command checks](docs/NATIVE-VERIFICATION.md); the published v0.1.0 archive predates a Windows development-helper fix.
+Requires Node.js >=22.12.0 and npm. Recorded checks cover Node 22/24 on Linux/Ubuntu, macOS 15 ARM64 and Windows Server 2025 x64; other combinations remain unverified. Dependency installation may use the registry. Installed analysis runs offline.
 
 ```sh
 git clone https://github.com/claimplan/claimplan.git
 cd claimplan
-npm ci
+npm ci --ignore-scripts
 npm run build
-
 node dist/cli.js check examples/handover.xdr --policy examples/policy.json
 ```
 
-The example passes: the beneficiary has the first 60 seconds, then the recovery claimant takes over. Fixtures contain synthetic public addresses and unsigned envelopes. Nothing is submitted.
+The unsigned synthetic example passes under assumed creation time `1800000000`: the beneficiary is eligible for 60 seconds, then recovery starts exactly at `1800000060`. Nothing is submitted. Pin a reviewed commit or tag in automation; the immutable v0.1.0 archive predates the Windows development-helper correction included in v0.1.1.
 
 ```sh
-# Prove an unintended overlap; exits 1
+# Proven overlap: exit 1
 node dist/cli.js check examples/overlap.xdr --policy examples/policy.json --json
 
-# Missing creation-time assumption; exits 2
+# Missing creation-time assumption: exit 2
 node dist/cli.js check examples/handover.xdr --policy examples/missing-time.json --json
 ```
 
-To use the command name locally, `npm link` installs a link to this checkout; then run `claimplan --help`. This does not publish a package.
+`npm link` optionally links this checkout so `claimplan --help` works through the local command name; it does not publish a package. Global PATH setup is environment-specific.
 
-## What it checks
+## Behavior and limits
 
-- Reads v0, v1 and fee-bump transaction-envelope XDR with the official Stellar SDK.
-- Checks all claimants in each native `CreateClaimableBalance` operation together.
-- Identifies contradictory conditions, uncovered claim windows, unexpected overlap, and beneficiary/recovery-policy violations.
-- Reports exact intervals in the terminal and deterministic JSON for CI.
-- Requires an explicit creation-ledger-time assumption; never reads the current clock.
-
-See [the specification](docs/SPEC.md) for every policy field, report semantics and acceptance criteria. Use [the example policy](examples/policy.json) as a runnable starting point. Amounts in reports use integer `amountStroops` (10,000,000 base units per classic asset unit); interval endpoints are decimal Unix-second strings, with an exclusive end.
+- Supports v0, v1 and fee-bump envelopes through official SDK 17.4.0. Inner zero-based operation indices are preserved.
+- Requires exactly one matching policy for every create operation and an explicit creation-ledger assumption for a conclusive result. The workstation clock is not substituted.
+- Uses bigint arithmetic and half-open `[start,end)` intervals. JSON times and `amountStroops` are exact decimal strings; classic asset units use 10,000,000 base units.
+- CLI inputs are regular UTF-8 files of at most 1 MiB each. Library policy input is already-parsed ordinary JSON and has no serialized-file byte limit; callers must bound inputs before parsing.
+- Unsupported/malformed inputs fail closed. Other transaction operations remain outside scope and produce a partial-transaction warning.
 
 | Exit | Meaning |
 | --- | --- |
-| 0 | No errors under the supplied policy and assumptions; warnings can remain. |
-| 1 | Proven predicate or policy violations. |
-| 2 | Invalid/unsupported input or an inconclusive analysis. |
+| 0 | Completed predicate-policy analysis without errors; warnings may remain |
+| 1 | Proven predicate or declared-policy violations |
+| 2 | Invalid/unsupported input or inconclusive analysis |
 
-Malformed input has an `error` object in JSON output; completed analyses have a `findings` array. Neither raw input contents nor secret values are included in error messages.
+Known output-delivery exception: an early-closed stdout pipe can currently exit 1 with an unhandled EPIPE ([#13](https://github.com/claimplan/claimplan/issues/13)); that is not a policy finding. Automation should also require a complete valid report.
 
-The product runs locally or in the user's CI. It requires no website, hosted API, database, or deployed smart contract.
+JSON input failures have an `error` object; completed reports contain `findings`. A pass concerns only the declared policy and assumptions. It does not establish signatures, account/trustline state, issuer controls, funding, reserves, key access, actual ledger time, transaction acceptance or successful claim execution. A balance can be claimed only while it remains unconsumed. Policy v1 reports asset/amount but does not compare a separate business budget.
 
-## Limits
+## ESM library
 
-Predicate eligibility does not establish that an account can execute a claim. Keys, trustlines, issuer authorization, account state and actual ledger close times need separate consideration. Overlap and the absence of a recovery claimant can be intentional; findings must distinguish protocol facts from declared application policy.
-
-ClaimPlan is not an audit or a guarantee of recovery. It does not sign or submit transactions. If other operation types are present, the report explicitly marks the transaction partially analyzed. Exact policy matching prevents silently skipping create operations. Both input files are limited to 1 MiB.
-
-## Library
-
-After building, import the local ESM entrypoint:
+After building in this checkout:
 
 ```js
 import { readFileSync } from 'node:fs';
@@ -86,45 +83,32 @@ try {
 }
 ```
 
-## Verify and contribute
+The package entry exports `analyzeEnvelope`, `InputError` and types `Report`, `Finding`, `JsonInterval`. Invalid/unsupported library input throws InputError; ordinary inconclusive analysis returns a report. See the compatibility contract before integrating or upgrading.
 
-[Find a contribution task](docs/CONTRIBUTOR-START-HERE.md): 20 scoped issues across ten tracks, with acceptance criteria and validation commands.
+## Verify and contribute
 
 ```sh
 npm run check
 npm run demo
 npm run verify:package
 npm pack --dry-run
+npm run docs:build
 ```
 
-Tests include an independent Boolean evaluator, 1,000 seeded predicate trees, boundary and malformed-input cases, real SDK envelope decoding, and CLI subprocess tests. The default suite does not execute Stellar Core. On Linux, `npm run test:resources` adds maximum-plan and malformed-input checks in bounded subprocesses; see [resource verification and measured limits](docs/RESOURCE-VERIFICATION.md). The separate `npm run test:core` command requires Docker and runs the local-only harness described in [Core verification](docs/CORE-VERIFICATION.md), with [saved results](integration/core-results.json). These finite checks do not prove production correctness. CI checks Node 22 and 24. See [CONTRIBUTING.md](CONTRIBUTING.md).
+The default suite has 35 offline tests including 1,000 seeded predicate trees; [evidence](evidence/index.md) distinguishes this from actual local Core execution. Linux `npm run test:resources` exercises a bounded corpus. The separate Docker `npm run test:core` harness signs synthetic transactions only on an owned isolated local network, is excluded from the packed product and is not public Testnet verification. Its historical passing observations and the fresh audit startup failure are distinct outcomes.
 
-## Prior art
+[Choose a scoped contribution](docs/CONTRIBUTOR-START-HERE.md), check existing PRs and follow [CONTRIBUTING.md](CONTRIBUTING.md). Tasks are not assignments or reward promises. Automated dependency-update bots are intentionally excluded by the maintainer; manual review and scanning remain available.
 
-Predicate evaluation already exists in [Stellar Expert's claimable-balance utilities](https://github.com/stellar-expert/claimable-balance-utils) and [stellar-resolve-claimant-predicates](https://github.com/hanseartic/stellar-resolve-claimant-predicates). ClaimPlan's proposed scope is whole-plan policy checking and a local CLI workflow.
+## Security, maintainer and community
 
-Protocol behavior is grounded in [Stellar's claimable-balance guide](https://developers.stellar.org/docs/build/guides/transactions/claimable-balances), [CAP-23](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0023.md), and Stellar Core. Implementation must be tested against their exact semantics.
-
-## Next validation
-
-Run `node scripts/demo.mjs` after building for the synthetic two-recipient payout walkthrough. The [developer review guide](docs/DEVELOPER-VALIDATION.md) explains the reports and feedback checklist.
-
-Validate the workflow with developers who create claimable balances, review semantics independently and resolve findings from the published contributor backlog. Local Core boundary and execution controls have passed; developer usefulness has not been established. ClaimPlan was submitted to the Stellar Wave Program on 2026-10-28; its dashboard status is **Pending review**. No approval or funding is claimed.
-
-Release and program materials: [source-only release record/checklist](docs/RELEASE.md), [contributor backlog](docs/CONTRIBUTOR-BACKLOG.md), and [Drips submission record](docs/DRIPS-SUBMISSION.md). The source prerelease is published and the Drips application is submitted; organizer approval remains pending.
-
-## License
-
-MIT. See [LICENSE](LICENSE).
-
-## Maintainer and community
+Use [private vulnerability reporting](https://github.com/claimplan/claimplan/security/advisories/new) for sensitive reports and read [SECURITY.md](SECURITY.md) for scope. This is a local analyzer, not a hardened multi-tenant service or security certification.
 
 | Maintainer | Contact |
 | --- | --- |
 | OTimileyin | [GitHub profile](https://github.com/OTimileyin) |
 
-Use [repository issues](https://github.com/claimplan/claimplan/issues) for public questions and reproducible bugs; use private reporting for vulnerabilities. There is no separate Telegram or Discord channel. Separate reviewer recruitment and usefulness sessions are optional, not delivery gates. No independent audit or adoption is claimed.
-
-## Contributors
+Use [repository issues](https://github.com/claimplan/claimplan/issues) for ordinary bugs/questions. There is no separate Telegram or Discord channel. The product needs no contract, hosted API, database, indexer, dashboard or wallet connection.
 
 [![Contributors](https://contrib.rocks/image?repo=claimplan/claimplan)](https://github.com/claimplan/claimplan/graphs/contributors)
+
+MIT. See [LICENSE](LICENSE).

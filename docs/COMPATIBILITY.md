@@ -15,6 +15,8 @@ This is a pre-release contract, pending developer feedback. Policy `version: 1` 
 | JSON | Decimal strings for exact time/amount fields; half-open intervals; deterministic ordering; no wall-clock timestamps |
 | Errors | JSON `error` object for invalid CLI input; normal `findings` for completed analyses |
 
+Known output-delivery exception (reproduced 2026-10-29): a reader closing stdout early can produce an unhandled EPIPE and process exit 1 rather than a complete report. See [#13](https://github.com/claimplan/claimplan/issues/13). Do not infer a proven policy violation from an exit code without a valid report; this audit does not change the runtime behavior.
+
 Consumers should branch on status, severity and finding codes, rather than matching English prose. Human messages may improve without a rules-version change. Warning-only reports can pass. A partially analyzed transaction is explicitly marked, and remains partial even if its predicate checks pass. See [SPEC.md](SPEC.md) for schema and semantics.
 
 ## Runtime/platform evidence
@@ -31,7 +33,7 @@ The library's policy input is an already-parsed object, so it has no file-byte l
 
 ## Distribution
 
-The [v0.1.0 source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) is published at `76423af`. A clean clone of its public tag passed source installation, typecheck/35 tests, demo and installed CLI/library checks on Linux/Node 22.23.2. The Windows development package-check helper was repaired after that tag; use current main for the native checks described above. No npm package is published; npm ownership and publication remain a separate decision. Developer examples and fixture generators live in the source checkout. `npm run verify:package` builds, packs and installs into an isolated temporary consumer with lifecycle scripts disabled, verifies installed CLI exits and imports the ESM API, then removes only its own temporary directory. Installation may fetch dependencies and registry metadata even after `npm ci`; the installed analyzer runs offline. For an explicitly warmed metadata/tarball cache, run `npm run verify:package -- --offline`. A cache populated solely by `npm ci` is insufficient for that optional mode.
+Historical v0.1.0: the [v0.1.0 source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) is published at `76423af`. A clean clone of its public tag passed source installation, typecheck/35 tests, demo and installed CLI/library checks on Linux/Node 22.23.2. The Windows development package-check helper was repaired after that tag and is included in latest verified v0.1.1; current main has subsequent documentation/onboarding changes. No npm package is published; npm ownership and publication remain a separate decision. Developer examples and fixture generators live in the source checkout. `npm run verify:package` builds, packs and installs into an isolated temporary consumer with lifecycle scripts disabled, verifies installed CLI exits and imports the ESM API, then removes only its own temporary directory. Installation may fetch dependencies and registry metadata even after `npm ci`; the installed analyzer runs offline. For an explicitly warmed metadata/tarball cache, run `npm run verify:package -- --offline`. A cache populated solely by `npm ci` is insufficient for that optional mode.
 
 ## v0.1.1 delivery
 

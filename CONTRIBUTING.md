@@ -1,6 +1,6 @@
 # Contributing
 
-[Choose a scoped contributor task](docs/CONTRIBUTOR-START-HERE.md): 20 open improvements across ten tracks, with code pointers, acceptance checks and rough effort estimates. Start with one issue and coordinate to avoid duplicate work.
+[Choose a scoped contributor task](docs/CONTRIBUTOR-START-HERE.md) using the current issue-state audit, code pointers, acceptance checks and rough effort estimates. Start with one issue and coordinate to avoid duplicate work.
 
 Use Node >=22.12.0. Run `npm ci` and `npm run check`. The default test suite runs offline after dependencies are installed. The separate package-installation smoke check may fetch dependencies and registry metadata; installed analysis stays offline. Do not use mainnet funds, secret keys, real customer data or production transaction dumps as fixtures.
 
@@ -17,3 +17,5 @@ Report private security details through [GitHub private vulnerability reporting]
 On Linux with GNU time and util-linux `prlimit`, run `npm run test:resources` for the bounded maximum-plan/malformed-input corpus. See [resource verification](docs/RESOURCE-VERIFICATION.md) for test budgets, saved observations and unsupported environments. This development harness is excluded from the package.
 
 Native CI covers macOS 15 ARM64 and Windows Server 2025 x64 on Node 22/24. See [native verification](docs/NATIVE-VERIFICATION.md) for actual versions, the Windows npm.cmd helper repair, path coverage and the Windows FIFO skip. Use current main for development checks.
+
+Follow the protected feature-branch/PR workflow; the maintainer reviews and merges. No new release, npm publication, docs deployment or program submission is authorized by contributing a cleanup. Do not add dependency-update bots or automated update-PR services. Published issue scope/state changes require explicit authorization, and optional review is not a recruitment requirement.
