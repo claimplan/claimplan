@@ -13,9 +13,12 @@ node dist/cli.js check examples/overlap.xdr --policy examples/policy.json --json
 
 node dist/cli.js check examples/handover.xdr --policy examples/missing-time.json --json
 # exit 2: no creation-time assumption supplied
+
+node dist/cli.js check examples/issued-asset.xdr --policy examples/issued-asset-policy.json --json
+# exit 0: the intended windows pass, but `ISSUER_CONTROLS_UNCHECKED` warns that trustline, authorization and clawback/freeze state are not checked offline
 ```
 
-The supplied creation time is an explicit assumption, not the current time. Regenerate fixtures with `node scripts/generate-examples.mjs`. Generation uses no secret keys and makes no network requests.
+The supplied creation time is an explicit assumption, not the current time. The issued-asset example uses a synthetic `USD` code and issuer address; ClaimPlan cannot inspect live issuer state, trustlines or on-ledger authorization offline. Regenerate fixtures with `node scripts/generate-examples.mjs`. Generation uses no secret keys and makes no network requests.
 
 ## Two-recipient payout review
 

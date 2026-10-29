@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { Asset, Claimant, Networks, Operation, TransactionBuilder, xdr } from '@stellar/stellar-sdk';
@@ -68,6 +69,16 @@ test('issuer-controlled assets are explicitly scoped', () => {
   assert.equal(r.status, 'pass');
   assert.ok(codes(r).includes('ISSUER_CONTROLS_UNCHECKED'));
   assert.equal(r.operations[0].asset, `USD:${C}`);
+});
+
+test('issued-asset walkthrough fixture shows a pass with issuer warning and exact asset metadata', () => {
+  const fixture = readFileSync(new URL('../examples/issued-asset.xdr', import.meta.url), 'utf8');
+  const policyInput = JSON.parse(readFileSync(new URL('../examples/issued-asset-policy.json', import.meta.url), 'utf8'));
+  const report = analyzeEnvelope(fixture, policyInput);
+  assert.equal(report.status, 'pass');
+  assert.ok(codes(report).includes('ISSUER_CONTROLS_UNCHECKED'));
+  assert.equal(report.operations[0].asset, 'USD:GAEQSCIJBEEQSCIJBEEQSCIJBEEQSCIJBEEQSCIJBEEQSCIJBEEQSH7S');
+  assert.equal(report.operations[0].amountStroops, '2500000000000000');
 });
 
 test('multiple creates use original operation indices and exact policy coverage', () => {
