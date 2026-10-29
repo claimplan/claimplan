@@ -1,5 +1,9 @@
 # Contributor backlog
 
+## Current contributor opportunities — 2026-10-29
+
+[Start with the 20 scoped issues across ten tracks](CONTRIBUTOR-START-HERE.md). Issues #6–#25 are open follow-on improvements, each with context, four acceptance checks, validation, constraints, coordination notes and a rough effort estimate. Existing #1–#3 below are historical verification tasks and are not counted in that new batch. No assignments, Wave points or rewards are promised.
+
 These tasks are published as GitHub issues [#1](https://github.com/claimplan/claimplan/issues/1), [#2](https://github.com/claimplan/claimplan/issues/2) and [#3](https://github.com/claimplan/claimplan/issues/3). They are not Wave nominations. No points, rewards or assignments are promised.
 
 ## Optional independent review of interval semantics and policy distinction — issue #1
