@@ -4,10 +4,8 @@ The experimental v0.1.1 implementation and published artifacts are recorded in [
 
 ## Maintainer decisions and review
 
-- [ ] Review the audit feature-branch PR and its actual checks. The agent must not merge it or deploy the documentation changes.
-- [ ] Supply/confirm the authoritative Stellar Project Approval Playbook v2.0.0 reference if still unavailable; do not infer full compliance from the older Wave prompt.
+- [ ] Review the focused readiness-correction follow-up and its actual checks. PR #28 was merged by the maintainer; the agent must not merge the follow-up or deploy documentation.
 - [ ] Decide on the contributor issue recommendations, especially closing #23 as not planned. No published issue state/scope is changed by this cleanup.
-- [ ] Review [PR #27](https://github.com/claimplan/claimplan/pull/27) against #14; an open PR is not completed functionality on main.
 
 ## Technical follow-up
 
