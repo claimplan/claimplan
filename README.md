@@ -88,6 +88,8 @@ try {
 
 ## Verify and contribute
 
+[Find a contribution task](docs/CONTRIBUTOR-START-HERE.md): 20 scoped issues across ten tracks, with acceptance criteria and validation commands.
+
 ```sh
 npm run check
 npm run demo
