@@ -8,7 +8,7 @@ ClaimPlan is an experimental TypeScript CLI and ESM library. It decodes transact
 
 ## Status and reference
 
-Latest verified release: [v0.1.1 experimental source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.1). No npm package, independent audit, established adoption or program approval is claimed. Main contains later documentation/onboarding changes. Separate review and usefulness sessions are optional and unperformed.
+Latest verified release: [v0.1.2 experimental source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.2), which contains the closed-output-pipe fix; [v0.1.1](https://github.com/claimplan/claimplan/releases/tag/v0.1.1) and v0.1.0 keep the earlier crash behavior. No npm package, independent audit, established adoption or program approval is claimed. Main contains later documentation/onboarding changes. Separate review and usefulness sessions are optional and unperformed.
 
 | Reference | Owns |
 | --- | --- |
