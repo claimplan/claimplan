@@ -95,7 +95,7 @@ npm pack --dry-run
 npm run docs:build
 ```
 
-The default suite has 35 offline tests including 1,000 seeded predicate trees; [evidence](evidence/index.md) distinguishes this from actual local Core execution. Linux `npm run test:resources` exercises a bounded corpus. The separate Docker `npm run test:core` harness signs synthetic transactions only on an owned isolated local network, is excluded from the packed product and is not public Testnet verification. Its historical passing observations and the fresh audit startup failure are distinct outcomes.
+The default suite has 40 offline tests, including 1,000 seeded predicate trees and CLI output-stream delivery cases; [evidence](evidence/index.md) distinguishes this from actual local Core execution. Linux `npm run test:resources` exercises a bounded corpus. The separate Docker `npm run test:core` harness signs synthetic transactions only on an owned isolated local network, is excluded from the packed product and is not public Testnet verification. Its historical passing observations and the fresh audit startup failure are distinct outcomes.
 
 [Choose a scoped contribution](docs/CONTRIBUTOR-START-HERE.md), check existing PRs and follow [CONTRIBUTING.md](CONTRIBUTING.md). Tasks are not assignments or reward promises. Automated dependency-update bots are intentionally excluded by the maintainer; manual review and scanning remain available.
 
