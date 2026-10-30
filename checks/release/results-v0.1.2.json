@@ -1,0 +1,90 @@
+{
+  "release": "v0.1.2",
+  "expectedCommit": "d0353e153b7f0246f737ec55401bccdd5937e32a",
+  "checks": [
+    {
+      "command": "npm ci",
+      "passed": true
+    },
+    {
+      "command": "npm run check",
+      "passed": true
+    },
+    {
+      "command": "npm run demo",
+      "passed": true
+    },
+    {
+      "command": "npm run verify:package",
+      "passed": true
+    },
+    {
+      "command": "npm run docs:build",
+      "passed": true
+    },
+    {
+      "command": "node dist/cli.js --version",
+      "passed": true
+    }
+  ],
+  "actualCommit": "d0353e153b7f0246f737ec55401bccdd5937e32a",
+  "cliVersion": "0.1.2",
+  "node": "v22.23.2",
+  "npm": "10.9.8",
+  "passed": true,
+  "releaseUrl": "https://github.com/claimplan/claimplan/releases/tag/v0.1.2",
+  "isPrerelease": true,
+  "documentation": "https://claimplan.github.io/claimplan/",
+  "demo": "https://claimplan.github.io/claimplan/demo.html",
+  "demoSha256": "48cc09726ff6dea328608e80cc4df1308760068f4d044287953f436444903d14",
+  "offlineTests": 40,
+  "verifiedOn": "2026-10-30",
+  "ciRuns": {
+    "ci": [
+      "https://github.com/claimplan/claimplan/actions/runs/41074424202",
+      "https://github.com/claimplan/claimplan/actions/runs/41074411472"
+    ],
+    "native": [
+      "https://github.com/claimplan/claimplan/actions/runs/41074424219",
+      "https://github.com/claimplan/claimplan/actions/runs/41074411457"
+    ],
+    "docs": "https://github.com/claimplan/claimplan/actions/runs/41074424204",
+    "main": {
+      "ci": "https://github.com/claimplan/claimplan/actions/runs/41075010683",
+      "native": "https://github.com/claimplan/claimplan/actions/runs/41075010741",
+      "docsPublish": "https://github.com/claimplan/claimplan/actions/runs/41075010695"
+    }
+  },
+  "coreRerun": {
+    "date": "2026-10-30",
+    "command": "npm run test:core (isolated clone of main at 4dc7088)",
+    "comparisons": 30,
+    "controls": 5,
+    "passed": true,
+    "image": "stellar/quickstart@sha256:7711899e9942c60316ebacf8ab901be15bed7a5a31705d847b55375ff3bc8356",
+    "coreBuild": "v30.0.0",
+    "protocol": 28,
+    "sdk": "17.4.0",
+    "ledgers": [
+      69,
+      70,
+      71
+    ],
+    "resultsFile": "checks/core/results-2026-10-30.json",
+    "resultsSha256": "2e3eb66468e6cd7f4255ee5f5ba048664274ee5e536db74e8da62364b13814e5",
+    "historicalResultsSha256": "6785f3733832a791f1d0a7c593d6391f04ec161277542a4d7bf5d7625e8603d2",
+    "limits": [
+      "Fresh synthetic accounts and fixture; only the case names, offsets and result codes match the 2026-10-28 record",
+      "The 2026-10-29 fresh RPC-startup timeout did not reproduce on this run; the cause remains undiagnosed",
+      "Local standalone network, not Testnet or mainnet"
+    ]
+  },
+  "limits": [
+    "Finite recorded environments and inputs only",
+    "Independent review/usefulness sessions optional and unperformed",
+    "No organizer approval verified",
+    "No npm publication or deployed product/contract",
+    "v0.1.0 and v0.1.1 retain the closed-pipe crash fixed in this release"
+  ],
+  "publicRelease": "https://github.com/claimplan/claimplan/releases/tag/v0.1.2"
+}
