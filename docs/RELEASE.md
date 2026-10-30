@@ -4,6 +4,8 @@
 
 [v0.1.1 experimental source-only prerelease](https://github.com/claimplan/claimplan/releases/tag/v0.1.1) targets `569fca37683e9ae4720f7293d61df718e6204639`, published on 2026-10-28. [Saved verification](../checks/release/results-v0.1.1.json) records a fresh public-tag clone on Node 22.23.2 passing install, typecheck/35 tests, demo, installed CLI/ESM and docs build. The Windows helper repair is included; product predicate/policy semantics are unchanged. Later main-branch documentation does not create a new release.
 
+A v0.1.2 candidate is prepared: package/CLI version text and the changelog entry cover the output-delivery fix merged at `f7db8e2`. Publication, the exact tag target and fresh public-tag install verification are recorded in this document and in `checks/release/` only after they actually happen; nothing here pre-claims them.
+
 ## Earlier release and failures retained
 
 [v0.1.0](https://github.com/claimplan/claimplan/releases/tag/v0.1.0) targets `76423af793bccc9cb0c6b83b522a887f2d7af3e6`, published on 2026-10-28. Its clean Linux checkout passed the recorded source/package checks; it predates the Windows development-helper repair. [Candidate CI](https://github.com/claimplan/claimplan/actions/runs/40652655946) and [native failure/repair](NATIVE-VERIFICATION.md) preserve the distinction. Neither tag was moved.
