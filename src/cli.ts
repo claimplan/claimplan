@@ -2,6 +2,7 @@
 import { open } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { parseArgs } from 'node:util';
+import type { Writable } from 'node:stream';
 import { analyzeEnvelope } from './analyze.js';
 import { MAX_INPUT_BYTES } from './decode.js';
 import { InputError, type Report } from './types.js';
@@ -20,6 +21,25 @@ No signing, submission, network calls or wall-clock assumptions.
 Exit codes: 0 completed without errors (warnings may remain); 1 policy/condition
 failure; 2 invalid, unsupported or inconclusive input.
 `;
+
+// A consumer that closes a pipe makes output delivery fail asynchronously. Without
+// these listeners the EPIPE becomes an unhandled 'error' event and an exit-1 crash.
+let outputBroken = false;
+function markOutputBroken(): void {
+  outputBroken = true;
+  process.exitCode = 2;
+}
+process.stdout.on('error', markOutputBroken);
+process.stderr.on('error', markOutputBroken);
+
+async function write(stream: Writable, text: string): Promise<void> {
+  if (outputBroken) return;
+  try {
+    await new Promise<void>((resolveDelivery) => {
+      stream.write(text, (error) => { if (error) markOutputBroken(); resolveDelivery(); });
+    });
+  } catch { markOutputBroken(); }
+}
 
 async function readBounded(path: string, label: string): Promise<string> {
   let handle;
@@ -71,8 +91,8 @@ async function main(): Promise<void> {
     json = values.json ?? false;
     const names = tokens.filter(t => t.kind === 'option').map(t => t.name);
     if (new Set(names).size !== names.length) throw new InputError('duplicate command option');
-    if (args.length === 0 || values.help) { process.stdout.write(help); return; }
-    if (values.version && positionals.length === 0 && names.length === 1) { process.stdout.write('0.1.1\n'); return; }
+    if (args.length === 0 || values.help) { await write(process.stdout, help); return; }
+    if (values.version && positionals.length === 0 && names.length === 1) { await write(process.stdout, '0.1.1\n'); return; }
     if (values.version || positionals.length !== 2 || positionals[0] !== 'check' || !values.policy) {
       throw new InputError('expected: claimplan check transaction.xdr --policy policy.json [--json]');
     }
@@ -83,13 +103,14 @@ async function main(): Promise<void> {
     try { policyInput = JSON.parse(policyText); }
     catch { throw new InputError('policy: invalid JSON'); }
     const report = analyzeEnvelope(encoded, policyInput);
-    process.stdout.write(json ? `${JSON.stringify(report, null, 2)}\n` : render(report));
-    process.exitCode = report.status === 'pass' ? 0 : report.status === 'fail' ? 1 : 2;
+    await write(process.stdout, json ? `${JSON.stringify(report, null, 2)}\n` : render(report));
+    if (!outputBroken) process.exitCode = report.status === 'pass' ? 0 : report.status === 'fail' ? 1 : 2;
   } catch (error) {
-    const message = error instanceof InputError ? error.message : 'unexpected internal error';
-    if (json) process.stdout.write(`${JSON.stringify({ rulesVersion: '1', status: 'inconclusive', error: { code: 'INPUT_ERROR', message } }, null, 2)}\n`);
-    else process.stderr.write(`ClaimPlan: ${message}\n`);
     process.exitCode = 2;
+    if (outputBroken) return;
+    const message = error instanceof InputError ? error.message : 'unexpected internal error';
+    if (json) await write(process.stdout, `${JSON.stringify({ rulesVersion: '1', status: 'inconclusive', error: { code: 'INPUT_ERROR', message } }, null, 2)}\n`);
+    else await write(process.stderr, `ClaimPlan: ${message}\n`);
   }
 }
 

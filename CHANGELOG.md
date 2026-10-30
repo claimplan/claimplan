@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — pending maintainer review
+
+- CLI output delivery is now awaited. A consumer that closes stdout or stderr mid-report exits 2 with no further writes instead of crashing with an unhandled EPIPE and exit 1 (reproduced 2026-10-29, fixed at `2454ed7`). Predicate, policy and report semantics are unchanged, and no published tag contains this fix yet.
+- Added four cross-platform stream regressions: full delivery of a report larger than the 64 KiB pipe buffer, a reader closing after the first chunk, output closed before the CLI writes, and a closed stderr. The offline suite is now 40 tests; Linux/Node 22.23.2 evidence is recorded, and macOS/Windows evidence comes from the pull-request matrix rather than assumption.
+
 ## 0.1.1 — 2026-10-28 (experimental source-only)
 
 - Added published static documentation and an actual CLI demo with a full text alternative. Documentation builds verify live analyzer examples and local destinations.

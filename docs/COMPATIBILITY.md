@@ -9,13 +9,13 @@ This is a pre-release contract, pending developer feedback. Policy `version: 1` 
 | CLI | `check <xdr-file> --policy <json-file> [--json]`; `--help`, `--version` |
 | Exit 0 | Completed analysis without errors; warnings may remain |
 | Exit 1 | Proven predicate/policy violations |
-| Exit 2 | Invalid/unsupported input or inconclusive analysis |
+| Exit 2 | Invalid/unsupported input, inconclusive analysis, or output that could not be delivered |
 | ESM library | `analyzeEnvelope(envelope, policyInput)` returns `Report`; invalid input throws `InputError` |
 | Type exports | `Report`, `Finding`, `JsonInterval` |
 | JSON | Decimal strings for exact time/amount fields; half-open intervals; deterministic ordering; no wall-clock timestamps |
 | Errors | JSON `error` object for invalid CLI input; normal `findings` for completed analyses |
 
-Known output-delivery exception (reproduced 2026-10-29): a reader closing stdout early can produce an unhandled EPIPE and process exit 1 rather than a complete report. See [#13](https://github.com/claimplan/claimplan/issues/13). Do not infer a proven policy violation from an exit code without a valid report; this audit does not change the runtime behavior.
+Undeliverable output exits 2 (fixed from 2026-10-30 at `2454ed7`, not yet in any published tag): a consumer that closes stdout or stderr before the report arrives previously produced an unhandled EPIPE and process exit 1 with a Node stack trace. The CLI now waits for delivery, records the stream failure, writes nothing to the broken stream and exits 2. Because exit 2 can also mean "the report never arrived", consumers must parse a complete report before treating exit 1 as a proven policy violation; see [#13](https://github.com/claimplan/claimplan/issues/13). The regression asserts the exit-code contract rather than one errno, because closed-pipe reporting differs across platforms; the native matrix runs the same assertions on macOS 15 and Windows Server 2025 and any platform difference is recorded there rather than assumed.
 
 Consumers should branch on status, severity and finding codes, rather than matching English prose. Human messages may improve without a rules-version change. Warning-only reports can pass. A partially analyzed transaction is explicitly marked, and remains partial even if its predicate checks pass. See [SPEC.md](SPEC.md) for schema and semantics.
 

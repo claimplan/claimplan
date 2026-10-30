@@ -11,7 +11,8 @@ The experimental v0.1.1 implementation and published artifacts are recorded in [
 
 ## Technical follow-up
 
-- [ ] Resolve the known output-pipe failure in [#13](https://github.com/claimplan/claimplan/issues/13) through a separately reviewed change; this cleanup preserves runtime behavior.
+- [ ] Review and merge the closed-output-stream fix on `fix/cli-output-stream-lifecycle` (`2454ed7`). The reproduced [#13](https://github.com/claimplan/claimplan/issues/13) crash now exits 2 with regression coverage, but issue state and release inclusion remain maintainer decisions.
+- [ ] Read the actual macOS/Windows stream-test result from that pull request's native matrix before claiming cross-platform delivery behavior; only Linux x64/Node 22.23.2 was measured locally.
 - [ ] Investigate the fresh local Core run's RPC catch-up timeout before claiming a renewed successful Core execution. Preserve the historical passing dataset and exact identity/timestamp guards.
 - [ ] Select optional follow-on work from [CONTRIBUTOR-START-HERE.md](CONTRIBUTOR-START-HERE.md); those proposed enhancements are not retroactive requirements for v0.1.1.
 

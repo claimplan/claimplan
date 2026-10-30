@@ -16,8 +16,8 @@ assert.ok(npmCli, 'npm CLI not found; run npm run verify:package');
 const offline = process.argv.includes('--offline');
 assert.ok(process.argv.slice(2).every(argument => argument === '--offline'), 'Only --offline is supported');
 const temporary = mkdtempSync(join(tmpdir(), 'claimplan package Ω-'));
-function run(command, args, cwd) {
-  const result = spawnSync(command, args, { cwd, encoding: 'utf8', timeout: 120000 });
+function run(command, args, cwd, timeoutMs = 120000) {
+  const result = spawnSync(command, args, { cwd, encoding: 'utf8', timeout: timeoutMs });
   assert.ifError(result.error);
   assert.equal(result.status, 0, `${command} failed:\n${result.stderr}\n${result.stdout}`);
   return result.stdout;
@@ -32,7 +32,10 @@ try {
   assert.ok(!files.some(path => path.startsWith('integration/') || path.startsWith('checks/') || /(^|\/)\.env($|\.)/.test(path)));
   const consumer = join(temporary, 'consumer');
   mkdirSync(consumer);
-  run(process.execPath, [npmCli, 'install', '--prefix', consumer, ...(offline ? ['--offline'] : []), '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', join(temporary, packed.filename)], consumer);
+  // Registry installation pulls the pinned SDK, so its budget is wider than the
+  // local pack step; hosted Windows runners measured above 120 s on 2026-10-30.
+  const installBudgetMs = offline ? 120000 : 300000;
+  run(process.execPath, [npmCli, 'install', '--prefix', consumer, ...(offline ? ['--offline'] : []), '--ignore-scripts', '--no-audit', '--no-fund', '--package-lock=false', join(temporary, packed.filename)], consumer, installBudgetMs);
   const installed = join(consumer, 'node_modules', '@claimplan', 'cli');
   const bin = join(consumer, 'node_modules', '.bin', process.platform === 'win32' ? 'claimplan.cmd' : 'claimplan');
   assert.ok(existsSync(bin));
