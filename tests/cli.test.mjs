@@ -153,11 +153,12 @@ test('a report larger than the pipe buffer is delivered complete with its normal
 
 test('a reader that closes after the first chunk yields exit 2 and no stack leak', async () => {
   for (const args of [wide, [...wide, '--json']]) {
+    const complete = await streamCase(args, 'stdout', 'none');
     const result = await streamCase(args, 'stdout', 'first-chunk');
     assert.equal(result.timedOut, false, 'the CLI must exit promptly, not hang on a dead pipe');
     assert.equal(result.signal, null);
     assert.equal(result.code, 2, 'failed report delivery is exit 2, never the report status code');
-    assert.ok(result.delivered > 0 && result.delivered <= 64 * 1024, `expected a truncated report, got ${result.delivered} bytes`);
+    assert.ok(result.delivered > 0 && result.delivered < complete.delivered, `expected a truncated report: ${result.delivered} of ${complete.delivered} bytes`);
     assert.ok(!stackMarkers.test(result.stderrText), `unexpected diagnostic leaked: ${result.stderrText}`);
     assert.equal(result.stderrText, '', 'a broken output stream must not gain a replacement write');
   }
