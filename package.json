@@ -1,14 +1,35 @@
 {
   "name": "@claimplan/cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Offline policy checks for Stellar claimable-balance payout plans",
   "type": "module",
   "license": "MIT",
-  "engines": { "node": ">=22.12.0" },
-  "bin": { "claimplan": "dist/cli.js" },
-  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
-  "files": ["dist", "docs/SPEC.md", "examples", "README.md", "LICENSE", "docs/COMPATIBILITY.md", "SECURITY.md", "CHANGELOG.md"],
-  "repository": { "type": "git", "url": "git+https://github.com/claimplan/claimplan.git" },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "bin": {
+    "claimplan": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "docs/SPEC.md",
+    "examples",
+    "README.md",
+    "LICENSE",
+    "docs/COMPATIBILITY.md",
+    "SECURITY.md",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claimplan/claimplan.git"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
@@ -21,6 +42,11 @@
     "demo": "npm run build && node scripts/demo.mjs",
     "verify:package": "npm run build && node scripts/verify-package.mjs"
   },
-  "dependencies": { "@stellar/stellar-sdk": "17.4.0" },
-  "devDependencies": { "@types/node": "22.20.5", "typescript": "7.0.2" }
+  "dependencies": {
+    "@stellar/stellar-sdk": "17.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "7.0.2"
+  }
 }

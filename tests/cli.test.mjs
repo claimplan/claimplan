@@ -43,7 +43,7 @@ test('missing creation assumption returns 2 with a normal inconclusive report', 
 test('help/version are available without input files', () => {
   assert.equal(cli('--help').status, 0);
   assert.match(cli().stdout, /Usage:/);
-  assert.equal(cli('--version').stdout, '0.1.1\n');
+  assert.equal(cli('--version').stdout, '0.1.2\n');
 });
 
 test('a FIFO input is rejected rather than blocking before file validation', { skip: process.platform === 'win32' }, () => {

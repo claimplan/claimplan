@@ -1,9 +1,11 @@
 # Changelog
 
-## Unreleased — pending maintainer review
+## 0.1.2 — 2026-10-30 (experimental source-only)
 
-- CLI output delivery is now awaited. A consumer that closes stdout or stderr mid-report exits 2 with no further writes instead of crashing with an unhandled EPIPE and exit 1 (reproduced 2026-10-29, fixed at `2454ed7`). Predicate, policy and report semantics are unchanged, and no published tag contains this fix yet.
-- Added four cross-platform stream regressions: full delivery of a report larger than the 64 KiB pipe buffer, a reader closing after the first chunk, output closed before the CLI writes, and a closed stderr. The offline suite is now 40 tests; Linux/Node 22.23.2 evidence is recorded, and macOS/Windows evidence comes from the pull-request matrix rather than assumption.
+- CLI output delivery is now awaited. A consumer that closes stdout or stderr mid-report exits 2 with no further writes instead of crashing with an unhandled EPIPE and exit 1 (reproduced 2026-10-29 at `7e5d6e5`, fixed at `2454ed7`, merged at `f7db8e2`). Predicate and policy semantics, report content, JSON schema and the normal exits 0/1/2 are unchanged; `v0.1.0` and `v0.1.1` keep the previous crash.
+- Added four cross-platform output-stream tests: complete delivery of a report larger than the 64 KiB pipe buffer, a reader closing after the first chunk, output closed before the CLI writes, and a closed stderr. The default suite is now 40 tests; the hosted matrix at `d2dd7ae` passed all of them on Ubuntu, macOS 15 and Windows Server 2025 with only the pre-existing POSIX FIFO skip on Windows.
+- Gave the registry-dependent install step in `npm run verify:package` its own 300 s budget after a hosted Windows runner exceeded the previous 120 s cap; the warmed-cache `--offline` budget is unchanged. This development helper is not part of the installed product.
+- CLI version text identifies 0.1.2.
 
 ## 0.1.1 — 2026-10-28 (experimental source-only)
 
